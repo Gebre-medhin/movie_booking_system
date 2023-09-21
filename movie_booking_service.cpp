@@ -1,6 +1,5 @@
 //
 //  movie_booking_service.cpp
-//  booking_sytem
 //
 //  Created by Gebremedhin Abreha on 21/09/2023.
 //

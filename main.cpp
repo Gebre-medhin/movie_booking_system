@@ -1,8 +1,9 @@
 //
 //  main.cpp
-//  booking_sytem
+//  Movie booking service
 //
 //  Created by Gebremedhin Abreha on 21/09/2023.
+
 #include <iostream>
 #include <vector>
 #include <string>
