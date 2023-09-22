@@ -66,7 +66,7 @@ std::vector<int> MovieBookingService::getAvailableSeats(int theaterId, int movie
         return availableSeats; // Return an empty vector for invalid theater or movie
     }
     // Lock the mutex to protect the critical section
-    std::unique_lock<std::mutex> lock(mBookingMutex);
+    std::lock_guard<std::mutex> lock(mBookingMutex);
     
    // Find the theater associated with the provided theaterId
     const Theater* theater = nullptr;
