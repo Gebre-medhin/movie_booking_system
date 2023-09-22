@@ -6,7 +6,9 @@
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
 #include "movie_booking_service.hpp"
+
 #include <memory>
+#include <future>
 
 // Define a mock class for MovieBookingService
 class MockMovieBookingService : public MovieBookingService {
@@ -52,6 +54,7 @@ protected:
 using ::testing::Return;
 using ::testing::_;
 
+/*------------------------------------------------------*/
 // Test cases using the MovieBookingServiceFixture
 TEST_F(MovieBookingServiceFixture, GetAllMovies) {
     // Mock behavior for the getAllMovies method
@@ -63,6 +66,7 @@ TEST_F(MovieBookingServiceFixture, GetAllMovies) {
     EXPECT_EQ(result, movies);
 }
 
+/*------------------------------------------------------*/
 // Test cases using the MovieBookingServiceFixture
 TEST_F(MovieBookingServiceFixture, GetTheatersForMovie) {
     int movieIdToTest = 1;
@@ -94,6 +98,7 @@ TEST_F(MovieBookingServiceFixture, GetTheatersForMovie) {
     EXPECT_EQ(result, expectedTheatersForMovie);
 }
 
+/*------------------------------------------------------*/
 // Add a test case for getAvailableSeats
 TEST_F(MovieBookingServiceFixture, GetAvailableSeats) {
     // Define theater ID and movie ID for which available seats will be retrieved
@@ -107,6 +112,7 @@ TEST_F(MovieBookingServiceFixture, GetAvailableSeats) {
     std::vector<int> result = mServicePtr->getAvailableSeats(theaterIdToTest, movieIdToTest);
 }
 
+/*------------------------------------------------------*/
 // Add a test case for bookSeats
 TEST_F(MovieBookingServiceFixture, BookSeats) {
     // Define theater ID, movie ID, and seat IDs to be booked
@@ -129,6 +135,52 @@ TEST_F(MovieBookingServiceFixture, BookSeats) {
     EXPECT_TRUE(result);
 }
 
+/*------------------------------------------------------*/
+// Define a test case for concurrent seat booking
+TEST_F(MovieBookingServiceFixture, ConcurrentSeatBooking) {
+    const int numThreads = 5; // Number of concurrent booking threads
+    const int theaterId = 1; // Specify the theater and movie for the test
+    const int movieId = 1;
+    const int numSeats = 3; // Number of seats to book by each thread
+    
+    testing::InSequence s;
+    // Mock behavior for the bookSeats method
+
+    EXPECT_CALL(*mServicePtr, bookSeats(theaterId, movieId, _ ))
+        .WillOnce(Return(true));
+    EXPECT_CALL(*mServicePtr, bookSeats(theaterId, movieId, _ ))
+        .WillRepeatedly(Return(false));
+
+    // Define a vector of futures to store the results of async tasks
+    std::vector<std::future<bool>> futures;
+
+    // Create and launch multiple async tasks to simulate concurrent seat booking
+    for (int i = 0; i < numThreads; ++i) {
+        futures.emplace_back(std::async(std::launch::async, [this, theaterId, movieId, numSeats]() {
+            // Simulate a user booking seats concurrently
+            std::vector<int> seatIds;
+            for (int j = 0; j < numSeats; ++j) {
+                seatIds.push_back(j + 1); // Assuming seat IDs start from 1
+            }
+
+            // Call the bookSeats method of the mock service
+            return mServicePtr->bookSeats(theaterId, movieId, seatIds);
+        }));
+    }
+    // Wait for all async tasks to complete and collect the results
+    std::vector<bool> bookStatus;
+    for (auto& future : futures) {
+        bool result = future.get();
+        bookStatus.push_back(result);
+    }
+    
+    
+    // Check the result of the booking
+    int cnt = std::count(bookStatus.begin(), bookStatus.end(), true);
+    EXPECT_EQ(cnt, 1); // Check if only 1 booking is successful (no over booking)
+}
+
+/*------------------------------------------------------*/
 // Add a test case for isValidMovie
 TEST_F(MovieBookingServiceFixture, IsValidMovie) {
     // Define a movie ID that exists in the service
@@ -158,6 +210,7 @@ TEST_F(MovieBookingServiceFixture, IsValidMovie) {
     EXPECT_FALSE(result);
 }
 
+/*------------------------------------------------------*/
 // Add a test case for isMovieShownInTheater
 TEST_F(MovieBookingServiceFixture, IsMovieShownInTheater) {
     // Define theater ID and movie ID for which the check will be performed
@@ -188,6 +241,7 @@ TEST_F(MovieBookingServiceFixture, IsMovieShownInTheater) {
     EXPECT_FALSE(result);
 }
 
+/*------------------------------------------------------*/
 // Add a test case for getMovieName
 TEST_F(MovieBookingServiceFixture, GetMovieName) {
     // Define a movie ID for which the name will be retrieved
@@ -219,3 +273,4 @@ TEST_F(MovieBookingServiceFixture, GetMovieName) {
     EXPECT_TRUE(result.empty());
 }
 
+/*------------------------------------------------------*/
