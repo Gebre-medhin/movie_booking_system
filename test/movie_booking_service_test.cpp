@@ -55,7 +55,7 @@ using ::testing::Return;
 using ::testing::_;
 
 /*------------------------------------------------------*/
-// Test cases using the MovieBookingServiceFixture
+// Test case for getAllMovies
 TEST_F(MovieBookingServiceFixture, GetAllMovies) {
     // Mock behavior for the getAllMovies method
     EXPECT_CALL(*mServicePtr, getAllMovies())
@@ -67,7 +67,7 @@ TEST_F(MovieBookingServiceFixture, GetAllMovies) {
 }
 
 /*------------------------------------------------------*/
-// Test cases using the MovieBookingServiceFixture
+// Test case for getTheatersforMovie
 TEST_F(MovieBookingServiceFixture, GetTheatersForMovie) {
     int movieIdToTest = 1;
 
@@ -99,7 +99,7 @@ TEST_F(MovieBookingServiceFixture, GetTheatersForMovie) {
 }
 
 /*------------------------------------------------------*/
-// Add a test case for getAvailableSeats
+// Test case for getAvailableSeats
 TEST_F(MovieBookingServiceFixture, GetAvailableSeats) {
     // Define theater ID and movie ID for which available seats will be retrieved
     int theaterIdToTest = 1;
@@ -113,7 +113,7 @@ TEST_F(MovieBookingServiceFixture, GetAvailableSeats) {
 }
 
 /*------------------------------------------------------*/
-// Add a test case for bookSeats
+// Test case for bookSeats
 TEST_F(MovieBookingServiceFixture, BookSeats) {
     // Define theater ID, movie ID, and seat IDs to be booked
     int theaterIdToTest = 1;
@@ -136,7 +136,7 @@ TEST_F(MovieBookingServiceFixture, BookSeats) {
 }
 
 /*------------------------------------------------------*/
-// Define a test case for concurrent seat booking
+// Test case for concurrent seat booking
 TEST_F(MovieBookingServiceFixture, ConcurrentSeatBooking) {
     const int numThreads = 5; // Number of concurrent booking threads
     const int theaterId = 1; // Specify the theater and movie for the test
@@ -181,7 +181,7 @@ TEST_F(MovieBookingServiceFixture, ConcurrentSeatBooking) {
 }
 
 /*------------------------------------------------------*/
-// Add a test case for isValidMovie
+// Test case for isValidMovie
 TEST_F(MovieBookingServiceFixture, IsValidMovie) {
     // Define a movie ID that exists in the service
     int existingMovieId = 1;
@@ -211,7 +211,7 @@ TEST_F(MovieBookingServiceFixture, IsValidMovie) {
 }
 
 /*------------------------------------------------------*/
-// Add a test case for isMovieShownInTheater
+// Test case for isMovieShownInTheater
 TEST_F(MovieBookingServiceFixture, IsMovieShownInTheater) {
     // Define theater ID and movie ID for which the check will be performed
     int existingTheaterId = 1;
@@ -242,7 +242,7 @@ TEST_F(MovieBookingServiceFixture, IsMovieShownInTheater) {
 }
 
 /*------------------------------------------------------*/
-// Add a test case for getMovieName
+// Test case for getMovieName
 TEST_F(MovieBookingServiceFixture, GetMovieName) {
     // Define a movie ID for which the name will be retrieved
     int existingMovieId = 1;
