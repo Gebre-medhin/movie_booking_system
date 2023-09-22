@@ -28,16 +28,16 @@ int main(int argc, const char * argv[]) {
     std::vector<Seat> seats(seatCapacity);
     
     std::vector<Theater> theaters = {
-        {1, "Theater One"},
-        {2, "Theater Two"},
-        {3, "Theater Three"},
-        {4, "Theater Four"},
-        {5, "Theater Five"},
-        {6, "Theater Six"},
-        {7, "Theater Seven"},
-        {8, "Theater Eight"},
-        {9, "Theater Nine"},
-        {10, "Theater Ten"},
+        {Theater(1, "Theater One")},
+        {Theater(2, "Theater Two")},
+        {Theater(3, "Theater Three")},
+        {Theater(4, "Theater Four")},
+        {Theater(5, "Theater Five")},
+        {Theater(6, "Theater Six")},
+        {Theater(7, "Theater Seven")},
+        {Theater(8, "Theater Eight")},
+        {Theater(9, "Theater Nine")},
+        {Theater(10, "Theater Ten")},
         //Add more movies as needed
     };
 

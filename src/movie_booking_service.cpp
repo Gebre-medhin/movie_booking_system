@@ -11,18 +11,20 @@
 #include <mutex>
 #include <stdexcept>
 
-
+/*----------------------------------------------------*/
 MovieBookingService::MovieBookingService(const std::vector<Movie>& movies, const std::vector<Theater>& theaters)
     : mMovies(movies), mTheaters(theaters)
 {
     allocateMovieToTheaters();
 }
 
+/*----------------------------------------------------*/
 std::vector<Movie> MovieBookingService::getAllMovies() const
 {
     return mMovies;
 }
 
+/*----------------------------------------------------*/
 std::vector<Theater> MovieBookingService::getTheatersForMovie(int movieId) const
 {
     std::vector<Theater> theatersForMovie;
@@ -49,6 +51,7 @@ std::vector<Theater> MovieBookingService::getTheatersForMovie(int movieId) const
     return theatersForMovie;
 }
 
+/*----------------------------------------------------*/
 std::vector<int> MovieBookingService::getAvailableSeats(int theaterId, int movieId) const
 {
     std::vector<int> availableSeats;
@@ -86,6 +89,7 @@ std::vector<int> MovieBookingService::getAvailableSeats(int theaterId, int movie
     return availableSeats;
 }
 
+/*----------------------------------------------------*/
 bool MovieBookingService::bookSeats(int theaterId, int movieId, const std::vector<int>& seatIds)
 {
    std::lock_guard<std::mutex> lock(mBookingMutex);
@@ -122,6 +126,7 @@ bool MovieBookingService::bookSeats(int theaterId, int movieId, const std::vecto
     return true; // Seats booked successfully
 }
 
+/*----------------------------------------------------*/
 bool MovieBookingService::isValidMovie(int movieId) const
 {
     for (auto& movie : mMovies)
@@ -134,6 +139,7 @@ bool MovieBookingService::isValidMovie(int movieId) const
     return false; // Movie with the specified ID not found
 }
 
+/*----------------------------------------------------*/
 bool MovieBookingService::isValidTheater(int theaterId) const
 {
     for (auto& theater : mTheaters)
@@ -146,6 +152,7 @@ bool MovieBookingService::isValidTheater(int theaterId) const
     return false; // Theater with the specified ID not found
 }
 
+/*----------------------------------------------------*/
 std::string MovieBookingService::getMovieName(int movieId) const
 {
     for(auto& movie : mMovies)
@@ -159,6 +166,7 @@ std::string MovieBookingService::getMovieName(int movieId) const
     throw std::invalid_argument("Movie with the specified ID not found");
 }
 
+/*----------------------------------------------------*/
 std::string MovieBookingService::getTheaterName(int theaterId) const
 {
     for(auto& theater : mTheaters)
@@ -172,6 +180,7 @@ std::string MovieBookingService::getTheaterName(int theaterId) const
     throw std::invalid_argument("Theater with the specified ID not found");
 }
 
+/*----------------------------------------------------*/
 void MovieBookingService::allocateMovieToTheaters()
 {
 
@@ -217,6 +226,7 @@ void MovieBookingService::allocateMovieToTheaters()
     }
 }
 
+/*----------------------------------------------------*/
 bool MovieBookingService::isMovieShownInTheater(int theaterId, int movieId) const
 {
     // Check if the theater and movie IDs are valid
@@ -235,4 +245,5 @@ bool MovieBookingService::isMovieShownInTheater(int theaterId, int movieId) cons
     return isAllocated;
 }
 
+/*-------------------END---------------------------------*/
 

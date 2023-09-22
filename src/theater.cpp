@@ -6,12 +6,14 @@
 
 #include "theater.hpp"
 
+/*----------------------------------------------------*/
 Theater::Theater (const int& id, const std::string& name):
 mId(id), mName(name), mSeatCapacity(20)
 {
-    intializeSeats();
+    initializeSeats();
 }
 
+/*----------------------------------------------------*/
 bool Theater::bookSeat(const int& seatId)
 {
     for (auto& seat: mSeats)
@@ -31,6 +33,7 @@ bool Theater::bookSeat(const int& seatId)
     return false;
 }
 
+/*----------------------------------------------------*/
 std::vector<int> Theater::getAvailableSeats() const
 {
     std::vector<int> availableSeats;
@@ -46,7 +49,8 @@ std::vector<int> Theater::getAvailableSeats() const
     return availableSeats;
 }
 
-void Theater::intializeSeats ()
+/*----------------------------------------------------*/
+void Theater::initializeSeats ()
 {
     for (int i = 0; i < mSeatCapacity; ++i) {
         Seat seat;
@@ -57,3 +61,11 @@ void Theater::intializeSeats ()
     }
 }
 
+/*----------------------------------------------------*/
+bool Theater::operator == (const Theater &rhs) const
+{
+    if (mId == rhs.mId)
+        return true;
+    return false;
+}
+/*-------------------END-------------------------------*/
