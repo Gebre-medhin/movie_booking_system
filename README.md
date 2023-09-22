@@ -22,4 +22,4 @@ You can build the code using the following steps:
 After successful build, you can test the code using the following steps:
 
      1. ./main       //-> To test it using CLI
-     4. make test     //-> To run the unit tests
+     2. make test     //-> To run the unit tests
