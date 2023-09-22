@@ -1,6 +1,7 @@
 /**
  * @file movie_booking_service.hpp (API header)
  * @brief Movie booking service API.
+ * @author Gebremedhin Abreha
  */
 
 #ifndef MOVIE_BOOKING_SERVICE_HPP
@@ -53,7 +54,7 @@ public:
     virtual std::vector<Theater> getTheatersForMovie(int movieId) const;
     
     /**
-     * @brief Get available seats for a specific theater and movie.
+     * @brief Get available (free/unbooked) seats for a specific theater and movie.
      *
      * @param theaterId The ID of the theater.
      * @param movieId The ID of the movie.
@@ -93,6 +94,7 @@ public:
      *
      * @param movieId The ID of the movie.
      * @return The name of the movie.
+     * @note Can throw invalid_argument exception
      */
     virtual std::string getMovieName(int movieId) const;
     
@@ -101,6 +103,7 @@ public:
      *
      * @param theaterId The ID of the theater.
      * @return The name of the theater.
+     * @note Can throw invalid_argument exception
      */
     virtual std::string getTheaterName(int theaterId) const;
 
@@ -113,9 +116,8 @@ private:
     std::unordered_map<int, std::vector<int>> mMovieTheaterAllocations; // Movie allocations to theaters
     
     /**
-     * @brief Allocate each movie to theaters.
-     *
-     * This function allocates each movie to one or more theaters.
+     * @brief Allocate each movie to theaters. It allocates each movie to one or more theaters.
+     * @note If the number of movies are greater than the number of theaters, throws invalid_argument exception
      */
     void allocateMovieToTheaters();
     
@@ -123,7 +125,7 @@ private:
      * @brief Check if a theater with a given ID exists.
      *
      * @param theaterId The ID of the theater to check.
-     * @return True if the theater exists, false otherwise.
+     * @return True if the theater exists, false otherwise.ß
      */
     bool isValidTheater(int theaterId) const;
 

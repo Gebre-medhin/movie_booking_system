@@ -1,8 +1,8 @@
-//
-//  theater.cpp
-//
-//  Created by Gebremedhin Abreha on 21/09/2023.
-//
+/**
+ * @file theater.cpp
+ * @brief Test for MovieBookingService (API) class
+ * @author Gebremedhin Abreha
+ */
 
 #include "theater.hpp"
 

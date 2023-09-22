@@ -1,13 +1,14 @@
-//
-//  main.cpp
-//  Movie booking service
-//
-//  Created by Gebremedhin Abreha on 21/09/2023.
+/**
+ * @file main.cpp
+ * @brief Main program for testing movie booking service functionalities via CLI
+ * @author Gebremedhin Abreha
+ */
 
 #include <iostream>
 #include <vector>
 #include <string>
 #include <sstream>
+#include <limits>
 
 #include "movie_booking_service.hpp" // Include your MovieBookingService class header
 #include "theater.hpp"
@@ -59,7 +60,12 @@ int main(int argc, const char * argv[]) {
 
         int choice;
         std::cout << "Enter your choice: ";
-        std::cin >> choice;
+        if (!(std::cin >> choice))
+        {
+           // Clear the failure state of cin and ignore any remaining characters in the input buffer.
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
 
         switch (choice) {
             case 1:

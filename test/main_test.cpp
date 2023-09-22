@@ -1,3 +1,6 @@
+/**
+ * @file main_test.cpp
+ */
 #include "gtest/gtest.h"
 
 int main(int argc, char **argv) {

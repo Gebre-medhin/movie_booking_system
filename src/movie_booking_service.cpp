@@ -1,8 +1,8 @@
-//
-//  movie_booking_service.cpp
-//
-//  Created by Gebremedhin Abreha on 21/09/2023.
-//
+/**
+ * @file movie_booking_service,cpp
+ * @brief  Implementation for MovieBookingService (API) class
+ * @author Gebremedhin Abreha
+ */
 
 #include "movie_booking_service.hpp"
 
@@ -95,7 +95,7 @@ bool MovieBookingService::bookSeats(int theaterId, int movieId, const std::vecto
    std::lock_guard<std::mutex> lock(mBookingMutex);
     
     // Check if the theater and movie IDs are valid
-    if (!isValidTheater(theaterId) || !isValidMovie(movieId)) {
+    if (!isValidTheater(theaterId) || !isValidMovie(movieId) || seatIds.empty()) {
         return false; // Invalid theater or movie
     }
     // Get the theater associated with the provided theaterId

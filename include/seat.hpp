@@ -1,3 +1,7 @@
+/**
+ * @file seat.hpp
+ * @author Gebremedhin Abreha
+ */
 #ifndef SEAT_HPP
 #define SEAT_HPP
 

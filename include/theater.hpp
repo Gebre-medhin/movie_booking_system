@@ -1,3 +1,7 @@
+/**
+ * @file theater.hpp
+ * @author Gebremedhin Abreha
+ */
 #ifndef THEATER_HPP
 #define THEATER_HPP
 

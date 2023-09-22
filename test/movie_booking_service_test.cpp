@@ -1,5 +1,7 @@
 /**
- * Test for MovieBookingService (API) class
+ * @file movie_booking_service_test.cpp
+ * @brief Test for MovieBookingService (API) class
+ * @author Gebremedhin Abreha
  */
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
