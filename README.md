@@ -3,12 +3,12 @@
 This is an implementation of a backend service in C++ which is used by some other services ( e.g., CLI) for booking online movie tickets. Booking a ticket means just blocking
 the required number of particular seats.
 The end-user can perform the following actions through CLI:
-• View all playing movies
-• Select a movie
-• See all theaters showing the movie
-• Select a theater
-• See available seats for the selected theater & movie (I assumed that all theaters have 20 seats capacity)
-• Book one or more of the available seats. Service can handle
+1. View all playing movies
+2. Select a movie
+3. See all theaters showing the movie
+4. Select a theater
+5. See available seats for the selected theater & movie (I assumed that all theaters have 20 seats capacity)
+6. Book one or more of the available seats. Service can handle
 multiple requests simultaneously (no over-bookings) with the help of mutex syncronization.
    
 
