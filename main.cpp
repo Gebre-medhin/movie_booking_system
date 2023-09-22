@@ -17,10 +17,10 @@
 int main(int argc, const char * argv[]) {
     // Initialize the movie booking service with movie data
     std::vector<Movie> movies = {
-        {1, "Movie A"},
-        {2, "Movie B"},
-        {3, "Movie C"},
-        {4, "Movie D"},
+        {1, "Movie01"},
+        {2, "Movie02"},
+        {3, "Movie03"},
+        {4, "Movie04"},
         // Add more movies as needed, but not more than the number of theaters
     };
     
@@ -28,16 +28,16 @@ int main(int argc, const char * argv[]) {
     std::vector<Seat> seats(seatCapacity);
     
     std::vector<Theater> theaters = {
-        {Theater(1, "Theater One")},
-        {Theater(2, "Theater Two")},
-        {Theater(3, "Theater Three")},
-        {Theater(4, "Theater Four")},
-        {Theater(5, "Theater Five")},
-        {Theater(6, "Theater Six")},
-        {Theater(7, "Theater Seven")},
-        {Theater(8, "Theater Eight")},
-        {Theater(9, "Theater Nine")},
-        {Theater(10, "Theater Ten")},
+        {Theater(1, "Theater01")},
+        {Theater(2, "Theater02")},
+        {Theater(3, "Theater03")},
+        {Theater(4, "Theater04")},
+        {Theater(5, "Theater05")},
+        {Theater(6, "Theater06")},
+        {Theater(7, "Theater07")},
+        {Theater(8, "Theater08")},
+        {Theater(9, "Theater09")},
+        {Theater(10, "Theater10")},
         //Add more movies as needed
     };
 
