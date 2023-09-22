@@ -1,9 +1,25 @@
 # Movie booking service
+
+This is an implementation of a backend service in C++ which is used by some other services ( e.g., CLI) for booking online movie tickets. Booking a ticket means just blocking
+the required number of particular seats.
+The end-user can perform the following actions through CLI:
+• View all playing movies
+• Select a movie
+• See all theaters showing the movie
+• Select a theater
+• See available seats for the selected theater & movie (I assumed that all theaters have 20 seats capacity)
+• Book one or more of the available seats. Service can handle
+multiple requests simultaneously (no over-bookings) with the help of mutex syncronization.
    
-How to build code?
+
+You can build the code using the following steps:
 
      1. mkdir bld  //-->if it does not already exist
      2. cd bld
-     3. cmake ../.  
+     3. cmake .. 
      4. make
      
+After successful build, you can test the code using the following steps:
+
+     1. ./main       //-> To test it using CLI
+     4. make test     //-> To run the unit tests
