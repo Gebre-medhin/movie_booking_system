@@ -1,23 +1,26 @@
-name: C/C++ CI
+name: Build Movie Booking system
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - main  # Change to your repository's main branch
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # You can specify the runner OS here
 
     steps:
-    - uses: actions/checkout@v3
-    - name: configure
-      run:  mkdir bld && cd bld
-    - name: cmake
-      run: cmake ..
-    - name: make
-      run: make 
-    #- name: make distcheck
-      #run: make distcheck
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up CMake
+      uses: lukka/run-cmake@v1
+
+    - name: Build Project
+      run: |
+        mkdir -p build
+        cd build
+        cmake ..
+        make
+
+    # Add more steps here for testing or deploying your project if needed
