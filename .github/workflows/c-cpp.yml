@@ -2,8 +2,9 @@ name: Build Movie Booking system
 
 on:
   push:
-    branches:
-      - main  # Change to your repository's main branch
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
