@@ -17,8 +17,8 @@ jobs:
     - name: Set up CMake
       uses: lukka/run-cmake@v1
 
-    - name: Install Dependencies
-      run: sudo apt-get install -y googletest
+    #- name: Install Dependencies
+      #run: sudo apt-get install -y googletest
 
     - name: Configure Project with CMake
       run: cmake -Bbuild -H. -DCMAKE_MAKE_PROGRAM=make
