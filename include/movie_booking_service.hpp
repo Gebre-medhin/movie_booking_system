@@ -11,6 +11,7 @@
 #include <vector>
 #include <memory>
 #include <mutex>
+#include <unordered_map>
 
  #include "movie.hpp"
  #include "theater.hpp"
