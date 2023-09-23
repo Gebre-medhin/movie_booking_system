@@ -1,0 +1,41 @@
+#Action name
+name: CI
+
+
+# The "on" option will specify when to run this action and on which branch
+# Usually for a CI action you would like to run it on every pull request and on push
+# For CD you would probably only want to run it on closed pull requests or direct pushes on master
+# If you want to run it manually you would add "worflow_dispatch"
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+  
+jobs:
+  build:
+    # For Windows you can go with "windows-latest"
+    runs-on: ubuntu-latest
+
+    # Steps are the individual actions for each job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Configure Project with CMake
+        run: cmake -Bbuild -H.  # Configure the project with CMake
+
+      - name: Build Project
+        run: cmake --build build  # Build the project using the default build tool (usually 'make')
+        
+      - name: Run Unit Tests
+        run: |
+          cd build
+          ctest --output-on-failure  # Run unit tests using CTest
+
+      # Release and deployment 
+      - name: Run Release and deployment 
+        run: |
+          echo Add other actions to store artifacts,
+          echo test, and deploy your project.
