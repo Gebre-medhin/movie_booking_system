@@ -1,7 +1,6 @@
 <map id="include/theater.hpp" name="include/theater.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="224,5,371,32"/>
-<area shape="rect" id="node2" href="$movie__booking__service_8hpp.html" title="Movie booking service API." alt="" coords="87,80,260,121"/>
-<area shape="rect" id="node4" href="$main_8cpp.html" title="Main program for testing movie booking service functionalities via CLI." alt="" coords="256,169,339,196"/>
-<area shape="rect" id="node5" href="$theater_8cpp.html" title="Test for MovieBookingService (API) class." alt="" coords="335,87,454,114"/>
+<area shape="rect" id="node1" title=" " alt="" coords="131,5,277,32"/>
+<area shape="rect" id="node2" href="$movie__booking__service_8hpp.html" title="Movie booking service API." alt="" coords="32,80,205,121"/>
+<area shape="rect" id="node4" href="$theater_8cpp.html" title="Test for MovieBookingService (API) class." alt="" coords="230,87,349,114"/>
 <area shape="rect" id="node3" href="$movie__booking__service_8cpp.html" title="Implementation for MovieBookingService (API) class." alt="" coords="5,169,232,196"/>
 </map>
