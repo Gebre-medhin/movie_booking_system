@@ -10,11 +10,18 @@
 #include <sstream>
 #include <limits>
 
-#include "movie_booking_service.hpp" // Include your MovieBookingService class header
+#include "movie_booking_service.hpp"
 #include "theater.hpp"
 #include "movie.hpp"
 #include "seat.hpp"
 
+/**
+ * @brief Main function to run the movie booking service CLI.
+ *
+ * @param argc Number of command-line arguments.
+ * @param argv Array of command-line arguments.
+ * @return Exit code.
+ */
 int main(int argc, const char * argv[]) {
     // Initialize the movie booking service with movie data
     std::vector<Movie> movies = {

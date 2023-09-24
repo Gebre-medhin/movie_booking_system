@@ -8,7 +8,7 @@ GENERATE_HTML          = YES
 GENERATE_LATEX         = NO
 
 # Source code directories (multiple directories separated by spaces)
-INPUT                  = include src
+INPUT                  = include src .
 
 # Additional configuration options can be set as needed
 
