@@ -1,6 +1,6 @@
 /**
  * @file theater.cpp
- * @brief Test for MovieBookingService (API) class
+ * @brief Implementation for Theater class
  * @author Gebremedhin Abreha
  */
 
