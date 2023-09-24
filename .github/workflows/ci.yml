@@ -52,7 +52,7 @@ jobs:
 
 
       # Release and deployment 
-      - name: Run Release and deployment 
-        run: |
-          echo Add other actions to store artifacts,
-          echo test, and deploy your project.
+      #- name: Run Release and deployment 
+        #run: |
+          #echo Add other actions to store artifacts,
+          #echo test, and deploy your project.
