@@ -10,6 +10,7 @@
 #include <vector>
 #include <mutex>
 #include <stdexcept>
+#include <algorithm>
 
 /*----------------------------------------------------*/
 MovieBookingService::MovieBookingService(const std::vector<Movie>& movies, const std::vector<Theater>& theaters)
