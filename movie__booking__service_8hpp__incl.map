@@ -1,0 +1,11 @@
+<map id="include/movie_booking_service.hpp" name="include/movie_booking_service.hpp">
+<area shape="rect" id="node1" title="Movie booking service API." alt="" coords="117,5,291,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="407,244,465,271"/>
+<area shape="rect" id="node3" title=" " alt="" coords="221,169,283,196"/>
+<area shape="rect" id="node4" title=" " alt="" coords="71,95,148,121"/>
+<area shape="rect" id="node5" title=" " alt="" coords="172,95,236,121"/>
+<area shape="rect" id="node6" title=" " alt="" coords="261,95,385,121"/>
+<area shape="rect" id="node7" href="$movie_8hpp.html" title=" " alt="" coords="5,169,96,196"/>
+<area shape="rect" id="node8" href="$theater_8hpp.html" title=" " alt="" coords="409,95,505,121"/>
+<area shape="rect" id="node9" href="$seat_8hpp.html" title=" " alt="" coords="358,169,437,196"/>
+</map>
