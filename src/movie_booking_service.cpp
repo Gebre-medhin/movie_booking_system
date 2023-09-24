@@ -220,7 +220,7 @@ void MovieBookingService::allocateMovieToTheaters()
             // Store the allocated theater for the movie
             mMovieTheaterAllocations[movieId].push_back(theaterId);
 
-            // Move to the next movie
+            // Move to the next theater
             ++theaterIndex;
         }
     }
