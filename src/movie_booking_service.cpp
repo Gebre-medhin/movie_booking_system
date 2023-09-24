@@ -1,5 +1,5 @@
 /**
- * @file movie_booking_service,cpp
+ * @file movie_booking_service.cpp
  * @brief  Implementation for MovieBookingService (API) class
  * @author Gebremedhin Abreha
  */

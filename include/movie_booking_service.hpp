@@ -109,12 +109,13 @@ public:
     virtual std::string getTheaterName(int theaterId) const;
 
 private:
-    mutable std::mutex mBookingMutex; // Mutex for synchronization
+    
+    mutable std::mutex mBookingMutex; //! Mutex for synchronization of booking operations.
 
-    std::vector<Movie> mMovies; // Stores movie data
-    std::vector<Theater> mTheaters; // Stores theater data
+    std::vector<Movie> mMovies; //! Stores movie data
+    std::vector<Theater> mTheaters; //! Stores theater data
 
-    std::unordered_map<int, std::vector<int>> mMovieTheaterAllocations; // Movie allocations to theaters
+    std::unordered_map<int, std::vector<int>> mMovieTheaterAllocations; //! Movie allocations to theaters
     
     /**
      * @brief Allocate each movie to theaters. It allocates each movie to one or more theaters.
