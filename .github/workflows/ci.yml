@@ -44,9 +44,9 @@ jobs:
       - name: Deploy Documentation
         uses: peaceiris/actions-gh-pages@v3
         with:
-          publish_dir: ./docs/html 
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.MY_GITHUB_TOKEN }}  # Use your custom secret name
+          publish_dir: ./docs/html  # Specify the directory to deploy
+
 
       # Release and deployment 
       - name: Run Release and deployment 
