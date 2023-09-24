@@ -2,6 +2,7 @@
 
 # Project settings
 PROJECT_NAME           = "Movie Ticket Booking Service"
+PROJECT_BRIEF          = "Implementation of a backend service which is used for booking online movie tickets."
 OUTPUT_DIRECTORY       = docs
 GENERATE_HTML          = YES
 GENERATE_LATEX         = NO
