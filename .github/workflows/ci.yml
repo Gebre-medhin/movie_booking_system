@@ -34,6 +34,20 @@ jobs:
           cd build
           ctest --output-on-failure  # Run unit tests using CTest
 
+      - name: Install Doxygen
+        run: sudo apt-get install doxygen
+
+      - name: Generate Doxygen Documentation
+        run: |
+          doxygen 
+
+      - name: Deploy Documentation
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.MY_GITHUB_TOKEN }}  # Use your custom secret name
+          publish_dir: ./docs/html  # Specify the directory to deploy
+
+
       # Release and deployment 
       - name: Run Release and deployment 
         run: |
