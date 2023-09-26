@@ -23,33 +23,55 @@
  * @return Exit code.
  */
 int main(int argc, const char * argv[]) {
+    
     // Initialize the movie booking service with movie data
-    std::vector<Movie> movies = {
-        {1, "Movie01"},
-        {2, "Movie02"},
-        {3, "Movie03"},
-        {4, "Movie04"},
+    std::vector<std::shared_ptr<Movie>> movies = {
+        {std::make_shared<Movie>(1, "Movie01")},
+        {std::make_shared<Movie>(2, "Movie02")},
+        {std::make_shared<Movie>(3, "Movie03")},
+        {std::make_shared<Movie>(4, "Movie04")},
         // Add more movies as needed, but not more than the number of theaters
     };
     
     const int seatCapacity = 20; //Number of seats for each theater
-    std::vector<Seat> seats(seatCapacity);
+    std::vector<Seat> seats;
     
-    std::vector<Theater> theaters = {
-        {Theater(1, "Theater01")},
-        {Theater(2, "Theater02")},
-        {Theater(3, "Theater03")},
-        {Theater(4, "Theater04")},
-        {Theater(5, "Theater05")},
-        {Theater(6, "Theater06")},
-        {Theater(7, "Theater07")},
-        {Theater(8, "Theater08")},
-        {Theater(9, "Theater09")},
-        {Theater(10, "Theater10")},
+    //Initialize seats
+    for (int i = 0; i < seatCapacity; ++i)
+    {
+            Seat seat;
+            seat.id = i;
+            seat.seatNumber = "Seat " + std::to_string(i + 1);
+            seat.isBooked = false;
+            seats.push_back(seat);
+    }
+    
+    std::vector<std::shared_ptr<Theater>> theaters = {
+        {std::make_shared<Theater>(1, "Theater01", seats)},
+        {std::make_shared<Theater>(2, "Theater02", seats)},
+        {std::make_shared<Theater>(3, "Theater03", seats)},
+        {std::make_shared<Theater>(4, "Theater04", seats)},
+        {std::make_shared<Theater>(5, "Theater05", seats)},
+        {std::make_shared<Theater>(6, "Theater06", seats)},
+        {std::make_shared<Theater>(7, "Theater07", seats)},
+        {std::make_shared<Theater>(8, "Theater08", seats)},
+        {std::make_shared<Theater>(9, "Theater09", seats)},
+        {std::make_shared<Theater>(10, "Theater10",seats)},
         //Add more movies as needed
     };
 
-    MovieBookingService bookingService(movies, theaters);
+    MovieBookingService bookingService;
+    
+    
+    for (const auto& movie : movies)
+    {
+        bookingService.addMovie(movie);
+    }
+    
+    for (const auto& theater : theaters)
+    {
+        bookingService.addTheater(theater);
+    }
 
     int selectedMovieId = -1;
     int selectedTheaterId = -1;
@@ -79,7 +101,7 @@ int main(int argc, const char * argv[]) {
                 // View All Movies
                 std::cout << "Available Movies:" << std::endl;
                 for (const auto& movie : bookingService.getAllMovies()) {
-                    std::cout << "Name: " << movie.getName() << "," "Id: "<< movie.getId() << std::endl;
+                    std::cout << "Name: " << movie->name<< "," "Id: "<< movie->id<< std::endl;
                 }
                 break;
 
@@ -103,7 +125,7 @@ int main(int argc, const char * argv[]) {
                 if (selectedMovieId != -1) {
                     std::cout << "Theaters for the selected movie ( " << bookingService.getMovieName(selectedMovieId) << "):" << std::endl;
                     for (const auto& theater : bookingService.getTheatersForMovie(selectedMovieId)) {
-                        std::cout << "Name: "<<theater.getName() <<", "<<"Id: "<< theater.getId() << std::endl;
+                        std::cout << "Name: "<<theater->getName() <<", "<<"Id: "<< theater->getId() << std::endl;
                     }
                 } else {
                     std::cout << "Please select a movie first." << std::endl;

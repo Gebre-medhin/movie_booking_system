@@ -16,7 +16,6 @@ struct Seat {
     std::string seatNumber; /**< Seat number or identifier. */
     bool isBooked;      /**< True if the seat is booked, false if it's available. */
     
-    /*----------------------------------------------------*/
     /**
      * @brief Equality operator for comparing seats based on their  unique IDs.
      *

@@ -7,10 +7,9 @@
 #include "theater.hpp"
 
 /*----------------------------------------------------*/
-Theater::Theater (const int& id, const std::string& name):
-mId(id), mName(name), mSeatCapacity(20)
+Theater::Theater (const int& id, const std::string& name, const std::vector<Seat>& seats):
+mId(id), mName(name), mSeats(seats), mIsAllocated(false)
 {
-    initializeSeats();
 }
 
 /*----------------------------------------------------*/
@@ -50,15 +49,29 @@ std::vector<int> Theater::getAvailableSeats() const
 }
 
 /*----------------------------------------------------*/
-void Theater::initializeSeats ()
+std::string Theater::getName() const
 {
-    for (int i = 0; i < mSeatCapacity; ++i) {
-        Seat seat;
-        seat.id = i;
-        seat.seatNumber = "Seat " + std::to_string(i + 1);
-        seat.isBooked = false;
-        mSeats.push_back(seat);
-    }
+    return mName;
+    
+}
+
+/*----------------------------------------------------*/
+int Theater::getId() const
+{
+    return mId;
+    
+}
+
+/*----------------------------------------------------*/
+void Theater::allocateMovie ()
+{
+    mIsAllocated = true;
+}
+
+/*----------------------------------------------------*/
+bool Theater::isAllocated () const
+{
+    return mIsAllocated;
 }
 
 /*----------------------------------------------------*/
