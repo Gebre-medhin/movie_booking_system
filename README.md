@@ -7,13 +7,13 @@ The end-user can perform the following actions through CLI:
 2. Select a movie
 3. See all theaters showing the movie
 4. Select a theater
-5. See available seats for the selected theater & movie (I assumed that all theaters have 20 seats capacity)
+5. See available seats for the selected theater & movie.
 6. Book one or more of the available seats. Service can handle
 multiple requests simultaneously (no over-bookings) with the help of mutex syncronization.
  
 There are two main assumption that I made for implementation simpilicity.
 1. Each theater contains 20 seats.
-2. No theater can show more than one movie. Thus, the number of movies are not allowed to be more than the number of theaters.
+2. No theater can show more than one movie.
 
 
 You can build the code using the following steps:
