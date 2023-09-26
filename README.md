@@ -13,7 +13,7 @@ multiple requests simultaneously (no over-bookings) with the help of mutex syncr
  
 There are two main assumption that I made for implementation simpilicity.
 1. Each theater contains 20 seats.
-2. No theater can show more than one movie. Thus, the number of movies are not allowed to be more than the number of theaters.
+2. No theater can show more than one movie.
 
 
 You can build the code using the following steps:
