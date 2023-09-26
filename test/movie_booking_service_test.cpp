@@ -223,8 +223,10 @@ TEST_F(MovieBookingServiceFixture, IsValidMovie_ValidMovieId) {
     EXPECT_TRUE(mServicePtr->isValidMovie(1));
 }
 
-// Test case for isValidMovie, Bad weather
 /*------------------------------------------------------*/
+/**
+ * Test case for isValidMovie, Bad weather
+ */
 TEST_F(MovieBookingServiceFixture, IsValidMovie_InvalidMovieId) {
     // Define a movie ID that does not exist in the service
     int nonExistingMovieId = -1;;
@@ -232,4 +234,3 @@ TEST_F(MovieBookingServiceFixture, IsValidMovie_InvalidMovieId) {
     // Check if an invalid movie ID returns false
     EXPECT_FALSE(mServicePtr->isValidMovie(nonExistingMovieId));
 }
-

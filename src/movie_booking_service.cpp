@@ -39,15 +39,19 @@ void MovieBookingService::addTheater(const std::shared_ptr<Theater>& theater) {
     bool isMovieAllocated = false;
 
     // Check if there are unallocated movies
-    for (auto& movie : mMovies) {
-        if (!movie->isAllocated) {
-            if (allocateMovieToTheaters(movie)) {
+    for (auto& movie : mMovies)
+    {
+        if (!movie->isAllocated)
+        {
+            if (allocateMovieToTheaters(movie))
+            {
                 isMovieAllocated = true;
             }
         }
     }
     // If all movies are already allocated, randomly pick one movie
-    if (!isMovieAllocated && !mMovies.empty()) {
+    if (!isMovieAllocated && !mMovies.empty())
+    {
         std::random_device rd;
         std::mt19937 gen(rd());
         std::uniform_int_distribution<int> dist(0, mMovies.size() - 1);
@@ -132,7 +136,8 @@ std::vector<int> MovieBookingService::getAvailableSeats(int theaterId, int movie
 bool MovieBookingService::bookSeats(int theaterId, int movieId, const std::vector<int>& seatIds)
 {
     // Check if the theater and movie IDs are valid
-    if (!isValidTheater(theaterId) || !isValidMovie(movieId) || seatIds.empty()) {
+    if (!isValidTheater(theaterId) || !isValidMovie(movieId) || seatIds.empty())
+    {
         return false; // Invalid theater or movie
     }
     
@@ -228,14 +233,17 @@ bool MovieBookingService::allocateMovieToTheaters(const std::shared_ptr<Movie>& 
     
     int movieId = movie->id;
     
-    if (!isValidMovie(movieId)) {
+    if (!isValidMovie(movieId))
+    {
         // Handle invalid movie ID
         return false;
     }
 
     // Try to allocate the movie to an unallocated theater
-    for (auto& theater : mTheaters) {
-        if (!theater->isAllocated()) {
+    for (auto& theater : mTheaters)
+    {
+        if (!theater->isAllocated())
+        {
             theater->allocateMovie();
             mMovieTheaterAllocations[movieId].push_back(theater->getId());
             movie->isAllocated = true;

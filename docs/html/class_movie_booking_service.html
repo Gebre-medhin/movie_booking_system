@@ -183,7 +183,7 @@ std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>mBookingMutex</
 <div class="line"><span class="lineno">   21</span>    }</div>
 <div class="line"><span class="lineno">   22</span>    <a class="code hl_function" href="class_movie_booking_service.html#a8ffea7113dedf9b770e38e301b04009c">allocateMovieToTheaters</a>(movie);</div>
 <div class="line"><span class="lineno">   23</span>}</div>
-<div class="ttc" id="aclass_movie_booking_service_html_a8ffea7113dedf9b770e38e301b04009c"><div class="ttname"><a href="class_movie_booking_service.html#a8ffea7113dedf9b770e38e301b04009c">MovieBookingService::allocateMovieToTheaters</a></div><div class="ttdeci">bool allocateMovieToTheaters(const std::shared_ptr&lt; Movie &gt; &amp;movie)</div><div class="ttdoc">Allocate a movie to one or more theaters.</div><div class="ttdef"><b>Definition</b> movie_booking_service.cpp:225</div></div>
+<div class="ttc" id="aclass_movie_booking_service_html_a8ffea7113dedf9b770e38e301b04009c"><div class="ttname"><a href="class_movie_booking_service.html#a8ffea7113dedf9b770e38e301b04009c">MovieBookingService::allocateMovieToTheaters</a></div><div class="ttdeci">bool allocateMovieToTheaters(const std::shared_ptr&lt; Movie &gt; &amp;movie)</div><div class="ttdoc">Allocate a movie to one or more theaters.</div><div class="ttdef"><b>Definition</b> movie_booking_service.cpp:230</div></div>
 <div class="ttc" id="aclass_movie_booking_service_html_aceee705241ef357b489ac3acb61bb51e"><div class="ttname"><a href="class_movie_booking_service.html#aceee705241ef357b489ac3acb61bb51e">MovieBookingService::mBookingMutex</a></div><div class="ttdeci">std::mutex mBookingMutex</div><div class="ttdoc">Mutex for synchronization of booking operations.</div><div class="ttdef"><b>Definition</b> movie_booking_service.hpp:127</div></div>
 <div class="ttc" id="aclass_movie_booking_service_html_ad9b9619a79cb26c0821199409da4641c"><div class="ttname"><a href="class_movie_booking_service.html#ad9b9619a79cb26c0821199409da4641c">MovieBookingService::mMovies</a></div><div class="ttdeci">std::vector&lt; std::shared_ptr&lt; Movie &gt; &gt; mMovies</div><div class="ttdef"><b>Definition</b> movie_booking_service.hpp:129</div></div>
 </div><!-- fragment -->
@@ -230,24 +230,28 @@ std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>mBookingMutex</
 <div class="line"><span class="lineno">   39</span>    <span class="keywordtype">bool</span> isMovieAllocated = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">   40</span> </div>
 <div class="line"><span class="lineno">   41</span>    <span class="comment">// Check if there are unallocated movies</span></div>
-<div class="line"><span class="lineno">   42</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; movie : <a class="code hl_variable" href="class_movie_booking_service.html#ad9b9619a79cb26c0821199409da4641c">mMovies</a>) {</div>
-<div class="line"><span class="lineno">   43</span>        <span class="keywordflow">if</span> (!movie-&gt;isAllocated) {</div>
-<div class="line"><span class="lineno">   44</span>            <span class="keywordflow">if</span> (<a class="code hl_function" href="class_movie_booking_service.html#a8ffea7113dedf9b770e38e301b04009c">allocateMovieToTheaters</a>(movie)) {</div>
-<div class="line"><span class="lineno">   45</span>                isMovieAllocated = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">   46</span>            }</div>
-<div class="line"><span class="lineno">   47</span>        }</div>
-<div class="line"><span class="lineno">   48</span>    }</div>
-<div class="line"><span class="lineno">   49</span>    <span class="comment">// If all movies are already allocated, randomly pick one movie</span></div>
-<div class="line"><span class="lineno">   50</span>    <span class="keywordflow">if</span> (!isMovieAllocated &amp;&amp; !<a class="code hl_variable" href="class_movie_booking_service.html#ad9b9619a79cb26c0821199409da4641c">mMovies</a>.empty()) {</div>
-<div class="line"><span class="lineno">   51</span>        std::random_device rd;</div>
-<div class="line"><span class="lineno">   52</span>        std::mt19937 gen(rd());</div>
-<div class="line"><span class="lineno">   53</span>        std::uniform_int_distribution&lt;int&gt; dist(0, <a class="code hl_variable" href="class_movie_booking_service.html#ad9b9619a79cb26c0821199409da4641c">mMovies</a>.size() - 1);</div>
-<div class="line"><span class="lineno">   54</span>        <span class="keywordtype">int</span> randomIndex = dist(gen);</div>
-<div class="line"><span class="lineno">   55</span>        </div>
-<div class="line"><span class="lineno">   56</span>        <span class="comment">// Allocate the randomly picked movie to the new theater</span></div>
-<div class="line"><span class="lineno">   57</span>        isMovieAllocated = <a class="code hl_function" href="class_movie_booking_service.html#a8ffea7113dedf9b770e38e301b04009c">allocateMovieToTheaters</a>(<a class="code hl_variable" href="class_movie_booking_service.html#ad9b9619a79cb26c0821199409da4641c">mMovies</a>[randomIndex]);</div>
-<div class="line"><span class="lineno">   58</span>    }</div>
-<div class="line"><span class="lineno">   59</span>}</div>
+<div class="line"><span class="lineno">   42</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; movie : <a class="code hl_variable" href="class_movie_booking_service.html#ad9b9619a79cb26c0821199409da4641c">mMovies</a>)</div>
+<div class="line"><span class="lineno">   43</span>    {</div>
+<div class="line"><span class="lineno">   44</span>        <span class="keywordflow">if</span> (!movie-&gt;isAllocated)</div>
+<div class="line"><span class="lineno">   45</span>        {</div>
+<div class="line"><span class="lineno">   46</span>            <span class="keywordflow">if</span> (<a class="code hl_function" href="class_movie_booking_service.html#a8ffea7113dedf9b770e38e301b04009c">allocateMovieToTheaters</a>(movie))</div>
+<div class="line"><span class="lineno">   47</span>            {</div>
+<div class="line"><span class="lineno">   48</span>                isMovieAllocated = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   49</span>            }</div>
+<div class="line"><span class="lineno">   50</span>        }</div>
+<div class="line"><span class="lineno">   51</span>    }</div>
+<div class="line"><span class="lineno">   52</span>    <span class="comment">// If all movies are already allocated, randomly pick one movie</span></div>
+<div class="line"><span class="lineno">   53</span>    <span class="keywordflow">if</span> (!isMovieAllocated &amp;&amp; !<a class="code hl_variable" href="class_movie_booking_service.html#ad9b9619a79cb26c0821199409da4641c">mMovies</a>.empty())</div>
+<div class="line"><span class="lineno">   54</span>    {</div>
+<div class="line"><span class="lineno">   55</span>        std::random_device rd;</div>
+<div class="line"><span class="lineno">   56</span>        std::mt19937 gen(rd());</div>
+<div class="line"><span class="lineno">   57</span>        std::uniform_int_distribution&lt;int&gt; dist(0, <a class="code hl_variable" href="class_movie_booking_service.html#ad9b9619a79cb26c0821199409da4641c">mMovies</a>.size() - 1);</div>
+<div class="line"><span class="lineno">   58</span>        <span class="keywordtype">int</span> randomIndex = dist(gen);</div>
+<div class="line"><span class="lineno">   59</span>        </div>
+<div class="line"><span class="lineno">   60</span>        <span class="comment">// Allocate the randomly picked movie to the new theater</span></div>
+<div class="line"><span class="lineno">   61</span>        isMovieAllocated = <a class="code hl_function" href="class_movie_booking_service.html#a8ffea7113dedf9b770e38e301b04009c">allocateMovieToTheaters</a>(<a class="code hl_variable" href="class_movie_booking_service.html#ad9b9619a79cb26c0821199409da4641c">mMovies</a>[randomIndex]);</div>
+<div class="line"><span class="lineno">   62</span>    }</div>
+<div class="line"><span class="lineno">   63</span>}</div>
 <div class="ttc" id="aclass_movie_booking_service_html_ae9aad582851a39b63a6fbac5fee1d9dd"><div class="ttname"><a href="class_movie_booking_service.html#ae9aad582851a39b63a6fbac5fee1d9dd">MovieBookingService::mTheaters</a></div><div class="ttdeci">std::vector&lt; std::shared_ptr&lt; Theater &gt; &gt; mTheaters</div><div class="ttdef"><b>Definition</b> movie_booking_service.hpp:130</div></div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="class_movie_booking_service.html#a8ffea7113dedf9b770e38e301b04009c">allocateMovieToTheaters()</a>, <a class="el" href="class_movie_booking_service.html#aceee705241ef357b489ac3acb61bb51e">mBookingMutex</a>, <a class="el" href="class_movie_booking_service.html#ad9b9619a79cb26c0821199409da4641c">mMovies</a>, and <a class="el" href="class_movie_booking_service.html#ae9aad582851a39b63a6fbac5fee1d9dd">mTheaters</a>.</p>
@@ -287,30 +291,33 @@ std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>mBookingMutex</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the allocated, false otherwise. </dd></dl>
-<div class="fragment"><div class="line"><span class="lineno">  225</span>                                                                                   {</div>
-<div class="line"><span class="lineno">  226</span>    </div>
-<div class="line"><span class="lineno">  227</span>    std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="class_movie_booking_service.html#aceee705241ef357b489ac3acb61bb51e">mBookingMutex</a>);</div>
-<div class="line"><span class="lineno">  228</span>    </div>
-<div class="line"><span class="lineno">  229</span>    <span class="keywordtype">int</span> movieId = movie-&gt;id;</div>
-<div class="line"><span class="lineno">  230</span>    </div>
-<div class="line"><span class="lineno">  231</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="class_movie_booking_service.html#a7ea62468653d1a132c124fa099fddfb1">isValidMovie</a>(movieId)) {</div>
-<div class="line"><span class="lineno">  232</span>        <span class="comment">// Handle invalid movie ID</span></div>
-<div class="line"><span class="lineno">  233</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  234</span>    }</div>
-<div class="line"><span class="lineno">  235</span> </div>
-<div class="line"><span class="lineno">  236</span>    <span class="comment">// Try to allocate the movie to an unallocated theater</span></div>
-<div class="line"><span class="lineno">  237</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; theater : <a class="code hl_variable" href="class_movie_booking_service.html#ae9aad582851a39b63a6fbac5fee1d9dd">mTheaters</a>) {</div>
-<div class="line"><span class="lineno">  238</span>        <span class="keywordflow">if</span> (!theater-&gt;isAllocated()) {</div>
-<div class="line"><span class="lineno">  239</span>            theater-&gt;allocateMovie();</div>
-<div class="line"><span class="lineno">  240</span>            <a class="code hl_variable" href="class_movie_booking_service.html#a09daaaef2eb38201d5273e005cf8cc79">mMovieTheaterAllocations</a>[movieId].push_back(theater-&gt;getId());</div>
-<div class="line"><span class="lineno">  241</span>            movie-&gt;isAllocated = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  242</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  243</span>        }</div>
-<div class="line"><span class="lineno">  244</span>    }</div>
-<div class="line"><span class="lineno">  245</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  246</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  230</span>                                                                                   {</div>
+<div class="line"><span class="lineno">  231</span>    </div>
+<div class="line"><span class="lineno">  232</span>    std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="class_movie_booking_service.html#aceee705241ef357b489ac3acb61bb51e">mBookingMutex</a>);</div>
+<div class="line"><span class="lineno">  233</span>    </div>
+<div class="line"><span class="lineno">  234</span>    <span class="keywordtype">int</span> movieId = movie-&gt;id;</div>
+<div class="line"><span class="lineno">  235</span>    </div>
+<div class="line"><span class="lineno">  236</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="class_movie_booking_service.html#a7ea62468653d1a132c124fa099fddfb1">isValidMovie</a>(movieId))</div>
+<div class="line"><span class="lineno">  237</span>    {</div>
+<div class="line"><span class="lineno">  238</span>        <span class="comment">// Handle invalid movie ID</span></div>
+<div class="line"><span class="lineno">  239</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  240</span>    }</div>
+<div class="line"><span class="lineno">  241</span> </div>
+<div class="line"><span class="lineno">  242</span>    <span class="comment">// Try to allocate the movie to an unallocated theater</span></div>
+<div class="line"><span class="lineno">  243</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; theater : <a class="code hl_variable" href="class_movie_booking_service.html#ae9aad582851a39b63a6fbac5fee1d9dd">mTheaters</a>)</div>
+<div class="line"><span class="lineno">  244</span>    {</div>
+<div class="line"><span class="lineno">  245</span>        <span class="keywordflow">if</span> (!theater-&gt;isAllocated())</div>
+<div class="line"><span class="lineno">  246</span>        {</div>
+<div class="line"><span class="lineno">  247</span>            theater-&gt;allocateMovie();</div>
+<div class="line"><span class="lineno">  248</span>            <a class="code hl_variable" href="class_movie_booking_service.html#a09daaaef2eb38201d5273e005cf8cc79">mMovieTheaterAllocations</a>[movieId].push_back(theater-&gt;getId());</div>
+<div class="line"><span class="lineno">  249</span>            movie-&gt;isAllocated = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  250</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  251</span>        }</div>
+<div class="line"><span class="lineno">  252</span>    }</div>
+<div class="line"><span class="lineno">  253</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  254</span>}</div>
 <div class="ttc" id="aclass_movie_booking_service_html_a09daaaef2eb38201d5273e005cf8cc79"><div class="ttname"><a href="class_movie_booking_service.html#a09daaaef2eb38201d5273e005cf8cc79">MovieBookingService::mMovieTheaterAllocations</a></div><div class="ttdeci">std::unordered_map&lt; int, std::vector&lt; int &gt; &gt; mMovieTheaterAllocations</div><div class="ttdoc">A map to track movie allocations to theaters.</div><div class="ttdef"><b>Definition</b> movie_booking_service.hpp:137</div></div>
-<div class="ttc" id="aclass_movie_booking_service_html_a7ea62468653d1a132c124fa099fddfb1"><div class="ttname"><a href="class_movie_booking_service.html#a7ea62468653d1a132c124fa099fddfb1">MovieBookingService::isValidMovie</a></div><div class="ttdeci">bool isValidMovie(int movieId) const</div><div class="ttdoc">Check if a movie with a given ID exists.</div><div class="ttdef"><b>Definition</b> movie_booking_service.cpp:171</div></div>
+<div class="ttc" id="aclass_movie_booking_service_html_a7ea62468653d1a132c124fa099fddfb1"><div class="ttname"><a href="class_movie_booking_service.html#a7ea62468653d1a132c124fa099fddfb1">MovieBookingService::isValidMovie</a></div><div class="ttdeci">bool isValidMovie(int movieId) const</div><div class="ttdoc">Check if a movie with a given ID exists.</div><div class="ttdef"><b>Definition</b> movie_booking_service.cpp:176</div></div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="class_movie_booking_service.html#a7ea62468653d1a132c124fa099fddfb1">isValidMovie()</a>, <a class="el" href="class_movie_booking_service.html#aceee705241ef357b489ac3acb61bb51e">mBookingMutex</a>, <a class="el" href="class_movie_booking_service.html#a09daaaef2eb38201d5273e005cf8cc79">mMovieTheaterAllocations</a>, and <a class="el" href="class_movie_booking_service.html#ae9aad582851a39b63a6fbac5fee1d9dd">mTheaters</a>.</p>
 
@@ -360,43 +367,44 @@ std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>mBookingMutex</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if seats were booked successfully, false otherwise. </dd></dl>
-<div class="fragment"><div class="line"><span class="lineno">  133</span>{</div>
-<div class="line"><span class="lineno">  134</span>    <span class="comment">// Check if the theater and movie IDs are valid</span></div>
-<div class="line"><span class="lineno">  135</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="class_movie_booking_service.html#a59023b85d8aac01523f97fa30348e829">isValidTheater</a>(theaterId) || !<a class="code hl_function" href="class_movie_booking_service.html#a7ea62468653d1a132c124fa099fddfb1">isValidMovie</a>(movieId) || seatIds.empty()) {</div>
-<div class="line"><span class="lineno">  136</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>; <span class="comment">// Invalid theater or movie</span></div>
-<div class="line"><span class="lineno">  137</span>    }</div>
-<div class="line"><span class="lineno">  138</span>    </div>
-<div class="line"><span class="lineno">  139</span>    std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="class_movie_booking_service.html#aceee705241ef357b489ac3acb61bb51e">mBookingMutex</a>);</div>
-<div class="line"><span class="lineno">  140</span>    </div>
-<div class="line"><span class="lineno">  141</span>    <span class="comment">// Get the theater associated with the provided theaterId</span></div>
-<div class="line"><span class="lineno">  142</span>    std::shared_ptr&lt;Theater&gt; theater = <span class="keyword">nullptr</span>;</div>
+<div class="fragment"><div class="line"><span class="lineno">  137</span>{</div>
+<div class="line"><span class="lineno">  138</span>    <span class="comment">// Check if the theater and movie IDs are valid</span></div>
+<div class="line"><span class="lineno">  139</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="class_movie_booking_service.html#a59023b85d8aac01523f97fa30348e829">isValidTheater</a>(theaterId) || !<a class="code hl_function" href="class_movie_booking_service.html#a7ea62468653d1a132c124fa099fddfb1">isValidMovie</a>(movieId) || seatIds.empty())</div>
+<div class="line"><span class="lineno">  140</span>    {</div>
+<div class="line"><span class="lineno">  141</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>; <span class="comment">// Invalid theater or movie</span></div>
+<div class="line"><span class="lineno">  142</span>    }</div>
 <div class="line"><span class="lineno">  143</span>    </div>
-<div class="line"><span class="lineno">  144</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; t : <a class="code hl_variable" href="class_movie_booking_service.html#ae9aad582851a39b63a6fbac5fee1d9dd">mTheaters</a>)</div>
-<div class="line"><span class="lineno">  145</span>    {</div>
-<div class="line"><span class="lineno">  146</span>        <span class="keywordflow">if</span> (t-&gt;getId() == theaterId)</div>
-<div class="line"><span class="lineno">  147</span>        {</div>
-<div class="line"><span class="lineno">  148</span>            theater = t;</div>
-<div class="line"><span class="lineno">  149</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  150</span>        }</div>
-<div class="line"><span class="lineno">  151</span>    }</div>
-<div class="line"><span class="lineno">  152</span>        </div>
-<div class="line"><span class="lineno">  153</span>    <span class="comment">// Check if the theater was found</span></div>
-<div class="line"><span class="lineno">  154</span>    <span class="keywordflow">if</span> (!theater)</div>
-<div class="line"><span class="lineno">  155</span>    {</div>
-<div class="line"><span class="lineno">  156</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>; <span class="comment">// Theater not found</span></div>
-<div class="line"><span class="lineno">  157</span>    }</div>
-<div class="line"><span class="lineno">  158</span>    </div>
-<div class="line"><span class="lineno">  159</span>    <span class="comment">// If all seat IDs are valid and available, booked the seats one by one</span></div>
-<div class="line"><span class="lineno">  160</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> seatId : seatIds) {</div>
-<div class="line"><span class="lineno">  161</span>        <span class="keywordflow">if</span> (!theater-&gt;bookSeat(seatId))</div>
-<div class="line"><span class="lineno">  162</span>        {</div>
-<div class="line"><span class="lineno">  163</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  164</span>        }</div>
-<div class="line"><span class="lineno">  165</span>    }</div>
-<div class="line"><span class="lineno">  166</span> </div>
-<div class="line"><span class="lineno">  167</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>; <span class="comment">// Seats booked successfully</span></div>
-<div class="line"><span class="lineno">  168</span>}</div>
-<div class="ttc" id="aclass_movie_booking_service_html_a59023b85d8aac01523f97fa30348e829"><div class="ttname"><a href="class_movie_booking_service.html#a59023b85d8aac01523f97fa30348e829">MovieBookingService::isValidTheater</a></div><div class="ttdeci">bool isValidTheater(int theaterId) const</div><div class="ttdoc">Check if a theater with a given ID exists.</div><div class="ttdef"><b>Definition</b> movie_booking_service.cpp:184</div></div>
+<div class="line"><span class="lineno">  144</span>    std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="class_movie_booking_service.html#aceee705241ef357b489ac3acb61bb51e">mBookingMutex</a>);</div>
+<div class="line"><span class="lineno">  145</span>    </div>
+<div class="line"><span class="lineno">  146</span>    <span class="comment">// Get the theater associated with the provided theaterId</span></div>
+<div class="line"><span class="lineno">  147</span>    std::shared_ptr&lt;Theater&gt; theater = <span class="keyword">nullptr</span>;</div>
+<div class="line"><span class="lineno">  148</span>    </div>
+<div class="line"><span class="lineno">  149</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; t : <a class="code hl_variable" href="class_movie_booking_service.html#ae9aad582851a39b63a6fbac5fee1d9dd">mTheaters</a>)</div>
+<div class="line"><span class="lineno">  150</span>    {</div>
+<div class="line"><span class="lineno">  151</span>        <span class="keywordflow">if</span> (t-&gt;getId() == theaterId)</div>
+<div class="line"><span class="lineno">  152</span>        {</div>
+<div class="line"><span class="lineno">  153</span>            theater = t;</div>
+<div class="line"><span class="lineno">  154</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  155</span>        }</div>
+<div class="line"><span class="lineno">  156</span>    }</div>
+<div class="line"><span class="lineno">  157</span>        </div>
+<div class="line"><span class="lineno">  158</span>    <span class="comment">// Check if the theater was found</span></div>
+<div class="line"><span class="lineno">  159</span>    <span class="keywordflow">if</span> (!theater)</div>
+<div class="line"><span class="lineno">  160</span>    {</div>
+<div class="line"><span class="lineno">  161</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>; <span class="comment">// Theater not found</span></div>
+<div class="line"><span class="lineno">  162</span>    }</div>
+<div class="line"><span class="lineno">  163</span>    </div>
+<div class="line"><span class="lineno">  164</span>    <span class="comment">// If all seat IDs are valid and available, booked the seats one by one</span></div>
+<div class="line"><span class="lineno">  165</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> seatId : seatIds) {</div>
+<div class="line"><span class="lineno">  166</span>        <span class="keywordflow">if</span> (!theater-&gt;bookSeat(seatId))</div>
+<div class="line"><span class="lineno">  167</span>        {</div>
+<div class="line"><span class="lineno">  168</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  169</span>        }</div>
+<div class="line"><span class="lineno">  170</span>    }</div>
+<div class="line"><span class="lineno">  171</span> </div>
+<div class="line"><span class="lineno">  172</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>; <span class="comment">// Seats booked successfully</span></div>
+<div class="line"><span class="lineno">  173</span>}</div>
+<div class="ttc" id="aclass_movie_booking_service_html_a59023b85d8aac01523f97fa30348e829"><div class="ttname"><a href="class_movie_booking_service.html#a59023b85d8aac01523f97fa30348e829">MovieBookingService::isValidTheater</a></div><div class="ttdeci">bool isValidTheater(int theaterId) const</div><div class="ttdoc">Check if a theater with a given ID exists.</div><div class="ttdef"><b>Definition</b> movie_booking_service.cpp:189</div></div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="class_movie_booking_service.html#a7ea62468653d1a132c124fa099fddfb1">isValidMovie()</a>, <a class="el" href="class_movie_booking_service.html#a59023b85d8aac01523f97fa30348e829">isValidTheater()</a>, <a class="el" href="class_movie_booking_service.html#aceee705241ef357b489ac3acb61bb51e">mBookingMutex</a>, and <a class="el" href="class_movie_booking_service.html#ae9aad582851a39b63a6fbac5fee1d9dd">mTheaters</a>.</p>
 
@@ -419,9 +427,9 @@ std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>mBookingMutex</
 
 <p>Get a list of all playing movies. </p>
 <dl class="section return"><dt>Returns</dt><dd>A vector of <a class="el" href="struct_movie.html" title="Represents a movie with an ID, and movie name.">Movie</a> objects representing available movies. </dd></dl>
-<div class="fragment"><div class="line"><span class="lineno">   64</span>{</div>
-<div class="line"><span class="lineno">   65</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="class_movie_booking_service.html#ad9b9619a79cb26c0821199409da4641c">mMovies</a>;</div>
-<div class="line"><span class="lineno">   66</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">   68</span>{</div>
+<div class="line"><span class="lineno">   69</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="class_movie_booking_service.html#ad9b9619a79cb26c0821199409da4641c">mMovies</a>;</div>
+<div class="line"><span class="lineno">   70</span>}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="class_movie_booking_service.html#ad9b9619a79cb26c0821199409da4641c">mMovies</a>.</p>
 
@@ -462,40 +470,40 @@ std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>mBookingMutex</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A vector of seat IDs representing available seats. </dd></dl>
-<div class="fragment"><div class="line"><span class="lineno">   97</span>{</div>
-<div class="line"><span class="lineno">   98</span>    std::vector&lt;int&gt; availableSeats;</div>
-<div class="line"><span class="lineno">   99</span>    <span class="comment">// Check if the theater and movie IDs are valid</span></div>
-<div class="line"><span class="lineno">  100</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="class_movie_booking_service.html#a59023b85d8aac01523f97fa30348e829">isValidTheater</a>(theaterId) || !<a class="code hl_function" href="class_movie_booking_service.html#a7ea62468653d1a132c124fa099fddfb1">isValidMovie</a>(movieId))</div>
-<div class="line"><span class="lineno">  101</span>    {</div>
-<div class="line"><span class="lineno">  102</span>        <span class="keywordflow">return</span> availableSeats; <span class="comment">// Return an empty vector for invalid theater or movie</span></div>
-<div class="line"><span class="lineno">  103</span>    }</div>
-<div class="line"><span class="lineno">  104</span>    </div>
-<div class="line"><span class="lineno">  105</span>    <span class="keywordflow">if</span> ( !<a class="code hl_function" href="class_movie_booking_service.html#a32f8150a475a53c7fbd53a3bf87ab46b">isMovieShownInTheater</a>(theaterId, movieId))</div>
-<div class="line"><span class="lineno">  106</span>    {</div>
-<div class="line"><span class="lineno">  107</span>        <span class="keywordflow">return</span> availableSeats; <span class="comment">// Return an empty vector for invalid theater or movie</span></div>
-<div class="line"><span class="lineno">  108</span>    }</div>
-<div class="line"><span class="lineno">  109</span>    </div>
-<div class="line"><span class="lineno">  110</span>   <span class="comment">// Find the theater associated with the provided theaterId</span></div>
-<div class="line"><span class="lineno">  111</span>    std::shared_ptr&lt;Theater&gt; theater = <span class="keyword">nullptr</span>;</div>
-<div class="line"><span class="lineno">  112</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; t : <a class="code hl_variable" href="class_movie_booking_service.html#ae9aad582851a39b63a6fbac5fee1d9dd">mTheaters</a>)</div>
-<div class="line"><span class="lineno">  113</span>    {</div>
-<div class="line"><span class="lineno">  114</span>        <span class="keywordflow">if</span> (t-&gt;getId() == theaterId)</div>
-<div class="line"><span class="lineno">  115</span>        {</div>
-<div class="line"><span class="lineno">  116</span>            theater = t;</div>
-<div class="line"><span class="lineno">  117</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  118</span>        }</div>
-<div class="line"><span class="lineno">  119</span>    }</div>
-<div class="line"><span class="lineno">  120</span>    </div>
-<div class="line"><span class="lineno">  121</span>    <span class="comment">// Check if the theater was found</span></div>
-<div class="line"><span class="lineno">  122</span>    <span class="keywordflow">if</span> (!theater)</div>
-<div class="line"><span class="lineno">  123</span>    {</div>
-<div class="line"><span class="lineno">  124</span>        <span class="keywordflow">return</span> availableSeats; <span class="comment">// Return an empty vector if theater not found</span></div>
-<div class="line"><span class="lineno">  125</span>    }</div>
-<div class="line"><span class="lineno">  126</span>    availableSeats = theater-&gt;getAvailableSeats();</div>
-<div class="line"><span class="lineno">  127</span> </div>
-<div class="line"><span class="lineno">  128</span>    <span class="keywordflow">return</span> availableSeats;</div>
-<div class="line"><span class="lineno">  129</span>}</div>
-<div class="ttc" id="aclass_movie_booking_service_html_a32f8150a475a53c7fbd53a3bf87ab46b"><div class="ttname"><a href="class_movie_booking_service.html#a32f8150a475a53c7fbd53a3bf87ab46b">MovieBookingService::isMovieShownInTheater</a></div><div class="ttdeci">bool isMovieShownInTheater(int theaterId, int movieId) const</div><div class="ttdoc">Validate and check if a theater shows a given movie.</div><div class="ttdef"><b>Definition</b> movie_booking_service.cpp:250</div></div>
+<div class="fragment"><div class="line"><span class="lineno">  101</span>{</div>
+<div class="line"><span class="lineno">  102</span>    std::vector&lt;int&gt; availableSeats;</div>
+<div class="line"><span class="lineno">  103</span>    <span class="comment">// Check if the theater and movie IDs are valid</span></div>
+<div class="line"><span class="lineno">  104</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="class_movie_booking_service.html#a59023b85d8aac01523f97fa30348e829">isValidTheater</a>(theaterId) || !<a class="code hl_function" href="class_movie_booking_service.html#a7ea62468653d1a132c124fa099fddfb1">isValidMovie</a>(movieId))</div>
+<div class="line"><span class="lineno">  105</span>    {</div>
+<div class="line"><span class="lineno">  106</span>        <span class="keywordflow">return</span> availableSeats; <span class="comment">// Return an empty vector for invalid theater or movie</span></div>
+<div class="line"><span class="lineno">  107</span>    }</div>
+<div class="line"><span class="lineno">  108</span>    </div>
+<div class="line"><span class="lineno">  109</span>    <span class="keywordflow">if</span> ( !<a class="code hl_function" href="class_movie_booking_service.html#a32f8150a475a53c7fbd53a3bf87ab46b">isMovieShownInTheater</a>(theaterId, movieId))</div>
+<div class="line"><span class="lineno">  110</span>    {</div>
+<div class="line"><span class="lineno">  111</span>        <span class="keywordflow">return</span> availableSeats; <span class="comment">// Return an empty vector for invalid theater or movie</span></div>
+<div class="line"><span class="lineno">  112</span>    }</div>
+<div class="line"><span class="lineno">  113</span>    </div>
+<div class="line"><span class="lineno">  114</span>   <span class="comment">// Find the theater associated with the provided theaterId</span></div>
+<div class="line"><span class="lineno">  115</span>    std::shared_ptr&lt;Theater&gt; theater = <span class="keyword">nullptr</span>;</div>
+<div class="line"><span class="lineno">  116</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; t : <a class="code hl_variable" href="class_movie_booking_service.html#ae9aad582851a39b63a6fbac5fee1d9dd">mTheaters</a>)</div>
+<div class="line"><span class="lineno">  117</span>    {</div>
+<div class="line"><span class="lineno">  118</span>        <span class="keywordflow">if</span> (t-&gt;getId() == theaterId)</div>
+<div class="line"><span class="lineno">  119</span>        {</div>
+<div class="line"><span class="lineno">  120</span>            theater = t;</div>
+<div class="line"><span class="lineno">  121</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  122</span>        }</div>
+<div class="line"><span class="lineno">  123</span>    }</div>
+<div class="line"><span class="lineno">  124</span>    </div>
+<div class="line"><span class="lineno">  125</span>    <span class="comment">// Check if the theater was found</span></div>
+<div class="line"><span class="lineno">  126</span>    <span class="keywordflow">if</span> (!theater)</div>
+<div class="line"><span class="lineno">  127</span>    {</div>
+<div class="line"><span class="lineno">  128</span>        <span class="keywordflow">return</span> availableSeats; <span class="comment">// Return an empty vector if theater not found</span></div>
+<div class="line"><span class="lineno">  129</span>    }</div>
+<div class="line"><span class="lineno">  130</span>    availableSeats = theater-&gt;getAvailableSeats();</div>
+<div class="line"><span class="lineno">  131</span> </div>
+<div class="line"><span class="lineno">  132</span>    <span class="keywordflow">return</span> availableSeats;</div>
+<div class="line"><span class="lineno">  133</span>}</div>
+<div class="ttc" id="aclass_movie_booking_service_html_a32f8150a475a53c7fbd53a3bf87ab46b"><div class="ttname"><a href="class_movie_booking_service.html#a32f8150a475a53c7fbd53a3bf87ab46b">MovieBookingService::isMovieShownInTheater</a></div><div class="ttdeci">bool isMovieShownInTheater(int theaterId, int movieId) const</div><div class="ttdoc">Validate and check if a theater shows a given movie.</div><div class="ttdef"><b>Definition</b> movie_booking_service.cpp:258</div></div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="class_movie_booking_service.html#a32f8150a475a53c7fbd53a3bf87ab46b">isMovieShownInTheater()</a>, <a class="el" href="class_movie_booking_service.html#a7ea62468653d1a132c124fa099fddfb1">isValidMovie()</a>, <a class="el" href="class_movie_booking_service.html#a59023b85d8aac01523f97fa30348e829">isValidTheater()</a>, and <a class="el" href="class_movie_booking_service.html#ae9aad582851a39b63a6fbac5fee1d9dd">mTheaters</a>.</p>
 
@@ -526,17 +534,17 @@ std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>mBookingMutex</
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The name of the movie. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Can throw invalid_argument exception </dd></dl>
-<div class="fragment"><div class="line"><span class="lineno">  198</span>{</div>
-<div class="line"><span class="lineno">  199</span>    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; movie : <a class="code hl_variable" href="class_movie_booking_service.html#ad9b9619a79cb26c0821199409da4641c">mMovies</a>)</div>
-<div class="line"><span class="lineno">  200</span>    {</div>
-<div class="line"><span class="lineno">  201</span>        <span class="keywordflow">if</span> (movie-&gt;id == movieId)</div>
-<div class="line"><span class="lineno">  202</span>        {</div>
-<div class="line"><span class="lineno">  203</span>            <span class="keywordflow">return</span> movie-&gt;name;</div>
-<div class="line"><span class="lineno">  204</span>        }</div>
-<div class="line"><span class="lineno">  205</span>    }</div>
-<div class="line"><span class="lineno">  206</span>    <span class="comment">// If the theater ID is not found, throw an exception</span></div>
-<div class="line"><span class="lineno">  207</span>    <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;Movie with the specified ID not found&quot;</span>);</div>
-<div class="line"><span class="lineno">  208</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  203</span>{</div>
+<div class="line"><span class="lineno">  204</span>    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; movie : <a class="code hl_variable" href="class_movie_booking_service.html#ad9b9619a79cb26c0821199409da4641c">mMovies</a>)</div>
+<div class="line"><span class="lineno">  205</span>    {</div>
+<div class="line"><span class="lineno">  206</span>        <span class="keywordflow">if</span> (movie-&gt;id == movieId)</div>
+<div class="line"><span class="lineno">  207</span>        {</div>
+<div class="line"><span class="lineno">  208</span>            <span class="keywordflow">return</span> movie-&gt;name;</div>
+<div class="line"><span class="lineno">  209</span>        }</div>
+<div class="line"><span class="lineno">  210</span>    }</div>
+<div class="line"><span class="lineno">  211</span>    <span class="comment">// If the theater ID is not found, throw an exception</span></div>
+<div class="line"><span class="lineno">  212</span>    <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;Movie with the specified ID not found&quot;</span>);</div>
+<div class="line"><span class="lineno">  213</span>}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="class_movie_booking_service.html#ad9b9619a79cb26c0821199409da4641c">mMovies</a>.</p>
 
@@ -567,17 +575,17 @@ std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>mBookingMutex</
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The name of the theater. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Can throw invalid_argument exception </dd></dl>
-<div class="fragment"><div class="line"><span class="lineno">  212</span>{</div>
-<div class="line"><span class="lineno">  213</span>    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; theater : <a class="code hl_variable" href="class_movie_booking_service.html#ae9aad582851a39b63a6fbac5fee1d9dd">mTheaters</a>)</div>
-<div class="line"><span class="lineno">  214</span>    {</div>
-<div class="line"><span class="lineno">  215</span>        <span class="keywordflow">if</span> (theater-&gt;getId() == theaterId)</div>
-<div class="line"><span class="lineno">  216</span>        {</div>
-<div class="line"><span class="lineno">  217</span>            <span class="keywordflow">return</span> theater-&gt;getName();</div>
-<div class="line"><span class="lineno">  218</span>        }</div>
-<div class="line"><span class="lineno">  219</span>    }</div>
-<div class="line"><span class="lineno">  220</span>    <span class="comment">// If the theater ID is not found, throw an exception</span></div>
-<div class="line"><span class="lineno">  221</span>    <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;Theater with the specified ID not found&quot;</span>);</div>
-<div class="line"><span class="lineno">  222</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  217</span>{</div>
+<div class="line"><span class="lineno">  218</span>    <span class="keywordflow">for</span>(<span class="keyword">auto</span>&amp; theater : <a class="code hl_variable" href="class_movie_booking_service.html#ae9aad582851a39b63a6fbac5fee1d9dd">mTheaters</a>)</div>
+<div class="line"><span class="lineno">  219</span>    {</div>
+<div class="line"><span class="lineno">  220</span>        <span class="keywordflow">if</span> (theater-&gt;getId() == theaterId)</div>
+<div class="line"><span class="lineno">  221</span>        {</div>
+<div class="line"><span class="lineno">  222</span>            <span class="keywordflow">return</span> theater-&gt;getName();</div>
+<div class="line"><span class="lineno">  223</span>        }</div>
+<div class="line"><span class="lineno">  224</span>    }</div>
+<div class="line"><span class="lineno">  225</span>    <span class="comment">// If the theater ID is not found, throw an exception</span></div>
+<div class="line"><span class="lineno">  226</span>    <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;Theater with the specified ID not found&quot;</span>);</div>
+<div class="line"><span class="lineno">  227</span>}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="class_movie_booking_service.html#ae9aad582851a39b63a6fbac5fee1d9dd">mTheaters</a>.</p>
 
@@ -607,30 +615,30 @@ std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>mBookingMutex</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A vector of <a class="el" href="class_theater.html" title="Represents a theater with an ID, name, and seats.">Theater</a> objects showing the specified movie. </dd></dl>
-<div class="fragment"><div class="line"><span class="lineno">   70</span>{</div>
-<div class="line"><span class="lineno">   71</span>    std::vector&lt;std::shared_ptr&lt;Theater&gt;&gt; theatersForMovie;</div>
-<div class="line"><span class="lineno">   72</span>    <span class="comment">// Check if the movie ID is valid</span></div>
-<div class="line"><span class="lineno">   73</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="class_movie_booking_service.html#a7ea62468653d1a132c124fa099fddfb1">isValidMovie</a>(movieId))</div>
-<div class="line"><span class="lineno">   74</span>    {</div>
-<div class="line"><span class="lineno">   75</span>        <span class="comment">// Get the list of theater IDs allocated to the movie</span></div>
-<div class="line"><span class="lineno">   76</span>        <span class="keyword">const</span> std::vector&lt;int&gt;&amp; theaterIds = <a class="code hl_variable" href="class_movie_booking_service.html#a09daaaef2eb38201d5273e005cf8cc79">mMovieTheaterAllocations</a>.at(movieId);</div>
-<div class="line"><span class="lineno">   77</span> </div>
-<div class="line"><span class="lineno">   78</span>        <span class="comment">// Iterate through theaters and find matching theater IDs</span></div>
-<div class="line"><span class="lineno">   79</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; theater : <a class="code hl_variable" href="class_movie_booking_service.html#ae9aad582851a39b63a6fbac5fee1d9dd">mTheaters</a>)</div>
-<div class="line"><span class="lineno">   80</span>        {</div>
-<div class="line"><span class="lineno">   81</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> allocatedTheaterId : theaterIds)</div>
-<div class="line"><span class="lineno">   82</span>            {</div>
-<div class="line"><span class="lineno">   83</span>                <span class="keywordflow">if</span> (theater-&gt;getId() == allocatedTheaterId)</div>
-<div class="line"><span class="lineno">   84</span>                {</div>
-<div class="line"><span class="lineno">   85</span>                    theatersForMovie.push_back(theater);</div>
-<div class="line"><span class="lineno">   86</span>                    <span class="keywordflow">break</span>; <span class="comment">// Found a matching theater, no need to continue searching</span></div>
-<div class="line"><span class="lineno">   87</span>                }</div>
-<div class="line"><span class="lineno">   88</span>            }</div>
-<div class="line"><span class="lineno">   89</span>        }</div>
-<div class="line"><span class="lineno">   90</span>    }</div>
-<div class="line"><span class="lineno">   91</span> </div>
-<div class="line"><span class="lineno">   92</span>    <span class="keywordflow">return</span> theatersForMovie;</div>
-<div class="line"><span class="lineno">   93</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">   74</span>{</div>
+<div class="line"><span class="lineno">   75</span>    std::vector&lt;std::shared_ptr&lt;Theater&gt;&gt; theatersForMovie;</div>
+<div class="line"><span class="lineno">   76</span>    <span class="comment">// Check if the movie ID is valid</span></div>
+<div class="line"><span class="lineno">   77</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="class_movie_booking_service.html#a7ea62468653d1a132c124fa099fddfb1">isValidMovie</a>(movieId))</div>
+<div class="line"><span class="lineno">   78</span>    {</div>
+<div class="line"><span class="lineno">   79</span>        <span class="comment">// Get the list of theater IDs allocated to the movie</span></div>
+<div class="line"><span class="lineno">   80</span>        <span class="keyword">const</span> std::vector&lt;int&gt;&amp; theaterIds = <a class="code hl_variable" href="class_movie_booking_service.html#a09daaaef2eb38201d5273e005cf8cc79">mMovieTheaterAllocations</a>.at(movieId);</div>
+<div class="line"><span class="lineno">   81</span> </div>
+<div class="line"><span class="lineno">   82</span>        <span class="comment">// Iterate through theaters and find matching theater IDs</span></div>
+<div class="line"><span class="lineno">   83</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; theater : <a class="code hl_variable" href="class_movie_booking_service.html#ae9aad582851a39b63a6fbac5fee1d9dd">mTheaters</a>)</div>
+<div class="line"><span class="lineno">   84</span>        {</div>
+<div class="line"><span class="lineno">   85</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> allocatedTheaterId : theaterIds)</div>
+<div class="line"><span class="lineno">   86</span>            {</div>
+<div class="line"><span class="lineno">   87</span>                <span class="keywordflow">if</span> (theater-&gt;getId() == allocatedTheaterId)</div>
+<div class="line"><span class="lineno">   88</span>                {</div>
+<div class="line"><span class="lineno">   89</span>                    theatersForMovie.push_back(theater);</div>
+<div class="line"><span class="lineno">   90</span>                    <span class="keywordflow">break</span>; <span class="comment">// Found a matching theater, no need to continue searching</span></div>
+<div class="line"><span class="lineno">   91</span>                }</div>
+<div class="line"><span class="lineno">   92</span>            }</div>
+<div class="line"><span class="lineno">   93</span>        }</div>
+<div class="line"><span class="lineno">   94</span>    }</div>
+<div class="line"><span class="lineno">   95</span> </div>
+<div class="line"><span class="lineno">   96</span>    <span class="keywordflow">return</span> theatersForMovie;</div>
+<div class="line"><span class="lineno">   97</span>}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="class_movie_booking_service.html#a7ea62468653d1a132c124fa099fddfb1">isValidMovie()</a>, <a class="el" href="class_movie_booking_service.html#a09daaaef2eb38201d5273e005cf8cc79">mMovieTheaterAllocations</a>, and <a class="el" href="class_movie_booking_service.html#ae9aad582851a39b63a6fbac5fee1d9dd">mTheaters</a>.</p>
 
@@ -671,22 +679,22 @@ std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>mBookingMutex</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the movie is shown in the theater, false otherwise. </dd></dl>
-<div class="fragment"><div class="line"><span class="lineno">  251</span>{</div>
-<div class="line"><span class="lineno">  252</span>    <span class="comment">// Check if the theater and movie IDs are valid</span></div>
-<div class="line"><span class="lineno">  253</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="class_movie_booking_service.html#a59023b85d8aac01523f97fa30348e829">isValidTheater</a>(theaterId) || !<a class="code hl_function" href="class_movie_booking_service.html#a7ea62468653d1a132c124fa099fddfb1">isValidMovie</a>(movieId))</div>
-<div class="line"><span class="lineno">  254</span>    {</div>
-<div class="line"><span class="lineno">  255</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>; <span class="comment">// Invalid theater or movie</span></div>
-<div class="line"><span class="lineno">  256</span>    }</div>
-<div class="line"><span class="lineno">  257</span> </div>
-<div class="line"><span class="lineno">  258</span>    <span class="comment">// Lock the mutex to protect the critical section</span></div>
-<div class="line"><span class="lineno">  259</span>    std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="class_movie_booking_service.html#aceee705241ef357b489ac3acb61bb51e">mBookingMutex</a>);</div>
-<div class="line"><span class="lineno">  260</span> </div>
-<div class="line"><span class="lineno">  261</span>    <span class="comment">// Check if the specified theater is allocated for the given movie</span></div>
-<div class="line"><span class="lineno">  262</span>    <span class="keyword">const</span> std::vector&lt;int&gt;&amp; allocatedTheaters = <a class="code hl_variable" href="class_movie_booking_service.html#a09daaaef2eb38201d5273e005cf8cc79">mMovieTheaterAllocations</a>.at(movieId);</div>
-<div class="line"><span class="lineno">  263</span>    <span class="keywordtype">bool</span> isAllocated = std::find(allocatedTheaters.begin(), allocatedTheaters.end(), theaterId) != allocatedTheaters.end();</div>
-<div class="line"><span class="lineno">  264</span> </div>
-<div class="line"><span class="lineno">  265</span>    <span class="keywordflow">return</span> isAllocated;</div>
-<div class="line"><span class="lineno">  266</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  259</span>{</div>
+<div class="line"><span class="lineno">  260</span>    <span class="comment">// Check if the theater and movie IDs are valid</span></div>
+<div class="line"><span class="lineno">  261</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="class_movie_booking_service.html#a59023b85d8aac01523f97fa30348e829">isValidTheater</a>(theaterId) || !<a class="code hl_function" href="class_movie_booking_service.html#a7ea62468653d1a132c124fa099fddfb1">isValidMovie</a>(movieId))</div>
+<div class="line"><span class="lineno">  262</span>    {</div>
+<div class="line"><span class="lineno">  263</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>; <span class="comment">// Invalid theater or movie</span></div>
+<div class="line"><span class="lineno">  264</span>    }</div>
+<div class="line"><span class="lineno">  265</span> </div>
+<div class="line"><span class="lineno">  266</span>    <span class="comment">// Lock the mutex to protect the critical section</span></div>
+<div class="line"><span class="lineno">  267</span>    std::lock_guard&lt;std::mutex&gt; lock(<a class="code hl_variable" href="class_movie_booking_service.html#aceee705241ef357b489ac3acb61bb51e">mBookingMutex</a>);</div>
+<div class="line"><span class="lineno">  268</span> </div>
+<div class="line"><span class="lineno">  269</span>    <span class="comment">// Check if the specified theater is allocated for the given movie</span></div>
+<div class="line"><span class="lineno">  270</span>    <span class="keyword">const</span> std::vector&lt;int&gt;&amp; allocatedTheaters = <a class="code hl_variable" href="class_movie_booking_service.html#a09daaaef2eb38201d5273e005cf8cc79">mMovieTheaterAllocations</a>.at(movieId);</div>
+<div class="line"><span class="lineno">  271</span>    <span class="keywordtype">bool</span> isAllocated = std::find(allocatedTheaters.begin(), allocatedTheaters.end(), theaterId) != allocatedTheaters.end();</div>
+<div class="line"><span class="lineno">  272</span> </div>
+<div class="line"><span class="lineno">  273</span>    <span class="keywordflow">return</span> isAllocated;</div>
+<div class="line"><span class="lineno">  274</span>}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="class_movie_booking_service.html#a7ea62468653d1a132c124fa099fddfb1">isValidMovie()</a>, <a class="el" href="class_movie_booking_service.html#a59023b85d8aac01523f97fa30348e829">isValidTheater()</a>, <a class="el" href="class_movie_booking_service.html#aceee705241ef357b489ac3acb61bb51e">mBookingMutex</a>, and <a class="el" href="class_movie_booking_service.html#a09daaaef2eb38201d5273e005cf8cc79">mMovieTheaterAllocations</a>.</p>
 
@@ -718,16 +726,16 @@ std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>mBookingMutex</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the movie exists, false otherwise. </dd></dl>
-<div class="fragment"><div class="line"><span class="lineno">  172</span>{</div>
-<div class="line"><span class="lineno">  173</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; movie : <a class="code hl_variable" href="class_movie_booking_service.html#ad9b9619a79cb26c0821199409da4641c">mMovies</a>)</div>
-<div class="line"><span class="lineno">  174</span>    {</div>
-<div class="line"><span class="lineno">  175</span>        <span class="keywordflow">if</span> (movie-&gt;id == movieId)</div>
-<div class="line"><span class="lineno">  176</span>        {</div>
-<div class="line"><span class="lineno">  177</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>; <span class="comment">// Found a movie with the specified ID</span></div>
-<div class="line"><span class="lineno">  178</span>        }</div>
-<div class="line"><span class="lineno">  179</span>    }</div>
-<div class="line"><span class="lineno">  180</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>; <span class="comment">// Movie with the specified ID not found</span></div>
-<div class="line"><span class="lineno">  181</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  177</span>{</div>
+<div class="line"><span class="lineno">  178</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; movie : <a class="code hl_variable" href="class_movie_booking_service.html#ad9b9619a79cb26c0821199409da4641c">mMovies</a>)</div>
+<div class="line"><span class="lineno">  179</span>    {</div>
+<div class="line"><span class="lineno">  180</span>        <span class="keywordflow">if</span> (movie-&gt;id == movieId)</div>
+<div class="line"><span class="lineno">  181</span>        {</div>
+<div class="line"><span class="lineno">  182</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>; <span class="comment">// Found a movie with the specified ID</span></div>
+<div class="line"><span class="lineno">  183</span>        }</div>
+<div class="line"><span class="lineno">  184</span>    }</div>
+<div class="line"><span class="lineno">  185</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>; <span class="comment">// Movie with the specified ID not found</span></div>
+<div class="line"><span class="lineno">  186</span>}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="class_movie_booking_service.html#ad9b9619a79cb26c0821199409da4641c">mMovies</a>.</p>
 
@@ -767,16 +775,16 @@ std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>mBookingMutex</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the theater exists, false otherwise. </dd></dl>
-<div class="fragment"><div class="line"><span class="lineno">  185</span>{</div>
-<div class="line"><span class="lineno">  186</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; theater : <a class="code hl_variable" href="class_movie_booking_service.html#ae9aad582851a39b63a6fbac5fee1d9dd">mTheaters</a>)</div>
-<div class="line"><span class="lineno">  187</span>    {</div>
-<div class="line"><span class="lineno">  188</span>        <span class="keywordflow">if</span> (theater-&gt;getId() == theaterId)</div>
-<div class="line"><span class="lineno">  189</span>        {</div>
-<div class="line"><span class="lineno">  190</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>; <span class="comment">// Found a theater with the specified ID</span></div>
-<div class="line"><span class="lineno">  191</span>        }</div>
-<div class="line"><span class="lineno">  192</span>    }</div>
-<div class="line"><span class="lineno">  193</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>; <span class="comment">// Theater with the specified ID not found</span></div>
-<div class="line"><span class="lineno">  194</span>}</div>
+<div class="fragment"><div class="line"><span class="lineno">  190</span>{</div>
+<div class="line"><span class="lineno">  191</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; theater : <a class="code hl_variable" href="class_movie_booking_service.html#ae9aad582851a39b63a6fbac5fee1d9dd">mTheaters</a>)</div>
+<div class="line"><span class="lineno">  192</span>    {</div>
+<div class="line"><span class="lineno">  193</span>        <span class="keywordflow">if</span> (theater-&gt;getId() == theaterId)</div>
+<div class="line"><span class="lineno">  194</span>        {</div>
+<div class="line"><span class="lineno">  195</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>; <span class="comment">// Found a theater with the specified ID</span></div>
+<div class="line"><span class="lineno">  196</span>        }</div>
+<div class="line"><span class="lineno">  197</span>    }</div>
+<div class="line"><span class="lineno">  198</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>; <span class="comment">// Theater with the specified ID not found</span></div>
+<div class="line"><span class="lineno">  199</span>}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="class_movie_booking_service.html#ae9aad582851a39b63a6fbac5fee1d9dd">mTheaters</a>.</p>
 

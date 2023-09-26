@@ -1,5 +1,6 @@
 /**
  * @file seat.hpp
+ * @brief Represents a seat with an ID, name, and status.
  * @author Gebremedhin Abreha
  */
 #ifndef SEAT_HPP
