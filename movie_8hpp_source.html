@@ -71,78 +71,32 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <a href="movie_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#ifndef MOVIE_HPP</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#define MOVIE_HPP</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="structMovie.html">   20</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structMovie.html">Movie</a> {</div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="structMovie.html#a4265b536373191ad3dfe3057db52ae7a">   21</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structMovie.html#a4265b536373191ad3dfe3057db52ae7a">id</a>;             </div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="structMovie.html#a16f8635291ccb178c0e276c72d403e56">   22</a></span>&#160;    std::string <a class="code" href="structMovie.html#a16f8635291ccb178c0e276c72d403e56">name</a>;  </div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="structMovie.html#a5d76b43444454a90a49bd128eb73c5b9">   23</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="structMovie.html#a5d76b43444454a90a49bd128eb73c5b9">isAllocated</a>;   </div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="structMovie.html#a16070dd58cfe826c3b93a3e90394fd7e">   31</a></span>&#160;    <a class="code" href="structMovie.html#a16070dd58cfe826c3b93a3e90394fd7e">Movie</a>(<span class="keywordtype">int</span> id_, <span class="keyword">const</span> std::string&amp; name_) : <a class="code" href="structMovie.html#a4265b536373191ad3dfe3057db52ae7a">id</a>(id_), <a class="code" href="structMovie.html#a16f8635291ccb178c0e276c72d403e56">name</a>(name_) { }</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    </div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="structMovie.html#a4eb5c5f0091f35a8a7239bd736e3e753">   39</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="structMovie.html#a4eb5c5f0091f35a8a7239bd736e3e753">operator==</a>(<span class="keyword">const</span> <a class="code" href="structMovie.html">Movie</a>&amp; rhs)<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordflow">if</span> (<span class="keywordtype">id</span> == rhs.<a class="code" href="structMovie.html#a4265b536373191ad3dfe3057db52ae7a">id</a>)</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    }</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;};</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">// * @class Movie</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">// * @brief Represents a movie with an ID and a name.</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">// */</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">//class Movie {</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">//public:</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">//    /**</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">//     * @brief Constructor to initialize the movie with an ID and name.</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">//     *</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">//     * @param id The unique identifier for the movie.</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">//     * @param name The name of the movie.</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">//     */</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">//    Movie (const int&amp; id, const std::string&amp; name);</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">//    /**</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">//     * @brief Destructor for the Movie class.</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">//     */</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">//   virtual  ~Movie() = default;</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">//    /**</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">//     * @brief Get the name of the movie.</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">//     *</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">//     * @return The name of the movie as a string.</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">//     */</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">//    virtual std::string getName() const;</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">//    /**</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">//     * @brief Get the ID of the movie.</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">//     *</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">//     * @return The ID of the movie as an integer.</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">//     */</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">//    virtual int getId () const;</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">//    /**</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">//     * @brief Equality operator for comparing Movies based on their IDs.</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">//     *</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">//     * @param rhs The Movie to compare with.</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">//     * @return True if the Movies have the same ID, false otherwise.</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">//     */</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">//    virtual bool operator == (const Movie &amp;rhs) const;</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">//private:</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">//    int mId; /**&lt; Unique identifier for the movie. */</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">//    std::string mName; /**&lt; Name of the movie. */</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">//};</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* MOVIE_HPP */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="astructMovie_html"><div class="ttname"><a href="structMovie.html">Movie</a></div><div class="ttdoc">Represents a movie with an ID, and movie name.</div><div class="ttdef"><b>Definition:</b> movie.hpp:20</div></div>
-<div class="ttc" id="astructMovie_html_a16070dd58cfe826c3b93a3e90394fd7e"><div class="ttname"><a href="structMovie.html#a16070dd58cfe826c3b93a3e90394fd7e">Movie::Movie</a></div><div class="ttdeci">Movie(int id_, const std::string &amp;name_)</div><div class="ttdoc">Constructor to initialize the movie with an ID and name.</div><div class="ttdef"><b>Definition:</b> movie.hpp:31</div></div>
-<div class="ttc" id="astructMovie_html_a16f8635291ccb178c0e276c72d403e56"><div class="ttname"><a href="structMovie.html#a16f8635291ccb178c0e276c72d403e56">Movie::name</a></div><div class="ttdeci">std::string name</div><div class="ttdef"><b>Definition:</b> movie.hpp:22</div></div>
-<div class="ttc" id="astructMovie_html_a4265b536373191ad3dfe3057db52ae7a"><div class="ttname"><a href="structMovie.html#a4265b536373191ad3dfe3057db52ae7a">Movie::id</a></div><div class="ttdeci">int id</div><div class="ttdef"><b>Definition:</b> movie.hpp:21</div></div>
-<div class="ttc" id="astructMovie_html_a4eb5c5f0091f35a8a7239bd736e3e753"><div class="ttname"><a href="structMovie.html#a4eb5c5f0091f35a8a7239bd736e3e753">Movie::operator==</a></div><div class="ttdeci">bool operator==(const Movie &amp;rhs) const</div><div class="ttdoc">Equality operator for comparing movies based on their unique IDs.</div><div class="ttdef"><b>Definition:</b> movie.hpp:39</div></div>
-<div class="ttc" id="astructMovie_html_a5d76b43444454a90a49bd128eb73c5b9"><div class="ttname"><a href="structMovie.html#a5d76b43444454a90a49bd128eb73c5b9">Movie::isAllocated</a></div><div class="ttdeci">bool isAllocated</div><div class="ttdef"><b>Definition:</b> movie.hpp:23</div></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef MOVIE_HPP</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define MOVIE_HPP</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="structMovie.html">   15</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structMovie.html">Movie</a> {</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="structMovie.html#a4265b536373191ad3dfe3057db52ae7a">   16</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structMovie.html#a4265b536373191ad3dfe3057db52ae7a">id</a>;             </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="structMovie.html#a16f8635291ccb178c0e276c72d403e56">   17</a></span>&#160;    std::string <a class="code" href="structMovie.html#a16f8635291ccb178c0e276c72d403e56">name</a>;  </div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="structMovie.html#a5d76b43444454a90a49bd128eb73c5b9">   18</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="structMovie.html#a5d76b43444454a90a49bd128eb73c5b9">isAllocated</a>;   </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="structMovie.html#a16070dd58cfe826c3b93a3e90394fd7e">   26</a></span>&#160;    <a class="code" href="structMovie.html#a16070dd58cfe826c3b93a3e90394fd7e">Movie</a>(<span class="keywordtype">int</span> id_, <span class="keyword">const</span> std::string&amp; name_) : <a class="code" href="structMovie.html#a4265b536373191ad3dfe3057db52ae7a">id</a>(id_), <a class="code" href="structMovie.html#a16f8635291ccb178c0e276c72d403e56">name</a>(name_) { }</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    </div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="structMovie.html#a4eb5c5f0091f35a8a7239bd736e3e753">   34</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="structMovie.html#a4eb5c5f0091f35a8a7239bd736e3e753">operator==</a>(<span class="keyword">const</span> <a class="code" href="structMovie.html">Movie</a>&amp; rhs)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordflow">if</span> (<span class="keywordtype">id</span> == rhs.<a class="code" href="structMovie.html#a4265b536373191ad3dfe3057db52ae7a">id</a>)</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    }</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;};</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* MOVIE_HPP */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="astructMovie_html"><div class="ttname"><a href="structMovie.html">Movie</a></div><div class="ttdoc">Represents a movie with an ID, and movie name.</div><div class="ttdef"><b>Definition:</b> movie.hpp:15</div></div>
+<div class="ttc" id="astructMovie_html_a16070dd58cfe826c3b93a3e90394fd7e"><div class="ttname"><a href="structMovie.html#a16070dd58cfe826c3b93a3e90394fd7e">Movie::Movie</a></div><div class="ttdeci">Movie(int id_, const std::string &amp;name_)</div><div class="ttdoc">Constructor to initialize the movie with an ID and name.</div><div class="ttdef"><b>Definition:</b> movie.hpp:26</div></div>
+<div class="ttc" id="astructMovie_html_a16f8635291ccb178c0e276c72d403e56"><div class="ttname"><a href="structMovie.html#a16f8635291ccb178c0e276c72d403e56">Movie::name</a></div><div class="ttdeci">std::string name</div><div class="ttdef"><b>Definition:</b> movie.hpp:17</div></div>
+<div class="ttc" id="astructMovie_html_a4265b536373191ad3dfe3057db52ae7a"><div class="ttname"><a href="structMovie.html#a4265b536373191ad3dfe3057db52ae7a">Movie::id</a></div><div class="ttdeci">int id</div><div class="ttdef"><b>Definition:</b> movie.hpp:16</div></div>
+<div class="ttc" id="astructMovie_html_a4eb5c5f0091f35a8a7239bd736e3e753"><div class="ttname"><a href="structMovie.html#a4eb5c5f0091f35a8a7239bd736e3e753">Movie::operator==</a></div><div class="ttdeci">bool operator==(const Movie &amp;rhs) const</div><div class="ttdoc">Equality operator for comparing movies based on their unique IDs.</div><div class="ttdef"><b>Definition:</b> movie.hpp:34</div></div>
+<div class="ttc" id="astructMovie_html_a5d76b43444454a90a49bd128eb73c5b9"><div class="ttname"><a href="structMovie.html#a5d76b43444454a90a49bd128eb73c5b9">Movie::isAllocated</a></div><div class="ttdeci">bool isAllocated</div><div class="ttdef"><b>Definition:</b> movie.hpp:18</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
