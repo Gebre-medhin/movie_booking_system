@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['movie_60',['Movie',['../classMovie.html#a819265cd7e45bc3dcebfe3f88730cd8b',1,'Movie']]],
-  ['moviebookingservice_61',['MovieBookingService',['../classMovieBookingService.html#a57a2c3e6640638e42a616e28e34e52ad',1,'MovieBookingService']]]
+  ['movie_69',['Movie',['../structMovie.html#a16070dd58cfe826c3b93a3e90394fd7e',1,'Movie']]],
+  ['moviebookingservice_70',['MovieBookingService',['../classMovieBookingService.html#ad4285101dd6453d0691910f9f38690a6',1,'MovieBookingService']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['movie_36',['Movie',['../classMovie.html',1,'']]],
-  ['moviebookingservice_37',['MovieBookingService',['../classMovieBookingService.html',1,'']]]
+  ['movie_42',['Movie',['../structMovie.html',1,'']]],
+  ['moviebookingservice_43',['MovieBookingService',['../classMovieBookingService.html',1,'']]]
 ];

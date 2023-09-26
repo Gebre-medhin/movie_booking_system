@@ -1,4 +1,4 @@
 <map id="include/movie.hpp" name="include/movie.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,148,32"/>
+<area shape="rect" id="node1" title="Represents a movie with an ID, and name." alt="" coords="5,5,148,32"/>
 <area shape="rect" id="node2" title=" " alt="" coords="47,80,106,107"/>
 </map>

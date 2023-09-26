@@ -64,8 +64,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-methods">Private Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classTheater-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Theater Class Reference</div>  </div>
@@ -81,7 +80,7 @@ Collaboration diagram for Theater:</div>
 <div class="dyncontent">
 <div class="center"><img src="classTheater__coll__graph.png" border="0" usemap="#aTheater_coll__map" alt="Collaboration graph"/></div>
 <map name="aTheater_coll__map" id="aTheater_coll__map">
-<area shape="rect" title="Represents a theater with an ID, name, and seats." alt="" coords="196,581,360,761"/>
+<area shape="rect" title="Represents a theater with an ID, name, and seats." alt="" coords="197,581,361,791"/>
 <area shape="rect" title=" " alt="" coords="233,147,320,224"/>
 <area shape="rect" href="structSeat.html" title="Represents a seat with an ID, seat number, and booking status." alt="" coords="159,287,283,379"/>
 <area shape="rect" title=" " alt="" coords="207,5,346,97"/>
@@ -93,48 +92,53 @@ Collaboration diagram for Theater:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aca20500a0204b5112174f70df0bf814a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTheater.html#aca20500a0204b5112174f70df0bf814a">Theater</a> (const int &amp;id, const std::string &amp;name)</td></tr>
-<tr class="memdesc:aca20500a0204b5112174f70df0bf814a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor to initialize the theater with an ID and name.  <a href="classTheater.html#aca20500a0204b5112174f70df0bf814a">More...</a><br /></td></tr>
-<tr class="separator:aca20500a0204b5112174f70df0bf814a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c527b576b6e595c0159455a003cf1ea"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTheater.html#a2c527b576b6e595c0159455a003cf1ea">bookSeat</a> (const int &amp;id)</td></tr>
+<tr class="memitem:afdeac8e582b7796559e4c3870423ca16"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTheater.html#afdeac8e582b7796559e4c3870423ca16">Theater</a> (const int &amp;id, const std::string &amp;name, const std::vector&lt; <a class="el" href="structSeat.html">Seat</a> &gt; &amp;seats)</td></tr>
+<tr class="memdesc:afdeac8e582b7796559e4c3870423ca16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor to initialize the theater with an ID, name and seats.  <a href="classTheater.html#afdeac8e582b7796559e4c3870423ca16">More...</a><br /></td></tr>
+<tr class="separator:afdeac8e582b7796559e4c3870423ca16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aece4d93c18478d66382294f8744eb962"><td class="memItemLeft" align="right" valign="top"><a id="aece4d93c18478d66382294f8744eb962"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTheater.html#aece4d93c18478d66382294f8744eb962">~Theater</a> ()=default</td></tr>
+<tr class="memdesc:aece4d93c18478d66382294f8744eb962"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor for the <a class="el" href="structMovie.html" title="Represents a movie with an ID, and movie name.">Movie</a> class. <br /></td></tr>
+<tr class="separator:aece4d93c18478d66382294f8744eb962"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c527b576b6e595c0159455a003cf1ea"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTheater.html#a2c527b576b6e595c0159455a003cf1ea">bookSeat</a> (const int &amp;id)</td></tr>
 <tr class="memdesc:a2c527b576b6e595c0159455a003cf1ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Book a seat in the theater by its ID.  <a href="classTheater.html#a2c527b576b6e595c0159455a003cf1ea">More...</a><br /></td></tr>
 <tr class="separator:a2c527b576b6e595c0159455a003cf1ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a650dad87e662588c3b2f829f92be5c1f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTheater.html#a650dad87e662588c3b2f829f92be5c1f">getAvailableSeats</a> () const</td></tr>
+<tr class="memitem:a650dad87e662588c3b2f829f92be5c1f"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTheater.html#a650dad87e662588c3b2f829f92be5c1f">getAvailableSeats</a> () const</td></tr>
 <tr class="memdesc:a650dad87e662588c3b2f829f92be5c1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a vector of available seat IDs in the theater.  <a href="classTheater.html#a650dad87e662588c3b2f829f92be5c1f">More...</a><br /></td></tr>
 <tr class="separator:a650dad87e662588c3b2f829f92be5c1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9758eab8156f83e6398bc695584fc2f"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTheater.html#ac9758eab8156f83e6398bc695584fc2f">getName</a> () const</td></tr>
+<tr class="memitem:ac9758eab8156f83e6398bc695584fc2f"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTheater.html#ac9758eab8156f83e6398bc695584fc2f">getName</a> () const</td></tr>
 <tr class="memdesc:ac9758eab8156f83e6398bc695584fc2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the theater.  <a href="classTheater.html#ac9758eab8156f83e6398bc695584fc2f">More...</a><br /></td></tr>
 <tr class="separator:ac9758eab8156f83e6398bc695584fc2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a477da2c78ec4fa3af29e73ee69328642"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTheater.html#a477da2c78ec4fa3af29e73ee69328642">getId</a> () const</td></tr>
+<tr class="memitem:a477da2c78ec4fa3af29e73ee69328642"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTheater.html#a477da2c78ec4fa3af29e73ee69328642">getId</a> () const</td></tr>
 <tr class="memdesc:a477da2c78ec4fa3af29e73ee69328642"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the ID of the theater.  <a href="classTheater.html#a477da2c78ec4fa3af29e73ee69328642">More...</a><br /></td></tr>
 <tr class="separator:a477da2c78ec4fa3af29e73ee69328642"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22cacf7099ce466b61e646b1029cd96c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTheater.html#a22cacf7099ce466b61e646b1029cd96c">operator==</a> (const <a class="el" href="classTheater.html">Theater</a> &amp;rhs) const</td></tr>
+<tr class="memitem:acfd90b38a467e8852c7b124b082441f8"><td class="memItemLeft" align="right" valign="top"><a id="acfd90b38a467e8852c7b124b082441f8"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTheater.html#acfd90b38a467e8852c7b124b082441f8">allocateMovie</a> ()</td></tr>
+<tr class="memdesc:acfd90b38a467e8852c7b124b082441f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate a movie to this theater. <br /></td></tr>
+<tr class="separator:acfd90b38a467e8852c7b124b082441f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67c7eae738929245a2175ac3c4c4226c"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTheater.html#a67c7eae738929245a2175ac3c4c4226c">isAllocated</a> () const</td></tr>
+<tr class="memdesc:a67c7eae738929245a2175ac3c4c4226c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a movie is allocated to this theater.  <a href="classTheater.html#a67c7eae738929245a2175ac3c4c4226c">More...</a><br /></td></tr>
+<tr class="separator:a67c7eae738929245a2175ac3c4c4226c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22cacf7099ce466b61e646b1029cd96c"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTheater.html#a22cacf7099ce466b61e646b1029cd96c">operator==</a> (const <a class="el" href="classTheater.html">Theater</a> &amp;rhs) const</td></tr>
 <tr class="memdesc:a22cacf7099ce466b61e646b1029cd96c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equality operator for comparing Theaters based on their IDs.  <a href="classTheater.html#a22cacf7099ce466b61e646b1029cd96c">More...</a><br /></td></tr>
 <tr class="separator:a22cacf7099ce466b61e646b1029cd96c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
-Private Member Functions</h2></td></tr>
-<tr class="memitem:a49eb5de7acb8bbb7715ed9210a8249e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTheater.html#a49eb5de7acb8bbb7715ed9210a8249e7">initializeSeats</a> ()</td></tr>
-<tr class="memdesc:a49eb5de7acb8bbb7715ed9210a8249e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the seats in the theater.  <a href="classTheater.html#a49eb5de7acb8bbb7715ed9210a8249e7">More...</a><br /></td></tr>
-<tr class="separator:a49eb5de7acb8bbb7715ed9210a8249e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
 <tr class="memitem:a9e651202d530ef74a73df714343861f2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTheater.html#a9e651202d530ef74a73df714343861f2">mId</a></td></tr>
 <tr class="separator:a9e651202d530ef74a73df714343861f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39416cacc1669208cab4afddbfcaf775"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTheater.html#a39416cacc1669208cab4afddbfcaf775">mName</a></td></tr>
 <tr class="separator:a39416cacc1669208cab4afddbfcaf775"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a8d930826d722c54fcbcf43d5a7375a"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTheater.html#a7a8d930826d722c54fcbcf43d5a7375a">mSeatCapacity</a></td></tr>
-<tr class="separator:a7a8d930826d722c54fcbcf43d5a7375a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f2400159ce5351a1a8f55e89a1a9f74"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structSeat.html">Seat</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTheater.html#a1f2400159ce5351a1a8f55e89a1a9f74">mSeats</a></td></tr>
 <tr class="separator:a1f2400159ce5351a1a8f55e89a1a9f74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada95f10921dbe48e4de89abecc0b20e3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTheater.html#ada95f10921dbe48e4de89abecc0b20e3">mIsAllocated</a></td></tr>
+<tr class="separator:ada95f10921dbe48e4de89abecc0b20e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a theater with an ID, name, and seats. </p>
 <p>The <a class="el" href="classTheater.html" title="Represents a theater with an ID, name, and seats.">Theater</a> class provides methods for managing seats in a theater. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aca20500a0204b5112174f70df0bf814a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aca20500a0204b5112174f70df0bf814a">&#9670;&nbsp;</a></span>Theater()</h2>
+<a id="afdeac8e582b7796559e4c3870423ca16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdeac8e582b7796559e4c3870423ca16">&#9670;&nbsp;</a></span>Theater()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -149,7 +153,13 @@ Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>name</em>&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="structSeat.html">Seat</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>seats</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -159,26 +169,24 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructor to initialize the theater with an ID and name. </p>
+<p>Constructor to initialize the theater with an ID, name and seats. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">id</td><td>The unique identifier for the theater. </td></tr>
     <tr><td class="paramname">name</td><td>The name of the theater. </td></tr>
+    <tr><td class="paramname">seats</td><td>A vector of <a class="el" href="structSeat.html" title="Represents a seat with an ID, seat number, and booking status.">Seat</a> objects representing seats in the theater. </td></tr>
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;                                                     :</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<a class="code" href="classTheater.html#a9e651202d530ef74a73df714343861f2">mId</a>(<span class="keywordtype">id</span>), <a class="code" href="classTheater.html#a39416cacc1669208cab4afddbfcaf775">mName</a>(name), <a class="code" href="classTheater.html#a7a8d930826d722c54fcbcf43d5a7375a">mSeatCapacity</a>(20)</div>
+<div class="fragment"><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;                                                                                   :</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<a class="code" href="classTheater.html#a9e651202d530ef74a73df714343861f2">mId</a>(<span class="keywordtype">id</span>), <a class="code" href="classTheater.html#a39416cacc1669208cab4afddbfcaf775">mName</a>(name), <a class="code" href="classTheater.html#a1f2400159ce5351a1a8f55e89a1a9f74">mSeats</a>(seats), <a class="code" href="classTheater.html#ada95f10921dbe48e4de89abecc0b20e3">mIsAllocated</a>(<span class="keyword">false</span>)</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="classTheater.html#a49eb5de7acb8bbb7715ed9210a8249e7">initializeSeats</a>();</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;}</div>
-<div class="ttc" id="aclassTheater_html_a39416cacc1669208cab4afddbfcaf775"><div class="ttname"><a href="classTheater.html#a39416cacc1669208cab4afddbfcaf775">Theater::mName</a></div><div class="ttdeci">std::string mName</div><div class="ttdef"><b>Definition:</b> theater.hpp:68</div></div>
-<div class="ttc" id="aclassTheater_html_a49eb5de7acb8bbb7715ed9210a8249e7"><div class="ttname"><a href="classTheater.html#a49eb5de7acb8bbb7715ed9210a8249e7">Theater::initializeSeats</a></div><div class="ttdeci">void initializeSeats()</div><div class="ttdoc">Initialize the seats in the theater.</div><div class="ttdef"><b>Definition:</b> theater.cpp:53</div></div>
-<div class="ttc" id="aclassTheater_html_a7a8d930826d722c54fcbcf43d5a7375a"><div class="ttname"><a href="classTheater.html#a7a8d930826d722c54fcbcf43d5a7375a">Theater::mSeatCapacity</a></div><div class="ttdeci">const int mSeatCapacity</div><div class="ttdef"><b>Definition:</b> theater.hpp:69</div></div>
-<div class="ttc" id="aclassTheater_html_a9e651202d530ef74a73df714343861f2"><div class="ttname"><a href="classTheater.html#a9e651202d530ef74a73df714343861f2">Theater::mId</a></div><div class="ttdeci">int mId</div><div class="ttdef"><b>Definition:</b> theater.hpp:67</div></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;}</div>
+<div class="ttc" id="aclassTheater_html_a1f2400159ce5351a1a8f55e89a1a9f74"><div class="ttname"><a href="classTheater.html#a1f2400159ce5351a1a8f55e89a1a9f74">Theater::mSeats</a></div><div class="ttdeci">std::vector&lt; Seat &gt; mSeats</div><div class="ttdef"><b>Definition:</b> theater.hpp:87</div></div>
+<div class="ttc" id="aclassTheater_html_a39416cacc1669208cab4afddbfcaf775"><div class="ttname"><a href="classTheater.html#a39416cacc1669208cab4afddbfcaf775">Theater::mName</a></div><div class="ttdeci">std::string mName</div><div class="ttdef"><b>Definition:</b> theater.hpp:86</div></div>
+<div class="ttc" id="aclassTheater_html_a9e651202d530ef74a73df714343861f2"><div class="ttname"><a href="classTheater.html#a9e651202d530ef74a73df714343861f2">Theater::mId</a></div><div class="ttdeci">int mId</div><div class="ttdef"><b>Definition:</b> theater.hpp:85</div></div>
+<div class="ttc" id="aclassTheater_html_ada95f10921dbe48e4de89abecc0b20e3"><div class="ttname"><a href="classTheater.html#ada95f10921dbe48e4de89abecc0b20e3">Theater::mIsAllocated</a></div><div class="ttdeci">bool mIsAllocated</div><div class="ttdef"><b>Definition:</b> theater.hpp:88</div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="classTheater.html#a49eb5de7acb8bbb7715ed9210a8249e7">initializeSeats()</a>.</p>
-
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -187,6 +195,9 @@ Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool Theater::bookSeat </td>
@@ -196,6 +207,11 @@ Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Book a seat in the theater by its ID. </p>
@@ -206,28 +222,25 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the seat was booked successfully, false otherwise. </dd></dl>
-<div class="fragment"><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; seat: <a class="code" href="classTheater.html#a1f2400159ce5351a1a8f55e89a1a9f74">mSeats</a>)</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keywordflow">if</span> (seat.id == seatId)</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <span class="keywordflow">if</span> (seat.isBooked)</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>; <span class="comment">//Already booked</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            {</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                seat.isBooked = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            }</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        }</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    }</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;}</div>
-<div class="ttc" id="aclassTheater_html_a1f2400159ce5351a1a8f55e89a1a9f74"><div class="ttname"><a href="classTheater.html#a1f2400159ce5351a1a8f55e89a1a9f74">Theater::mSeats</a></div><div class="ttdeci">std::vector&lt; Seat &gt; mSeats</div><div class="ttdef"><b>Definition:</b> theater.hpp:70</div></div>
+<div class="fragment"><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; seat: <a class="code" href="classTheater.html#a1f2400159ce5351a1a8f55e89a1a9f74">mSeats</a>)</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keywordflow">if</span> (seat.id == seatId)</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <span class="keywordflow">if</span> (seat.isBooked)</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>; <span class="comment">//Already booked</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                seat.isBooked = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            }</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        }</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    }</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="classTheater.html#a1f2400159ce5351a1a8f55e89a1a9f74">mSeats</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="classMovieBookingService.html#a2548583195adfdad55a9a7848d44331b">MovieBookingService::bookSeats()</a>.</p>
 
 </div>
 </div>
@@ -236,6 +249,9 @@ Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">std::vector&lt; int &gt; Theater::getAvailableSeats </td>
@@ -244,27 +260,30 @@ Private Attributes</h2></td></tr>
           <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Get a vector of available seat IDs in the theater. </p>
 <dl class="section return"><dt>Returns</dt><dd>A vector of integers representing the available seat IDs. </dd></dl>
-<div class="fragment"><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    std::vector&lt;int&gt; availableSeats;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; seat: <a class="code" href="classTheater.html#a1f2400159ce5351a1a8f55e89a1a9f74">mSeats</a>)</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">if</span>(!seat.isBooked)</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            availableSeats.push_back(seat.id);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        }</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    }</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordflow">return</span> availableSeats;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    std::vector&lt;int&gt; availableSeats;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; seat: <a class="code" href="classTheater.html#a1f2400159ce5351a1a8f55e89a1a9f74">mSeats</a>)</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">if</span>(!seat.isBooked)</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            availableSeats.push_back(seat.id);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        }</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">return</span> availableSeats;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="classTheater.html#a1f2400159ce5351a1a8f55e89a1a9f74">mSeats</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="classMovieBookingService.html#a1029a10792f1cac13004e4148865be2a">MovieBookingService::getAvailableSeats()</a>.</p>
 
 </div>
 </div>
@@ -286,14 +305,17 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>Get the ID of the theater. </p>
 <dl class="section return"><dt>Returns</dt><dd>The ID of the theater as an integer. </dd></dl>
-<div class="fragment"><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classTheater.html#a9e651202d530ef74a73df714343861f2">mId</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;{</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classTheater.html#a9e651202d530ef74a73df714343861f2">mId</a>;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="classTheater.html#a9e651202d530ef74a73df714343861f2">mId</a>.</p>
 
@@ -317,21 +339,24 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>Get the name of the theater. </p>
 <dl class="section return"><dt>Returns</dt><dd>The name of the theater as a string. </dd></dl>
-<div class="fragment"><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classTheater.html#a39416cacc1669208cab4afddbfcaf775">mName</a>;}</div>
+<div class="fragment"><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;{</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classTheater.html#a39416cacc1669208cab4afddbfcaf775">mName</a>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="classTheater.html#a39416cacc1669208cab4afddbfcaf775">mName</a>.</p>
 
 </div>
 </div>
-<a id="a49eb5de7acb8bbb7715ed9210a8249e7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a49eb5de7acb8bbb7715ed9210a8249e7">&#9670;&nbsp;</a></span>initializeSeats()</h2>
+<a id="a67c7eae738929245a2175ac3c4c4226c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67c7eae738929245a2175ac3c4c4226c">&#9670;&nbsp;</a></span>isAllocated()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -340,38 +365,26 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Theater::initializeSeats </td>
+          <td class="memname">bool Theater::isAllocated </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Initialize the seats in the theater. </p>
-<p>This function initializes the seats in the theater based on the specified seat capacity. </p>
-<div class="fragment"><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;{</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="classTheater.html#a7a8d930826d722c54fcbcf43d5a7375a">mSeatCapacity</a>; ++i) {</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <a class="code" href="structSeat.html">Seat</a> seat;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        seat.<a class="code" href="structSeat.html#a5e2d30dcf78dea5e4d96226e9fb1fc44">id</a> = i;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        seat.<a class="code" href="structSeat.html#aa0ba3dee37bcc123123f791564836a8d">seatNumber</a> = <span class="stringliteral">&quot;Seat &quot;</span> + std::to_string(i + 1);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        seat.<a class="code" href="structSeat.html#a06061ec01819abfc040716b1d5a9b2ef">isBooked</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <a class="code" href="classTheater.html#a1f2400159ce5351a1a8f55e89a1a9f74">mSeats</a>.push_back(seat);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    }</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div>
-<div class="ttc" id="astructSeat_html"><div class="ttname"><a href="structSeat.html">Seat</a></div><div class="ttdoc">Represents a seat with an ID, seat number, and booking status.</div><div class="ttdef"><b>Definition:</b> seat.hpp:14</div></div>
-<div class="ttc" id="astructSeat_html_a06061ec01819abfc040716b1d5a9b2ef"><div class="ttname"><a href="structSeat.html#a06061ec01819abfc040716b1d5a9b2ef">Seat::isBooked</a></div><div class="ttdeci">bool isBooked</div><div class="ttdef"><b>Definition:</b> seat.hpp:17</div></div>
-<div class="ttc" id="astructSeat_html_a5e2d30dcf78dea5e4d96226e9fb1fc44"><div class="ttname"><a href="structSeat.html#a5e2d30dcf78dea5e4d96226e9fb1fc44">Seat::id</a></div><div class="ttdeci">int id</div><div class="ttdef"><b>Definition:</b> seat.hpp:15</div></div>
-<div class="ttc" id="astructSeat_html_aa0ba3dee37bcc123123f791564836a8d"><div class="ttname"><a href="structSeat.html#aa0ba3dee37bcc123123f791564836a8d">Seat::seatNumber</a></div><div class="ttdeci">std::string seatNumber</div><div class="ttdef"><b>Definition:</b> seat.hpp:16</div></div>
+<p>Check if a movie is allocated to this theater. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if a movie is allocated, false otherwise. </dd></dl>
+<div class="fragment"><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;{</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classTheater.html#ada95f10921dbe48e4de89abecc0b20e3">mIsAllocated</a>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="structSeat.html#a5e2d30dcf78dea5e4d96226e9fb1fc44">Seat::id</a>, <a class="el" href="structSeat.html#a06061ec01819abfc040716b1d5a9b2ef">Seat::isBooked</a>, <a class="el" href="classTheater.html#a7a8d930826d722c54fcbcf43d5a7375a">mSeatCapacity</a>, <a class="el" href="classTheater.html#a1f2400159ce5351a1a8f55e89a1a9f74">mSeats</a>, and <a class="el" href="structSeat.html#aa0ba3dee37bcc123123f791564836a8d">Seat::seatNumber</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="classTheater.html#aca20500a0204b5112174f70df0bf814a">Theater()</a>.</p>
+<p class="reference">References <a class="el" href="classTheater.html#ada95f10921dbe48e4de89abecc0b20e3">mIsAllocated</a>.</p>
 
 </div>
 </div>
@@ -380,6 +393,9 @@ Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool Theater::operator== </td>
@@ -389,6 +405,11 @@ Private Attributes</h2></td></tr>
           <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Equality operator for comparing Theaters based on their IDs. </p>
@@ -399,11 +420,11 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the theater have the same ID, false otherwise. </dd></dl>
-<div class="fragment"><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;{</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classTheater.html#a9e651202d530ef74a73df714343861f2">mId</a> == rhs.<a class="code" href="classTheater.html#a9e651202d530ef74a73df714343861f2">mId</a>)</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classTheater.html#a9e651202d530ef74a73df714343861f2">mId</a> == rhs.<a class="code" href="classTheater.html#a9e651202d530ef74a73df714343861f2">mId</a>)</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="classTheater.html#a9e651202d530ef74a73df714343861f2">mId</a>.</p>
 
@@ -425,13 +446,38 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 <p>Unique identifier for the theater. </p>
 
 <p class="reference">Referenced by <a class="el" href="classTheater.html#a477da2c78ec4fa3af29e73ee69328642">getId()</a>, and <a class="el" href="classTheater.html#a22cacf7099ce466b61e646b1029cd96c">operator==()</a>.</p>
+
+</div>
+</div>
+<a id="ada95f10921dbe48e4de89abecc0b20e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada95f10921dbe48e4de89abecc0b20e3">&#9670;&nbsp;</a></span>mIsAllocated</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Theater::mIsAllocated</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Flag indicating if a movie is allocated to the theater. </p>
+
+<p class="reference">Referenced by <a class="el" href="classTheater.html#acfd90b38a467e8852c7b124b082441f8">allocateMovie()</a>, and <a class="el" href="classTheater.html#a67c7eae738929245a2175ac3c4c4226c">isAllocated()</a>.</p>
 
 </div>
 </div>
@@ -450,38 +496,13 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 <p>Name of the theater. </p>
 
 <p class="reference">Referenced by <a class="el" href="classTheater.html#ac9758eab8156f83e6398bc695584fc2f">getName()</a>.</p>
-
-</div>
-</div>
-<a id="a7a8d930826d722c54fcbcf43d5a7375a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a8d930826d722c54fcbcf43d5a7375a">&#9670;&nbsp;</a></span>mSeatCapacity</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const int Theater::mSeatCapacity</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Capacity of the theater in terms of seats. </p>
-
-<p class="reference">Referenced by <a class="el" href="classTheater.html#a49eb5de7acb8bbb7715ed9210a8249e7">initializeSeats()</a>.</p>
 
 </div>
 </div>
@@ -500,13 +521,13 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 <p>Vector of seats in the theater. </p>
 
-<p class="reference">Referenced by <a class="el" href="classTheater.html#a2c527b576b6e595c0159455a003cf1ea">bookSeat()</a>, <a class="el" href="classTheater.html#a650dad87e662588c3b2f829f92be5c1f">getAvailableSeats()</a>, and <a class="el" href="classTheater.html#a49eb5de7acb8bbb7715ed9210a8249e7">initializeSeats()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classTheater.html#a2c527b576b6e595c0159455a003cf1ea">bookSeat()</a>, and <a class="el" href="classTheater.html#a650dad87e662588c3b2f829f92be5c1f">getAvailableSeats()</a>.</p>
 
 </div>
 </div>

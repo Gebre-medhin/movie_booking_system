@@ -1,5 +1,5 @@
 <map id="include/theater.hpp" name="include/theater.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="131,5,277,32"/>
+<area shape="rect" id="node1" title="Represents a theater with an ID, name, and seats." alt="" coords="131,5,277,32"/>
 <area shape="rect" id="node2" href="$movie__booking__service_8hpp.html" title="Movie booking service API." alt="" coords="32,80,205,121"/>
 <area shape="rect" id="node4" href="$theater_8cpp.html" title="Implementation for Theater class." alt="" coords="230,87,349,114"/>
 <area shape="rect" id="node3" href="$movie__booking__service_8cpp.html" title="Implementation for MovieBookingService (API) class." alt="" coords="5,169,232,196"/>

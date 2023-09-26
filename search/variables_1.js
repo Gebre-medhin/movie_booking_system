@@ -1,10 +1,11 @@
 var searchData=
 [
-  ['mid_67',['mId',['../classMovie.html#a99fd5ebe0d75ac72fed499c67c6aabcb',1,'Movie::mId()'],['../classTheater.html#a9e651202d530ef74a73df714343861f2',1,'Theater::mId()']]],
-  ['mmovies_68',['mMovies',['../classMovieBookingService.html#a146a77ce4f8ad302fee9e39fe3c5f577',1,'MovieBookingService']]],
-  ['mmovietheaterallocations_69',['mMovieTheaterAllocations',['../classMovieBookingService.html#a09daaaef2eb38201d5273e005cf8cc79',1,'MovieBookingService']]],
-  ['mname_70',['mName',['../classMovie.html#a308ee77de63a228f373835490e3f4ac3',1,'Movie::mName()'],['../classTheater.html#a39416cacc1669208cab4afddbfcaf775',1,'Theater::mName()']]],
-  ['mseatcapacity_71',['mSeatCapacity',['../classTheater.html#a7a8d930826d722c54fcbcf43d5a7375a',1,'Theater']]],
-  ['mseats_72',['mSeats',['../classTheater.html#a1f2400159ce5351a1a8f55e89a1a9f74',1,'Theater']]],
-  ['mtheaters_73',['mTheaters',['../classMovieBookingService.html#a821302458c65e55bbad8c0f6ae7668a0',1,'MovieBookingService']]]
+  ['mbookingmutex_78',['mBookingMutex',['../classMovieBookingService.html#aceee705241ef357b489ac3acb61bb51e',1,'MovieBookingService']]],
+  ['mid_79',['mId',['../classTheater.html#a9e651202d530ef74a73df714343861f2',1,'Theater']]],
+  ['misallocated_80',['mIsAllocated',['../classTheater.html#ada95f10921dbe48e4de89abecc0b20e3',1,'Theater']]],
+  ['mmovies_81',['mMovies',['../classMovieBookingService.html#ad9b9619a79cb26c0821199409da4641c',1,'MovieBookingService']]],
+  ['mmovietheaterallocations_82',['mMovieTheaterAllocations',['../classMovieBookingService.html#a09daaaef2eb38201d5273e005cf8cc79',1,'MovieBookingService']]],
+  ['mname_83',['mName',['../classTheater.html#a39416cacc1669208cab4afddbfcaf775',1,'Theater']]],
+  ['mseats_84',['mSeats',['../classTheater.html#a1f2400159ce5351a1a8f55e89a1a9f74',1,'Theater']]],
+  ['mtheaters_85',['mTheaters',['../classMovieBookingService.html#ae9aad582851a39b63a6fbac5fee1d9dd',1,'MovieBookingService']]]
 ];

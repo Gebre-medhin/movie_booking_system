@@ -1,18 +1,15 @@
 <map id="MovieBookingService" name="MovieBookingService">
-<area shape="rect" id="node1" title="A class representing a movie booking service." alt="" coords="325,993,529,1232"/>
-<area shape="rect" id="node2" title=" " alt="" coords="626,647,778,754"/>
-<area shape="rect" id="node3" title=" " alt="" coords="623,471,762,548"/>
-<area shape="rect" id="node4" title=" " alt="" coords="524,309,653,386"/>
-<area shape="rect" id="node8" title=" " alt="" coords="242,853,413,931"/>
-<area shape="rect" id="node12" title=" " alt="" coords="245,471,396,548"/>
-<area shape="rect" id="node15" title=" " alt="" coords="5,471,167,548"/>
-<area shape="rect" id="node5" title=" " alt="" coords="625,147,664,224"/>
-<area shape="rect" id="node6" title=" " alt="" coords="731,301,883,393"/>
-<area shape="rect" id="node7" title=" " alt="" coords="788,147,827,224"/>
-<area shape="rect" id="node9" href="$classTheater.html" title="Represents a theater with an ID, name, and seats." alt="" coords="239,611,403,791"/>
-<area shape="rect" id="node10" title=" " alt="" coords="156,147,243,224"/>
-<area shape="rect" id="node13" href="$structSeat.html" title="Represents a seat with an ID, seat number, and booking status." alt="" coords="237,301,361,393"/>
-<area shape="rect" id="node16" href="$classMovie.html" title="Represents a movie with an ID and a name." alt="" coords="33,287,157,408"/>
-<area shape="rect" id="node11" title=" " alt="" coords="130,5,269,97"/>
-<area shape="rect" id="node14" title=" " alt="" coords="437,853,529,931"/>
+<area shape="rect" id="node1" title="A class representing a movie booking service." alt="" coords="385,609,589,877"/>
+<area shape="rect" id="node2" title=" " alt="" coords="120,440,272,547"/>
+<area shape="rect" id="node3" title=" " alt="" coords="183,300,321,377"/>
+<area shape="rect" id="node4" title=" " alt="" coords="305,153,434,230"/>
+<area shape="rect" id="node8" title=" " alt="" coords="296,447,475,539"/>
+<area shape="rect" id="node12" title=" " alt="" coords="616,447,795,539"/>
+<area shape="rect" id="node5" title=" " alt="" coords="350,5,389,83"/>
+<area shape="rect" id="node6" title=" " alt="" coords="5,145,157,237"/>
+<area shape="rect" id="node10" title=" " alt="" coords="719,153,876,230"/>
+<area shape="rect" id="node7" title=" " alt="" coords="62,5,101,83"/>
+<area shape="rect" id="node9" title=" " alt="" coords="698,300,897,377"/>
+<area shape="rect" id="node13" title=" " alt="" coords="921,300,1111,377"/>
+<area shape="rect" id="node11" title=" " alt="" coords="499,455,591,532"/>
 </map>

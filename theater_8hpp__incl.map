@@ -1,5 +1,5 @@
 <map id="include/theater.hpp" name="include/theater.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,152,32"/>
+<area shape="rect" id="node1" title="Represents a theater with an ID, name, and seats." alt="" coords="5,5,152,32"/>
 <area shape="rect" id="node2" title=" " alt="" coords="61,155,120,181"/>
 <area shape="rect" id="node3" title=" " alt="" coords="47,80,110,107"/>
 <area shape="rect" id="node4" href="$seat_8hpp.html" title=" " alt="" coords="134,80,213,107"/>

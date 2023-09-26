@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['seat_29',['Seat',['../structSeat.html',1,'']]],
-  ['seat_2ehpp_30',['seat.hpp',['../seat_8hpp.html',1,'']]],
-  ['seatnumber_31',['seatNumber',['../structSeat.html#aa0ba3dee37bcc123123f791564836a8d',1,'Seat']]]
+  ['operator_3d_3d_33',['operator==',['../structMovie.html#a4eb5c5f0091f35a8a7239bd736e3e753',1,'Movie::operator==()'],['../structSeat.html#a320b08c8eb2ca7011f71ce9abd85d159',1,'Seat::operator==()'],['../classTheater.html#a22cacf7099ce466b61e646b1029cd96c',1,'Theater::operator==()']]]
 ];
