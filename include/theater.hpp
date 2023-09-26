@@ -1,5 +1,6 @@
 /**
  * @file theater.hpp
+ * @brief Represents a theater with an ID, name, and seats.
  * @author Gebremedhin Abreha
  */
 #ifndef THEATER_HPP
@@ -18,12 +19,18 @@
 class Theater {
 public:
     /**
-     * @brief Constructor to initialize the theater with an ID and name.
+     * @brief Constructor to initialize the theater with an ID, name and seats
      *
      * @param id The unique identifier for the theater.
      * @param name The name of the theater.
+     * @param seats A vector of Seat objects representing seats in the theater.
      */
-    Theater(const int& id, const std::string& name);
+    Theater(const int& id, const std::string& name, const std::vector<Seat>& seats);
+    
+    /**
+     * @brief Destructor for the Movie class.
+     */
+    virtual ~Theater () = default;
     
     /**
      * @brief Book a seat in the theater by its ID.
@@ -31,28 +38,40 @@ public:
      * @param id The ID of the seat to be booked.
      * @return True if the seat was booked successfully, false otherwise.
      */
-    bool bookSeat(const int& id);
+    virtual bool bookSeat(const int& id);
     
     /**
      * @brief Get a vector of available seat IDs in the theater.
      *
      * @return A vector of integers representing the available seat IDs.
      */
-    std::vector<int> getAvailableSeats() const;
+    virtual std::vector<int> getAvailableSeats() const;
     
     /**
      * @brief Get the name of the theater.
      *
      * @return The name of the theater as a string.
      */
-    inline std::string getName() const { return mName;}
+    virtual std::string getName() const;
     
     /**
      * @brief Get the ID of the theater.
      *
      * @return The ID of the theater as an integer.
      */
-    inline int getId () const { return mId; }
+    virtual int getId () const;
+    
+    /**
+      * @brief Allocate a movie to this theater.
+      */
+     virtual void allocateMovie ();
+     
+     /**
+      * @brief Check if a movie is allocated to this theater.
+      *
+      * @return True if a movie is allocated, false otherwise.
+      */
+    virtual bool isAllocated () const;
     
     /**
      * @brief Equality operator for comparing Theaters based on their IDs.
@@ -60,21 +79,14 @@ public:
      * @param rhs The theater to compare with.
      * @return True if the theater have the same ID, false otherwise.
      */
-    bool operator == (const Theater &rhs) const;
+    virtual bool operator == (const Theater &rhs) const;
 
-    
-private:
+protected:
     int mId;                    /**< Unique identifier for the theater. */
     std::string mName;          /**< Name of the theater. */
-    const int mSeatCapacity;    /**< Capacity of the theater in terms of seats. */
     std::vector<Seat> mSeats;   /**< Vector of seats in the theater. */
+    bool mIsAllocated;          /**< Flag indicating if a movie is allocated to the theater. */
 
-    /**
-     * @brief Initialize the seats in the theater.
-     *
-     * This function initializes the seats in the theater based on the specified seat capacity.
-     */
-    void initializeSeats();
 };
 
 #endif /* THEATER_HPP */
