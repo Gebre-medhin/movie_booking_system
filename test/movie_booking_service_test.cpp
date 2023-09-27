@@ -31,6 +31,8 @@ public:
          // Copy member variables from 'other' to this object
          mId = other.mId;
          mName = other.mName;
+        mIsAllocated = other.mIsAllocated;
+        mSeats = other.mSeats;
      }
 
 };
@@ -39,6 +41,7 @@ public:
 class MovieBookingServiceFixture : public ::testing::Test
 {
 protected:
+    
 
     // Set up the common environment for the test cases
     void SetUp() override
@@ -87,11 +90,12 @@ using ::testing::Return;
 using ::testing::_;
 
 /*------------------------------------------------------*/
-// Test case for getAllMovies
+//// Test case for getAllMovies
 TEST_F(MovieBookingServiceFixture, GetAllMovies) {
 
     // Call the method and check the result
     auto result = mServicePtr->getAllMovies();
+
     EXPECT_EQ(result, mMovies);
 }
 

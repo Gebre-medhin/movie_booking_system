@@ -11,68 +11,84 @@
 #include <stdexcept>
 #include <algorithm>
 #include <random>
+#include <ctime>
 
 /*----------------------------------------------------*/
-void MovieBookingService::addMovie(const std::shared_ptr<Movie>& movie) {
+bool MovieBookingService::addMovie(const std::shared_ptr<Movie>& movie) {
     // Add the movie to the list of movies
-    {
-        std::lock_guard<std::mutex> lock(mBookingMutex);
-        mMovies.push_back(movie);
+    bool result = false;
+    if (!movie) {
+        // Handle null pointer
+        return false;
     }
-    allocateMovieToTheaters(movie);
+    if (const auto& [itr, done] = mMovies.insert({movie->id, movie}); done)
+    {
+        result = done;
+        allocateMovieToTheaters(movie);
+    }
+    return result;
 }
 
 /*----------------------------------------------------*/
-void MovieBookingService::addTheater(const std::shared_ptr<Theater>& theater) {
+bool MovieBookingService::addTheater(const std::shared_ptr<Theater>& theater) {
     
+    bool result = false;
     if (!theater) {
         // Handle null pointer
-        return;
+        return result;
     }
     
+    if (const auto& [itr, done] = mTheaters.insert({theater->getId(), theater}); done)
     {
-        std::lock_guard<std::mutex> lock(mBookingMutex);
-        // Add the theater to the list of theaters
-        mTheaters.push_back(theater);
-    }
-    
-    bool isMovieAllocated = false;
-
-    // Check if there are unallocated movies
-    for (auto& movie : mMovies)
-    {
-        if (!movie->isAllocated)
+        result = done;
+        
+        bool isMovieAllocated = false;
+        
+        // Check if there are unallocated movies
+        for (const auto& [id, movie] : mMovies)
         {
-            if (allocateMovieToTheaters(movie))
+            if (!movie->isAllocated)
             {
-                isMovieAllocated = true;
+                if (allocateMovieToTheaters(movie))
+                {
+                    isMovieAllocated = true;
+                }
             }
         }
+        // If all movies are already allocated, randomly pick one movie
+        if (!isMovieAllocated && !mMovies.empty())
+        {
+            std::random_device rd;
+            //std::mt19937 gen(std::time(nullptr));
+            std::mt19937 gen(rd());
+            std::uniform_int_distribution<int> dist(1, mMovies.size());
+            int randomId = dist(gen);
+            
+            // Allocate the randomly picked movie to the new theater
+            isMovieAllocated = allocateMovieToTheaters(mMovies.at(randomId));
+        }
     }
-    // If all movies are already allocated, randomly pick one movie
-    if (!isMovieAllocated && !mMovies.empty())
-    {
-        std::random_device rd;
-        std::mt19937 gen(rd());
-        std::uniform_int_distribution<int> dist(0, mMovies.size() - 1);
-        int randomIndex = dist(gen);
-        
-        // Allocate the randomly picked movie to the new theater
-        isMovieAllocated = allocateMovieToTheaters(mMovies[randomIndex]);
-    }
+    return result;
 }
 
 
 /*----------------------------------------------------*/
-const std::vector<std::shared_ptr<Movie>>& MovieBookingService::getAllMovies() const
+std::vector<std::shared_ptr<Movie>> MovieBookingService::getAllMovies() const
 {
-    return mMovies;
+    std::vector<std::shared_ptr<Movie>> movies;
+    
+    for (const auto& [id, movie]: mMovies)
+    {
+        movies.push_back(movie);
+    }
+    return movies;
 }
 
 /*----------------------------------------------------*/
 std::vector<std::shared_ptr<Theater>> MovieBookingService::getTheatersForMovie(int movieId) const
 {
     std::vector<std::shared_ptr<Theater>> theatersForMovie;
+        
     // Check if the movie ID is valid
     if (isValidMovie(movieId))
     {
@@ -80,15 +96,11 @@ std::vector<std::shared_ptr<Theater>> MovieBookingService::getTheatersForMovie(i
         const std::vector<int>& theaterIds = mMovieTheaterAllocations.at(movieId);
 
         // Iterate through theaters and find matching theater IDs
-        for (const auto& theater : mTheaters)
+        for (const auto& allocatedTheaterId : theaterIds)
         {
-            for (int allocatedTheaterId : theaterIds)
+            if (auto itr = mTheaters.find(allocatedTheaterId); itr != mTheaters.end())
             {
-                if (theater->getId() == allocatedTheaterId)
-                {
-                    theatersForMovie.push_back(theater);
-                    break; // Found a matching theater, no need to continue searching
-                }
+                theatersForMovie.push_back(itr->second);
             }
         }
     }
@@ -112,22 +124,11 @@ std::vector<int> MovieBookingService::getAvailableSeats(int theaterId, int movie
     }
     
    // Find the theater associated with the provided theaterId
-    std::shared_ptr<Theater> theater = nullptr;
-    for (const auto& t : mTheaters)
-    {
-        if (t->getId() == theaterId)
-        {
-            theater = t;
-            break;
-        }
-    }
     
-    // Check if the theater was found
-    if (!theater)
+    if (auto itr = mTheaters.find(theaterId); itr != mTheaters.end())
     {
-        return availableSeats; // Return an empty vector if theater not found
+        availableSeats = itr->second->getAvailableSeats();
     }
-    availableSeats = theater->getAvailableSeats();
 
     return availableSeats;
 }
@@ -136,77 +137,53 @@ std::vector<int> MovieBookingService::getAvailableSeats(int theaterId, int movie
 bool MovieBookingService::bookSeats(int theaterId, int movieId, const std::vector<int>& seatIds)
 {
     // Check if the theater and movie IDs are valid
-    if (!isValidTheater(theaterId) || !isValidMovie(movieId) || seatIds.empty()) {
+    if (!isValidTheater(theaterId) || !isMovieShownInTheater(theaterId, movieId) || seatIds.empty()) {
         return false; // Invalid theater or movie
     }
     
     std::lock_guard<std::mutex> lock(mBookingMutex);
     
     // Get the theater associated with the provided theaterId
-    std::shared_ptr<Theater> theater = nullptr;
     
-    for (auto& t : mTheaters)
+    if (auto itr = mTheaters.find(theaterId); itr != mTheaters.end())
     {
-        if (t->getId() == theaterId)
+        for (auto seatId : seatIds)
         {
-            theater = t;
-            break;
+            if (!itr->second->bookSeat(seatId)) return false;
         }
     }
-        
-    // Check if the theater was found
-    if (!theater)
-    {
-        return false; // Theater not found
-    }
     
-    // If all seat IDs are valid and available, booked the seats one by one
-    for (int seatId : seatIds)
-    {
-        if (!theater->bookSeat(seatId))
-        {
-            return false;
-        }
-    }
-
     return true; // Seats booked successfully
 }
 
 /*----------------------------------------------------*/
 bool MovieBookingService::isValidMovie(int movieId) const
 {
-    for (auto& movie : mMovies)
+    
+    if (auto itr = mMovies.find(movieId); itr != mMovies.end())
     {
-        if (movie->id == movieId)
-        {
-            return true; // Found a movie with the specified ID
-        }
+        return true; // Found a movie with the specified ID
     }
-    return false; // Movie with the specified ID not found
+    return false;
 }
 
 /*----------------------------------------------------*/
 bool MovieBookingService::isValidTheater(int theaterId) const
 {
-    for (auto& theater : mTheaters)
+    if (auto itr = mTheaters.find(theaterId); itr != mTheaters.end())
     {
-        if (theater->getId() == theaterId)
-        {
-            return true; // Found a theater with the specified ID
-        }
+        return true; // Found a theater with the specified ID
     }
-    return false; // Theater with the specified ID not found
+    return false;
 }
 
 /*----------------------------------------------------*/
 std::string MovieBookingService::getMovieName(int movieId) const
 {
-    for(auto& movie : mMovies)
+    
+    if (auto itr = mMovies.find(movieId); itr != mMovies.end())
     {
-        if (movie->id == movieId)
-        {
-            return movie->name;
-        }
+        return itr->second->name; // Found a movie with the specified ID
     }
     // If the theater ID is not found, throw an exception
     throw std::invalid_argument("Movie with the specified ID not found");
@@ -215,12 +192,9 @@ std::string MovieBookingService::getMovieName(int movieId) const
 /*----------------------------------------------------*/
 std::string MovieBookingService::getTheaterName(int theaterId) const
 {
-    for(auto& theater : mTheaters)
+    if (auto itr = mTheaters.find(theaterId); itr != mTheaters.end())
     {
-        if (theater->getId() == theaterId)
-        {
-            return theater->getName();
-        }
+        return itr->second->getName(); // Found a theater with the specified ID
     }
     // If the theater ID is not found, throw an exception
     throw std::invalid_argument("Theater with the specified ID not found");
@@ -240,7 +214,7 @@ bool MovieBookingService::allocateMovieToTheaters(const std::shared_ptr<Movie>& 
     }
 
     // Try to allocate the movie to an unallocated theater
-    for (auto& theater : mTheaters)
+    for (auto& [id, theater] : mTheaters)
     {
         if (!theater->isAllocated())
         {
@@ -263,11 +237,8 @@ bool MovieBookingService::isMovieShownInTheater(int theaterId, int movieId) cons
         return false; // Invalid theater or movie
     }
 
-    // Lock the mutex to protect the critical section
-    std::lock_guard<std::mutex> lock(mBookingMutex);
-
     // Check if the specified theater is allocated for the given movie
-    const std::vector<int>& allocatedTheaters = mMovieTheaterAllocations.at(movieId);
+    const auto& allocatedTheaters = mMovieTheaterAllocations.at(movieId);
     bool isAllocated = std::find(allocatedTheaters.begin(), allocatedTheaters.end(), theaterId) != allocatedTheaters.end();
 
     return isAllocated;

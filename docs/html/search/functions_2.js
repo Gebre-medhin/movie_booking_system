@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['getallmovies_0',['getAllMovies',['../class_movie_booking_service.html#af3e8945035c97edc88a4e7d5a819d1fb',1,'MovieBookingService']]],
+  ['getallmovies_0',['getAllMovies',['../class_movie_booking_service.html#aacbc830c0e307fbacffea878be13e87a',1,'MovieBookingService']]],
   ['getavailableseats_1',['getavailableseats',['../class_movie_booking_service.html#a1029a10792f1cac13004e4148865be2a',1,'MovieBookingService::getAvailableSeats()'],['../class_theater.html#a650dad87e662588c3b2f829f92be5c1f',1,'Theater::getAvailableSeats() const']]],
   ['getid_2',['getId',['../class_theater.html#a477da2c78ec4fa3af29e73ee69328642',1,'Theater']]],
   ['getmoviename_3',['getMovieName',['../class_movie_booking_service.html#a26183e6a62331b7088e0890bb8ac5a38',1,'MovieBookingService']]],
