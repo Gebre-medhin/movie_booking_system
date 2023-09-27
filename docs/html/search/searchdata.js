@@ -3,7 +3,7 @@ var indexSectionsWithContent =
   0: "abgimnost~",
   1: "mst",
   2: "mst",
-  3: "abgimot~",
+  3: "abgimost~",
   4: "imns"
 };
 

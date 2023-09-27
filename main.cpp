@@ -151,7 +151,7 @@ int main(int argc, const char * argv[]) {
                 // See Available Seats
                 if (selectedTheaterId != -1) {
                     std::cout << "Available Seats for " << bookingService.getTheaterName(selectedTheaterId) << ":" << std::endl;
-                    for (const auto& seatId : bookingService.getAvailableSeats(selectedTheaterId, selectedMovieId)) {
+                    for (const auto& seatId : bookingService.getAvailableSeats(selectedTheaterId)) {
                         std::cout << "Seat Id: "<< seatId << std::endl;
                     }
                 } else {
@@ -177,7 +177,7 @@ int main(int argc, const char * argv[]) {
                         }
                     }
 
-                    if (bookingService.bookSeats(selectedTheaterId, selectedMovieId, seatIds)) {
+                    if (bookingService.bookSeats(selectedTheaterId, seatIds)) {
                         std::cout << "Seats booked successfully!" << std::endl;
                     } else {
                         std::cout << "Failed to book seats. Please check seat availability and seat IDs." << std::endl;

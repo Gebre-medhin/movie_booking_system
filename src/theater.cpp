@@ -63,9 +63,9 @@ int Theater::getId() const
 }
 
 /*----------------------------------------------------*/
-void Theater::allocateMovie ()
+void Theater::setAllocated (bool value)
 {
-    mIsAllocated = true;
+    mIsAllocated = value;
 }
 
 /*----------------------------------------------------*/

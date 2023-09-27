@@ -62,9 +62,13 @@ public:
     virtual int getId () const;
     
     /**
-      * @brief Allocate a movie to this theater.
-      */
-     virtual void allocateMovie ();
+     * @brief Allocate or deallocate a movie to/from this theater.
+     *
+     * This method allows you to allocate or deallocate a movie to/from this theater.
+     *
+     * @param value True to allocate a movie, false to deallocate.
+     */
+     virtual void setAllocated (bool value);
      
      /**
       * @brief Check if a movie is allocated to this theater.

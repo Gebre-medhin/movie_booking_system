@@ -72,20 +72,18 @@ public:
      * @brief Get available (free/unbooked) seats for a specific theater and movie.
      *
      * @param theaterId The ID of the theater.
-     * @param movieId The ID of the movie.
      * @return A vector of seat IDs representing available seats.
      */
-    std::vector<int> getAvailableSeats(int theaterId, int movieId) const;
+    std::vector<int> getAvailableSeats(int theaterId ) const;
 
     /**
      * @brief Book seats for a specific theater and movie.
      *
      * @param theaterId The ID of the theater.
-     * @param movieId The ID of the movie.
      * @param seatIds A vector of seat IDs to be booked.
      * @return True if seats were booked successfully, false otherwise.
      */
-    bool bookSeats(int theaterId, int movieId, const std::vector<int>& seatIds);
+    bool bookSeats(int theaterId, const std::vector<int>& seatIds);
     
     /**
      * @brief Check if a movie with a given ID exists.

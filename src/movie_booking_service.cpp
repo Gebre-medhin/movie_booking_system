@@ -109,16 +109,11 @@ std::vector<std::shared_ptr<Theater>> MovieBookingService::getTheatersForMovie(i
 }
 
 /*----------------------------------------------------*/
-std::vector<int> MovieBookingService::getAvailableSeats(int theaterId, int movieId) const
+std::vector<int> MovieBookingService::getAvailableSeats(int theaterId) const
 {
     std::vector<int> availableSeats;
     // Check if the theater and movie IDs are valid
-    if (!isValidTheater(theaterId) || !isValidMovie(movieId))
-    {
-        return availableSeats; // Return an empty vector for invalid theater or movie
-    }
-    
-    if ( !isMovieShownInTheater(theaterId, movieId))
+    if (!isValidTheater(theaterId))
     {
         return availableSeats; // Return an empty vector for invalid theater or movie
     }
@@ -134,10 +129,10 @@ std::vector<int> MovieBookingService::getAvailableSeats(int theaterId, int movie
 }
 
 /*----------------------------------------------------------------------*/
-bool MovieBookingService::bookSeats(int theaterId, int movieId, const std::vector<int>& seatIds)
+bool MovieBookingService::bookSeats(int theaterId, const std::vector<int>& seatIds)
 {
     // Check if the theater and movie IDs are valid
-    if (!isValidTheater(theaterId) || !isMovieShownInTheater(theaterId, movieId) || seatIds.empty()) {
+    if (!isValidTheater(theaterId) || seatIds.empty()) {
         return false; // Invalid theater or movie
     }
     
@@ -160,7 +155,7 @@ bool MovieBookingService::bookSeats(int theaterId, int movieId, const std::vecto
 bool MovieBookingService::isValidMovie(int movieId) const
 {
     
-    if (auto itr = mMovies.find(movieId); itr != mMovies.end())
+    if (mMovies.find(movieId) != mMovies.end())
     {
         return true; // Found a movie with the specified ID
     }
@@ -170,7 +165,7 @@ bool MovieBookingService::isValidMovie(int movieId) const
 /*----------------------------------------------------*/
 bool MovieBookingService::isValidTheater(int theaterId) const
 {
-    if (auto itr = mTheaters.find(theaterId); itr != mTheaters.end())
+    if (mTheaters.find(theaterId)!= mTheaters.end())
     {
         return true; // Found a theater with the specified ID
     }
@@ -218,7 +213,7 @@ bool MovieBookingService::allocateMovieToTheaters(const std::shared_ptr<Movie>& 
     {
         if (!theater->isAllocated())
         {
-            theater->allocateMovie();
+            theater->setAllocated(true);
             mMovieTheaterAllocations[movieId].push_back(theater->getId());
             movie->isAllocated = true;
             return true;
@@ -228,7 +223,7 @@ bool MovieBookingService::allocateMovieToTheaters(const std::shared_ptr<Movie>& 
 }
 
 
-/*----------------------------------------------------*/
+///*----------------------------------------------------*/
 bool MovieBookingService::isMovieShownInTheater(int theaterId, int movieId) const
 {
     // Check if the theater and movie IDs are valid

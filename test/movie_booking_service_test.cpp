@@ -12,6 +12,9 @@
 
 #include <memory>
 
+using ::testing::Return;
+using ::testing::_;
+
 //Define mock class for Theater class
 class TheaterMock : public Theater {
 public:
@@ -22,7 +25,7 @@ public:
     MOCK_METHOD(std::vector<int>, getAvailableSeats, (), (const, override));
     MOCK_METHOD(std::string, getName, (), (const, override));
     MOCK_METHOD(int, getId, (), (const, override));
-    MOCK_METHOD(void, allocateMovie, (), (override));
+    MOCK_METHOD(void, setAllocated, (bool value), (override));
     MOCK_METHOD(bool, isAllocated, (), (const, override));
     
     // Define a copy constructor
@@ -73,6 +76,16 @@ protected:
         
         for (const auto& theaterMock : mTheaterMocks)
         {
+ 
+            EXPECT_CALL(*theaterMock, setAllocated(true))
+                .Times(::testing::AtLeast(0));
+            EXPECT_CALL(*theaterMock, isAllocated())
+                .WillRepeatedly(Return(false));
+            
+            EXPECT_CALL(*theaterMock, getId())
+                .WillOnce(Return(0))
+                .WillRepeatedly(Return(1));
+            
             mServicePtr->addTheater(theaterMock);
         }
 
@@ -85,9 +98,6 @@ protected:
     const int mSeatCapacity = 5;
 
 };
-
-using ::testing::Return;
-using ::testing::_;
 
 /*------------------------------------------------------*/
 //// Test case for getAllMovies
@@ -128,9 +138,8 @@ TEST_F(MovieBookingServiceFixture, AddMovie) {
 /*------------------------------------------------------*/
 // Test case for getAvailableSeats
 TEST_F(MovieBookingServiceFixture, GetAvailableSeats) {
-    // Define theater ID and movie ID for which available seats will be retrieved
+    // Define theater ID for which available seats will be retrieved
     int theaterIdToTest = 0;
-    int movieIdToTest = 0;
     
     std::vector<int> seatIds= {0,1,2,3,4};
     
@@ -139,7 +148,7 @@ TEST_F(MovieBookingServiceFixture, GetAvailableSeats) {
         .WillOnce(::testing::Return(seatIds));
 
     // Call the method and check the result
-    auto result = mServicePtr->getAvailableSeats(theaterIdToTest, movieIdToTest);
+    auto result = mServicePtr->getAvailableSeats(theaterIdToTest);
     
     EXPECT_EQ(result, seatIds);
 
@@ -152,24 +161,26 @@ TEST_F(MovieBookingServiceFixture, BookSeats) {
     std::vector<int> seatIds = {0, 1, 2};
     int theaterIdToTest = 0;
 
+    ::testing::InSequence s;
     // Expectations for the mock theater
-    EXPECT_CALL(*mTheaterMocks[theaterIdToTest], bookSeat(0)).WillOnce(::testing::Return(true));
-    EXPECT_CALL(*mTheaterMocks[theaterIdToTest], bookSeat(1)).WillOnce(::testing::Return(true));
-    EXPECT_CALL(*mTheaterMocks[theaterIdToTest], bookSeat(2)).WillOnce(::testing::Return(true));
+    EXPECT_CALL(*mTheaterMocks[theaterIdToTest], bookSeat(_)).WillOnce(::testing::Return(true));
+    EXPECT_CALL(*mTheaterMocks[theaterIdToTest], bookSeat(_)).WillOnce(::testing::Return(true));
+    EXPECT_CALL(*mTheaterMocks[theaterIdToTest], bookSeat(_)).WillOnce(::testing::Return(true));
 
     // Book seats in the MovieBookingService
-    bool result = mServicePtr->bookSeats(0, 0, seatIds); // Assuming theaterId 0 and movieId 0
+    bool result = mServicePtr->bookSeats(0, seatIds); // Assuming theaterId 0 and movieId 0
 
     // Perform assertions to verify the correctness of the test
     EXPECT_TRUE(result); // Expecting successful booking of seats
     
+    ::testing::InSequence s2;
     // Expectations for the mock theater
-    EXPECT_CALL(*mTheaterMocks[theaterIdToTest], bookSeat(0)).WillOnce(::testing::Return(true));
-    EXPECT_CALL(*mTheaterMocks[theaterIdToTest], bookSeat(1)).WillOnce(::testing::Return(true));
-    EXPECT_CALL(*mTheaterMocks[theaterIdToTest], bookSeat(2)).WillOnce(::testing::Return(false)); // One seat booking fails
+    EXPECT_CALL(*mTheaterMocks[theaterIdToTest], bookSeat(_)).WillOnce(::testing::Return(true));
+    EXPECT_CALL(*mTheaterMocks[theaterIdToTest], bookSeat(_)).WillOnce(::testing::Return(true));
+    EXPECT_CALL(*mTheaterMocks[theaterIdToTest], bookSeat(_)).WillOnce(::testing::Return(false)); // One seat booking fails
 
     // Book seats again (this time one seat fails)
-    result = mServicePtr->bookSeats(0, 0, seatIds);
+    result = mServicePtr->bookSeats(0, seatIds);
 
     // Perform assertions to verify the correctness of the test
     EXPECT_FALSE(result); // Expecting one seat booking to fail
