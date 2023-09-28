@@ -14,7 +14,7 @@
 #include <ctime>
 
 /*----------------------------------------------------*/
-bool MovieBookingService::addMovie(const std::shared_ptr<Movie>& movie) {
+bool MovieBookingService::addMovie( std::shared_ptr<Movie> movie) {
     // Add the movie to the list of movies
     bool result = false;
     if (!movie) {
@@ -30,7 +30,7 @@ bool MovieBookingService::addMovie(const std::shared_ptr<Movie>& movie) {
 }
 
 /*----------------------------------------------------*/
-bool MovieBookingService::addTheater(const std::shared_ptr<Theater>& theater) {
+bool MovieBookingService::addTheater( std::shared_ptr<Theater> theater) {
     
     bool result = false;
     if (!theater) {
@@ -63,10 +63,14 @@ bool MovieBookingService::addTheater(const std::shared_ptr<Theater>& theater) {
             std::mt19937 gen(rd());
             std::uniform_int_distribution<int> dist(1, mMovies.size());
             int randomId = dist(gen);
-            
-            // Allocate the randomly picked movie to the new theater
-            isMovieAllocated = allocateMovieToTheaters(mMovies.at(randomId));
-        }
+
+            if ( const auto& itr = mMovies.find(randomId); itr != mMovies.end())
+            {
+                 // Allocate the randomly picked movie to the new theater
+            isMovieAllocated = allocateMovieToTheaters(itr->second);
+
+            }
+         }
     }
     return result;
 }
