@@ -9,3 +9,9 @@ target_link_libraries(main_test gtest)
 add_executable(movie_booking_service movie_booking_service_test.cpp ../src/movie_booking_service.cpp ../src/theater.cpp )
 target_link_libraries(movie_booking_service gtest gmock_main)
 add_test(NAME movie_booking_service_tests COMMAND movie_booking_service)
+
+# Add a custom test target that runs the tests with --output-on-failure
+add_custom_target(run_tests
+    COMMAND movie_booking_service --output-on-failure
+    DEPENDS movie_booking_service
+)

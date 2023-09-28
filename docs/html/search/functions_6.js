@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['theater_0',['Theater',['../class_theater.html#afdeac8e582b7796559e4c3870423ca16',1,'Theater']]]
+  ['setallocated_0',['setAllocated',['../class_theater.html#a03e240104507134df021641cddf3fa02',1,'Theater']]]
 ];

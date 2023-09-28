@@ -12,6 +12,7 @@
 #include <memory>
 #include <mutex>
 #include <unordered_map>
+#include <map>
 
 #include "movie.hpp"
 #include "theater.hpp"
@@ -40,22 +41,24 @@ public:
       * @brief Add a movie to the list of available movies.
       *
       * @param movie A shared pointer to the movie to be added.
+      * @return True if movie is added successfully , false otherwise
       */
-     void addMovie(const std::shared_ptr<Movie>& movie);
+     bool addMovie(std::shared_ptr<Movie> movie);
      
      /**
       * @brief Add a theater to the list of available theaters.
       *
       * @param theater A shared pointer to the theater to be added.
+      * @return True if theater is added successfully , false otherwise
       */
-    void addTheater(const std::shared_ptr<Theater>& theater);
+    bool addTheater(std::shared_ptr<Theater> theater);
 
     /**
      * @brief Get a list of all playing movies.
      *
      * @return A vector of Movie objects representing available movies.
      */
-    const std::vector<std::shared_ptr<Movie>>& getAllMovies() const;
+    std::vector<std::shared_ptr<Movie> > getAllMovies() const;
     
     /**
      * @brief Get theaters showing a specific movie.
@@ -69,20 +72,18 @@ public:
      * @brief Get available (free/unbooked) seats for a specific theater and movie.
      *
      * @param theaterId The ID of the theater.
-     * @param movieId The ID of the movie.
      * @return A vector of seat IDs representing available seats.
      */
-    std::vector<int> getAvailableSeats(int theaterId, int movieId) const;
+    std::vector<int> getAvailableSeats(int theaterId ) const;
 
     /**
      * @brief Book seats for a specific theater and movie.
      *
      * @param theaterId The ID of the theater.
-     * @param movieId The ID of the movie.
      * @param seatIds A vector of seat IDs to be booked.
      * @return True if seats were booked successfully, false otherwise.
      */
-    bool bookSeats(int theaterId, int movieId, const std::vector<int>& seatIds);
+    bool bookSeats(int theaterId, const std::vector<int>& seatIds);
     
     /**
      * @brief Check if a movie with a given ID exists.
@@ -120,21 +121,19 @@ public:
     std::string getTheaterName(int theaterId) const;
     
 private:
-    
-    /**
-     * @brief Mutex for synchronization of booking operations.
-     */
-    mutable std::mutex mBookingMutex; //!
 
-    std::vector<std::shared_ptr<Movie>> mMovies; /**<  Stores movie data  */
-    std::vector<std::shared_ptr<Theater>> mTheaters;  /**<  Stores theater data */
+    mutable std::mutex mBookingMutex;  /**< Mutex for synchronization of booking operations. */
+
+    std::map<int, std::shared_ptr<Movie>> mMovies; /**< Stores movie data*/
+
+    std::map<int, std::shared_ptr<Theater>> mTheaters; /**< Stores theater  data*/
     /**
      * @brief A map to track movie allocations to theaters.
      *
      * This map associates movie IDs with vectors of theater IDs to represent
      * which theaters are allocated for each movie.
      */
-    std::unordered_map<int, std::vector<int>> mMovieTheaterAllocations;
+    std::map<int, std::vector<int>> mMovieTheaterAllocations;
     
     /**
      * @brief Allocate a movie to one or more theaters.
@@ -144,7 +143,7 @@ private:
      * @param movie A shared pointer to the movie to allocate to theaters.
      * @return True if the allocated, false otherwise.
      */
-    bool allocateMovieToTheaters(const std::shared_ptr<Movie>& movie);
+    bool allocateMovieToTheaters(std::shared_ptr<Movie> movie);
     
     /**
      * @brief Check if a theater with a given ID exists.
