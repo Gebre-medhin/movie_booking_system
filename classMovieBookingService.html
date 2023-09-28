@@ -140,9 +140,9 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a8ffea7113dedf9b770e38e301b04009c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMovieBookingService.html#a8ffea7113dedf9b770e38e301b04009c">allocateMovieToTheaters</a> (const std::shared_ptr&lt; <a class="el" href="structMovie.html">Movie</a> &gt; &amp;movie)</td></tr>
-<tr class="memdesc:a8ffea7113dedf9b770e38e301b04009c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate a movie to one or more theaters.  <a href="classMovieBookingService.html#a8ffea7113dedf9b770e38e301b04009c">More...</a><br /></td></tr>
-<tr class="separator:a8ffea7113dedf9b770e38e301b04009c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a94244ec8d54cfb21f94a91a425f05a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMovieBookingService.html#a0a94244ec8d54cfb21f94a91a425f05a">allocateMovieToTheaters</a> (std::shared_ptr&lt; <a class="el" href="structMovie.html">Movie</a> &gt; movie)</td></tr>
+<tr class="memdesc:a0a94244ec8d54cfb21f94a91a425f05a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate a movie to one or more theaters.  <a href="classMovieBookingService.html#a0a94244ec8d54cfb21f94a91a425f05a">More...</a><br /></td></tr>
+<tr class="separator:a0a94244ec8d54cfb21f94a91a425f05a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59023b85d8aac01523f97fa30348e829"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMovieBookingService.html#a59023b85d8aac01523f97fa30348e829">isValidTheater</a> (int theaterId) const</td></tr>
 <tr class="memdesc:a59023b85d8aac01523f97fa30348e829"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a theater with a given ID exists.  <a href="classMovieBookingService.html#a59023b85d8aac01523f97fa30348e829">More...</a><br /></td></tr>
 <tr class="separator:a59023b85d8aac01523f97fa30348e829"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -197,14 +197,14 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordflow">if</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [itr, done] = <a class="code" href="classMovieBookingService.html#a9ba2861c2e0c36efcd81b35586ff68cd">mMovies</a>.insert({movie-&gt;id, movie}); done)</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    {</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        result = done;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <a class="code" href="classMovieBookingService.html#a8ffea7113dedf9b770e38e301b04009c">allocateMovieToTheaters</a>(movie);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <a class="code" href="classMovieBookingService.html#a0a94244ec8d54cfb21f94a91a425f05a">allocateMovieToTheaters</a>(movie);</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    }</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordflow">return</span> result;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
-<div class="ttc" id="aclassMovieBookingService_html_a8ffea7113dedf9b770e38e301b04009c"><div class="ttname"><a href="classMovieBookingService.html#a8ffea7113dedf9b770e38e301b04009c">MovieBookingService::allocateMovieToTheaters</a></div><div class="ttdeci">bool allocateMovieToTheaters(const std::shared_ptr&lt; Movie &gt; &amp;movie)</div><div class="ttdoc">Allocate a movie to one or more theaters.</div><div class="ttdef"><b>Definition:</b> movie_booking_service.cpp:203</div></div>
+<div class="ttc" id="aclassMovieBookingService_html_a0a94244ec8d54cfb21f94a91a425f05a"><div class="ttname"><a href="classMovieBookingService.html#a0a94244ec8d54cfb21f94a91a425f05a">MovieBookingService::allocateMovieToTheaters</a></div><div class="ttdeci">bool allocateMovieToTheaters(std::shared_ptr&lt; Movie &gt; movie)</div><div class="ttdoc">Allocate a movie to one or more theaters.</div><div class="ttdef"><b>Definition:</b> movie_booking_service.cpp:203</div></div>
 <div class="ttc" id="aclassMovieBookingService_html_a9ba2861c2e0c36efcd81b35586ff68cd"><div class="ttname"><a href="classMovieBookingService.html#a9ba2861c2e0c36efcd81b35586ff68cd">MovieBookingService::mMovies</a></div><div class="ttdeci">std::map&lt; int, std::shared_ptr&lt; Movie &gt; &gt; mMovies</div><div class="ttdef"><b>Definition:</b> movie_booking_service.hpp:127</div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="classMovieBookingService.html#a8ffea7113dedf9b770e38e301b04009c">allocateMovieToTheaters()</a>, and <a class="el" href="classMovieBookingService.html#a9ba2861c2e0c36efcd81b35586ff68cd">mMovies</a>.</p>
+<p class="reference">References <a class="el" href="classMovieBookingService.html#a0a94244ec8d54cfb21f94a91a425f05a">allocateMovieToTheaters()</a>, and <a class="el" href="classMovieBookingService.html#a9ba2861c2e0c36efcd81b35586ff68cd">mMovies</a>.</p>
 
 </div>
 </div>
@@ -251,7 +251,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        {</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <span class="keywordflow">if</span> (!movie-&gt;isAllocated)</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            {</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="classMovieBookingService.html#a8ffea7113dedf9b770e38e301b04009c">allocateMovieToTheaters</a>(movie))</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="classMovieBookingService.html#a0a94244ec8d54cfb21f94a91a425f05a">allocateMovieToTheaters</a>(movie))</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                {</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                    isMovieAllocated = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                }</div>
@@ -269,7 +269,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            <span class="keywordflow">if</span> ( <span class="keyword">const</span> <span class="keyword">auto</span>&amp; itr = <a class="code" href="classMovieBookingService.html#a9ba2861c2e0c36efcd81b35586ff68cd">mMovies</a>.find(randomId); itr != <a class="code" href="classMovieBookingService.html#a9ba2861c2e0c36efcd81b35586ff68cd">mMovies</a>.end())</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            {</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                 <span class="comment">// Allocate the randomly picked movie to the new theater</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            isMovieAllocated = <a class="code" href="classMovieBookingService.html#a8ffea7113dedf9b770e38e301b04009c">allocateMovieToTheaters</a>(itr-&gt;second);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            isMovieAllocated = <a class="code" href="classMovieBookingService.html#a0a94244ec8d54cfb21f94a91a425f05a">allocateMovieToTheaters</a>(itr-&gt;second);</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            }</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;         }</div>
@@ -278,12 +278,12 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
 <div class="ttc" id="aclassMovieBookingService_html_a82900e49cd50fce5f3c58acc72729fea"><div class="ttname"><a href="classMovieBookingService.html#a82900e49cd50fce5f3c58acc72729fea">MovieBookingService::mTheaters</a></div><div class="ttdeci">std::map&lt; int, std::shared_ptr&lt; Theater &gt; &gt; mTheaters</div><div class="ttdef"><b>Definition:</b> movie_booking_service.hpp:129</div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="classMovieBookingService.html#a8ffea7113dedf9b770e38e301b04009c">allocateMovieToTheaters()</a>, <a class="el" href="classMovieBookingService.html#a9ba2861c2e0c36efcd81b35586ff68cd">mMovies</a>, and <a class="el" href="classMovieBookingService.html#a82900e49cd50fce5f3c58acc72729fea">mTheaters</a>.</p>
+<p class="reference">References <a class="el" href="classMovieBookingService.html#a0a94244ec8d54cfb21f94a91a425f05a">allocateMovieToTheaters()</a>, <a class="el" href="classMovieBookingService.html#a9ba2861c2e0c36efcd81b35586ff68cd">mMovies</a>, and <a class="el" href="classMovieBookingService.html#a82900e49cd50fce5f3c58acc72729fea">mTheaters</a>.</p>
 
 </div>
 </div>
-<a id="a8ffea7113dedf9b770e38e301b04009c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8ffea7113dedf9b770e38e301b04009c">&#9670;&nbsp;</a></span>allocateMovieToTheaters()</h2>
+<a id="a0a94244ec8d54cfb21f94a91a425f05a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a94244ec8d54cfb21f94a91a425f05a">&#9670;&nbsp;</a></span>allocateMovieToTheaters()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -294,7 +294,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">bool MovieBookingService::allocateMovieToTheaters </td>
           <td>(</td>
-          <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="structMovie.html">Movie</a> &gt; &amp;&#160;</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structMovie.html">Movie</a> &gt;&#160;</td>
           <td class="paramname"><em>movie</em></td><td>)</td>
           <td></td>
         </tr>
@@ -703,7 +703,7 @@ Private Attributes</h2></td></tr>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="classMovieBookingService.html#a9ba2861c2e0c36efcd81b35586ff68cd">mMovies</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classMovieBookingService.html#a8ffea7113dedf9b770e38e301b04009c">allocateMovieToTheaters()</a>, <a class="el" href="classMovieBookingService.html#a86bc3eea125545ebdd78652d9514637f">getTheatersForMovie()</a>, and <a class="el" href="classMovieBookingService.html#a32f8150a475a53c7fbd53a3bf87ab46b">isMovieShownInTheater()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classMovieBookingService.html#a0a94244ec8d54cfb21f94a91a425f05a">allocateMovieToTheaters()</a>, <a class="el" href="classMovieBookingService.html#a86bc3eea125545ebdd78652d9514637f">getTheatersForMovie()</a>, and <a class="el" href="classMovieBookingService.html#a32f8150a475a53c7fbd53a3bf87ab46b">isMovieShownInTheater()</a>.</p>
 
 </div>
 </div>
@@ -775,7 +775,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Mutex for synchronization of booking operations. </p>
 
-<p class="reference">Referenced by <a class="el" href="classMovieBookingService.html#a8ffea7113dedf9b770e38e301b04009c">allocateMovieToTheaters()</a>, and <a class="el" href="classMovieBookingService.html#aa7f8cd7dba4b96323a9d21d272cf9169">bookSeats()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classMovieBookingService.html#a0a94244ec8d54cfb21f94a91a425f05a">allocateMovieToTheaters()</a>, and <a class="el" href="classMovieBookingService.html#aa7f8cd7dba4b96323a9d21d272cf9169">bookSeats()</a>.</p>
 
 </div>
 </div>
@@ -827,7 +827,7 @@ Private Attributes</h2></td></tr>
 <p>A map to track movie allocations to theaters. </p>
 <p>This map associates movie IDs with vectors of theater IDs to represent which theaters are allocated for each movie. </p>
 
-<p class="reference">Referenced by <a class="el" href="classMovieBookingService.html#a8ffea7113dedf9b770e38e301b04009c">allocateMovieToTheaters()</a>, <a class="el" href="classMovieBookingService.html#a86bc3eea125545ebdd78652d9514637f">getTheatersForMovie()</a>, and <a class="el" href="classMovieBookingService.html#a32f8150a475a53c7fbd53a3bf87ab46b">isMovieShownInTheater()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classMovieBookingService.html#a0a94244ec8d54cfb21f94a91a425f05a">allocateMovieToTheaters()</a>, <a class="el" href="classMovieBookingService.html#a86bc3eea125545ebdd78652d9514637f">getTheatersForMovie()</a>, and <a class="el" href="classMovieBookingService.html#a32f8150a475a53c7fbd53a3bf87ab46b">isMovieShownInTheater()</a>.</p>
 
 </div>
 </div>
@@ -852,7 +852,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Stores theater data </p>
 
-<p class="reference">Referenced by <a class="el" href="classMovieBookingService.html#ae9d6a885a79a621f6a32d5d7229812a4">addTheater()</a>, <a class="el" href="classMovieBookingService.html#a8ffea7113dedf9b770e38e301b04009c">allocateMovieToTheaters()</a>, <a class="el" href="classMovieBookingService.html#aa7f8cd7dba4b96323a9d21d272cf9169">bookSeats()</a>, <a class="el" href="classMovieBookingService.html#aaae8b66780db9f389ddd99e5e80e6f07">getAvailableSeats()</a>, <a class="el" href="classMovieBookingService.html#a6996a092cfc19c7c4eda225f87e005c3">getTheaterName()</a>, <a class="el" href="classMovieBookingService.html#a86bc3eea125545ebdd78652d9514637f">getTheatersForMovie()</a>, and <a class="el" href="classMovieBookingService.html#a59023b85d8aac01523f97fa30348e829">isValidTheater()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classMovieBookingService.html#ae9d6a885a79a621f6a32d5d7229812a4">addTheater()</a>, <a class="el" href="classMovieBookingService.html#a0a94244ec8d54cfb21f94a91a425f05a">allocateMovieToTheaters()</a>, <a class="el" href="classMovieBookingService.html#aa7f8cd7dba4b96323a9d21d272cf9169">bookSeats()</a>, <a class="el" href="classMovieBookingService.html#aaae8b66780db9f389ddd99e5e80e6f07">getAvailableSeats()</a>, <a class="el" href="classMovieBookingService.html#a6996a092cfc19c7c4eda225f87e005c3">getTheaterName()</a>, <a class="el" href="classMovieBookingService.html#a86bc3eea125545ebdd78652d9514637f">getTheatersForMovie()</a>, and <a class="el" href="classMovieBookingService.html#a59023b85d8aac01523f97fa30348e829">isValidTheater()</a>.</p>
 
 </div>
 </div>
