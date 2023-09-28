@@ -1,15 +1,15 @@
 <map id="MovieBookingService" name="MovieBookingService">
-<area shape="rect" id="node1" title="A class representing a movie booking service." alt="" coords="385,609,589,877"/>
-<area shape="rect" id="node2" title=" " alt="" coords="120,440,272,547"/>
-<area shape="rect" id="node3" title=" " alt="" coords="183,300,321,377"/>
-<area shape="rect" id="node4" title=" " alt="" coords="305,153,434,230"/>
-<area shape="rect" id="node8" title=" " alt="" coords="296,447,475,539"/>
-<area shape="rect" id="node12" title=" " alt="" coords="616,447,795,539"/>
-<area shape="rect" id="node5" title=" " alt="" coords="350,5,389,83"/>
-<area shape="rect" id="node6" title=" " alt="" coords="5,145,157,237"/>
-<area shape="rect" id="node10" title=" " alt="" coords="719,153,876,230"/>
-<area shape="rect" id="node7" title=" " alt="" coords="62,5,101,83"/>
-<area shape="rect" id="node9" title=" " alt="" coords="698,300,897,377"/>
-<area shape="rect" id="node13" title=" " alt="" coords="921,300,1111,377"/>
-<area shape="rect" id="node11" title=" " alt="" coords="499,455,591,532"/>
+<area shape="rect" id="node1" title="A class representing a movie booking service." alt="" coords="273,595,477,863"/>
+<area shape="rect" id="node2" title=" " alt="" coords="47,440,231,532"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,285,195,363"/>
+<area shape="rect" id="node4" title=" " alt="" coords="240,145,397,223"/>
+<area shape="rect" id="node10" title=" " alt="" coords="219,285,418,363"/>
+<area shape="rect" id="node5" title=" " alt="" coords="523,5,562,83"/>
+<area shape="rect" id="node6" title=" " alt="" coords="442,285,577,363"/>
+<area shape="rect" id="node13" title=" " alt="" coords="681,145,810,223"/>
+<area shape="rect" id="node9" title=" " alt="" coords="372,440,567,532"/>
+<area shape="rect" id="node11" title=" " alt="" coords="591,440,729,532"/>
+<area shape="rect" id="node7" title=" " alt="" coords="455,145,494,223"/>
+<area shape="rect" id="node8" title=" " alt="" coords="255,447,347,525"/>
+<area shape="rect" id="node12" title=" " alt="" coords="709,285,848,363"/>
 </map>
