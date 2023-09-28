@@ -200,7 +200,7 @@ std::string MovieBookingService::getTheaterName(int theaterId) const
 }
 
 /*----------------------------------------------------*/
-bool MovieBookingService::allocateMovieToTheaters(const std::shared_ptr<Movie>& movie)
+bool MovieBookingService::allocateMovieToTheaters( std::shared_ptr<Movie> movie)
 {
     
     std::lock_guard<std::mutex> lock(mBookingMutex);
