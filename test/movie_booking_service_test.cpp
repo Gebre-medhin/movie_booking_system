@@ -163,9 +163,9 @@ TEST_F(MovieBookingServiceFixture, BookSeats) {
 
     ::testing::InSequence s;
     // Expectations for the mock theater
-    EXPECT_CALL(*mTheaterMocks[theaterIdToTest], bookSeat(_)).WillOnce(::testing::Return(true));
-    EXPECT_CALL(*mTheaterMocks[theaterIdToTest], bookSeat(_)).WillOnce(::testing::Return(true));
-    EXPECT_CALL(*mTheaterMocks[theaterIdToTest], bookSeat(_)).WillOnce(::testing::Return(true));
+    EXPECT_CALL(*mTheaterMocks[theaterIdToTest], bookSeat(0)).WillOnce(::testing::Return(true));
+    EXPECT_CALL(*mTheaterMocks[theaterIdToTest], bookSeat(1)).WillOnce(::testing::Return(true));
+    EXPECT_CALL(*mTheaterMocks[theaterIdToTest], bookSeat(2)).WillOnce(::testing::Return(true));
 
     // Book seats in the MovieBookingService
     bool result = mServicePtr->bookSeats(0, seatIds); // Assuming theaterId 0 and movieId 0
@@ -175,9 +175,9 @@ TEST_F(MovieBookingServiceFixture, BookSeats) {
     
     ::testing::InSequence s2;
     // Expectations for the mock theater
-    EXPECT_CALL(*mTheaterMocks[theaterIdToTest], bookSeat(_)).WillOnce(::testing::Return(true));
-    EXPECT_CALL(*mTheaterMocks[theaterIdToTest], bookSeat(_)).WillOnce(::testing::Return(true));
-    EXPECT_CALL(*mTheaterMocks[theaterIdToTest], bookSeat(_)).WillOnce(::testing::Return(false)); // One seat booking fails
+    EXPECT_CALL(*mTheaterMocks[theaterIdToTest], bookSeat(0)).WillOnce(::testing::Return(true));
+    EXPECT_CALL(*mTheaterMocks[theaterIdToTest], bookSeat(1)).WillOnce(::testing::Return(true));
+    EXPECT_CALL(*mTheaterMocks[theaterIdToTest], bookSeat(2)).WillOnce(::testing::Return(false)); // One seat booking fails
 
     // Book seats again (this time one seat fails)
     result = mServicePtr->bookSeats(0, seatIds);
@@ -207,7 +207,7 @@ TEST_F(MovieBookingServiceFixture, GetMovieName) {
 
 /*------------------------------------------------------*/
 // Test case for getTheaterName
-TEST_F(MovieBookingServiceFixture, GetTheaterName) {
+TEST_F(MovieBookingServiceFixture, GetTheaterName_ValidId) {
     // Define the theater ID for which the name will be retrieved
     int theaterIdToTest = 0; // Assuming theater ID 0 exists
     
@@ -220,13 +220,19 @@ TEST_F(MovieBookingServiceFixture, GetTheaterName) {
 
     // Verify that the result matches the expected movie name
     EXPECT_EQ(result, "Theater00");
+}
 
+/*------------------------------------------------------*/
+// Test case for getTheaterName, Bad Weather
+TEST_F(MovieBookingServiceFixture, GetTheaterName_InValidId) {
+    
     // Define a movie ID that does not exist in the service
     int nonExistingTheaterId = 999;
 
     EXPECT_THROW(mServicePtr->getTheaterName(nonExistingTheaterId), std::invalid_argument);
 
 }
+
 
 /*------------------------------------------------------*/
 // Test case for isValidMovie, Good weather
