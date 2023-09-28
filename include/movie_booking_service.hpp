@@ -143,7 +143,7 @@ private:
      * @param movie A shared pointer to the movie to allocate to theaters.
      * @return True if the allocated, false otherwise.
      */
-    bool allocateMovieToTheaters(const std::shared_ptr<Movie>& movie);
+    bool allocateMovieToTheaters(std::shared_ptr<Movie> movie);
     
     /**
      * @brief Check if a theater with a given ID exists.
