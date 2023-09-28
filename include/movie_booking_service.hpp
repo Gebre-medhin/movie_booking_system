@@ -43,7 +43,7 @@ public:
       * @param movie A shared pointer to the movie to be added.
       * @return True if movie is added successfully , false otherwise
       */
-     bool addMovie(const std::shared_ptr<Movie>& movie);
+     bool addMovie(std::shared_ptr<Movie> movie);
      
      /**
       * @brief Add a theater to the list of available theaters.
@@ -51,7 +51,7 @@ public:
       * @param theater A shared pointer to the theater to be added.
       * @return True if theater is added successfully , false otherwise
       */
-    bool addTheater(const std::shared_ptr<Theater>& theater);
+    bool addTheater(std::shared_ptr<Theater> theater);
 
     /**
      * @brief Get a list of all playing movies.
