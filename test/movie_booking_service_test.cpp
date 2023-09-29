@@ -50,8 +50,8 @@ protected:
     void SetUp() override
     {
         //Populate sample movies
-        mMovies.push_back(std::make_shared<Movie>(0, "Movie00"));
-        mMovies.push_back(std::make_shared<Movie>(1, "Movie01"));
+        mMovies_.emplace_back(std::make_unique<Movie>(0, "Movie00"));
+        mMovies_.emplace_back(std::make_unique<Movie>(1, "Movie01"));
 
         for (int i = 0; i < mSeatCapacity; ++i)
         {
@@ -63,50 +63,57 @@ protected:
         }
 
         // Populate sample theaters
-        mTheaterMocks.push_back( std::make_shared<TheaterMock>(0, "Theater00", mSeats));
-        mTheaterMocks.push_back( std::make_shared<TheaterMock>(1, "Theater01", mSeats));
+        mTheaterMocks_.emplace_back(std::make_unique<TheaterMock>(0, "Theater00", mSeats));
+        mTheaterMocks_.emplace_back(std::make_unique<TheaterMock>(1, "Theater01", mSeats));
 
         // Initialize the MovieBookingService with sample data
         mServicePtr = std::make_unique<MovieBookingService>();
         
-        for (const auto& movie : mMovies)
+        for (auto& movie : mMovies_)
         {
-            mServicePtr->addMovie(movie);
+            mMovies.push_back(movie.get());
+            mServicePtr->addMovie(std::move(movie));
         }
-        
-        for (const auto& theaterMock : mTheaterMocks)
+
+        for (auto& theaterMock : mTheaterMocks_)
         {
- 
+
             EXPECT_CALL(*theaterMock, setAllocated(true))
                 .Times(::testing::AtLeast(0));
             EXPECT_CALL(*theaterMock, isAllocated())
                 .WillRepeatedly(Return(false));
-            
+
             EXPECT_CALL(*theaterMock, getId())
                 .WillOnce(Return(0))
                 .WillRepeatedly(Return(1));
             
-            mServicePtr->addTheater(theaterMock);
-        }
+            mTheaterMocks.push_back(theaterMock.get());
 
+            mServicePtr->addTheater(std::move(theaterMock));
+        }
     }
 
     std::unique_ptr<MovieBookingService> mServicePtr;
-    std::vector<std::shared_ptr<Movie>> mMovies;
+    std::vector<std::unique_ptr<Movie>> mMovies_;
     std::vector<Seat> mSeats;
-    std::vector<std::shared_ptr<TheaterMock>> mTheaterMocks;
+    std::vector<std::unique_ptr<TheaterMock>> mTheaterMocks_;
     const int mSeatCapacity = 5;
+    std::vector<TheaterMock*> mTheaterMocks;
+    std::vector<Movie*> mMovies;
+
 
 };
 
 /*------------------------------------------------------*/
 //// Test case for getAllMovies
 TEST_F(MovieBookingServiceFixture, GetAllMovies) {
+    
+    std::vector<int> movieIds = {mMovies[0]->id,mMovies[1]->id};
 
     // Call the method and check the result
     auto result = mServicePtr->getAllMovies();
 
-    EXPECT_EQ(result, mMovies);
+    EXPECT_EQ(result, movieIds);
 }
 
 /*------------------------------------------------------*/
@@ -114,24 +121,25 @@ TEST_F(MovieBookingServiceFixture, GetAllMovies) {
 TEST_F(MovieBookingServiceFixture, AddMovie) {
 
     // Create a sample movie
-    std::shared_ptr<Movie> movie = std::make_shared<Movie>(3, "Movie00");
+    auto movie = std::make_unique<Movie>(3, "Movie00");
     
+    int movieId = movie->id;
+
     // Add the movie to the MovieBookingService
-    mServicePtr->addMovie(movie);
+    mServicePtr->addMovie(std::move(movie));
 
     // Get the list of all movies from the MovieBookingService
-    auto movies = mServicePtr->getAllMovies();
+    auto movieIds = mServicePtr->getAllMovies();
 
     // Check if the added movie exists in the list of all movies
     bool movieFound = false;
-    for (const auto& m : movies) {
-        if (m == movie) {
+    for (const auto& m : movieIds) {
+        if (m == movieId) {
             movieFound = true;
             break;
         }
     }
 
-    // Perform assertions to verify the correctness of the test
     EXPECT_TRUE(movieFound);
 }
 
@@ -140,16 +148,16 @@ TEST_F(MovieBookingServiceFixture, AddMovie) {
 TEST_F(MovieBookingServiceFixture, GetAvailableSeats) {
     // Define theater ID for which available seats will be retrieved
     int theaterIdToTest = 0;
-    
+
     std::vector<int> seatIds= {0,1,2,3,4};
-    
+
     // Set up expectations for the mock
     EXPECT_CALL(*mTheaterMocks[theaterIdToTest], getAvailableSeats())
         .WillOnce(::testing::Return(seatIds));
 
     // Call the method and check the result
     auto result = mServicePtr->getAvailableSeats(theaterIdToTest);
-    
+
     EXPECT_EQ(result, seatIds);
 
 }
@@ -167,12 +175,10 @@ TEST_F(MovieBookingServiceFixture, BookSeats) {
     EXPECT_CALL(*mTheaterMocks[theaterIdToTest], bookSeat(1)).WillOnce(::testing::Return(true));
     EXPECT_CALL(*mTheaterMocks[theaterIdToTest], bookSeat(2)).WillOnce(::testing::Return(true));
 
-    // Book seats in the MovieBookingService
     bool result = mServicePtr->bookSeats(0, seatIds); // Assuming theaterId 0 and movieId 0
 
-    // Perform assertions to verify the correctness of the test
     EXPECT_TRUE(result); // Expecting successful booking of seats
-    
+
     ::testing::InSequence s2;
     // Expectations for the mock theater
     EXPECT_CALL(*mTheaterMocks[theaterIdToTest], bookSeat(0)).WillOnce(::testing::Return(true));
@@ -182,7 +188,6 @@ TEST_F(MovieBookingServiceFixture, BookSeats) {
     // Book seats again (this time one seat fails)
     result = mServicePtr->bookSeats(0, seatIds);
 
-    // Perform assertions to verify the correctness of the test
     EXPECT_FALSE(result); // Expecting one seat booking to fail
 }
 
@@ -210,7 +215,7 @@ TEST_F(MovieBookingServiceFixture, GetMovieName) {
 TEST_F(MovieBookingServiceFixture, GetTheaterName_ValidId) {
     // Define the theater ID for which the name will be retrieved
     int theaterIdToTest = 0; // Assuming theater ID 0 exists
-    
+
     // Set up expectations for the mock theaters
     EXPECT_CALL(*mTheaterMocks[theaterIdToTest], getName())
         .WillOnce(::testing::Return("Theater00"));
@@ -225,14 +230,13 @@ TEST_F(MovieBookingServiceFixture, GetTheaterName_ValidId) {
 /*------------------------------------------------------*/
 // Test case for getTheaterName, Bad Weather
 TEST_F(MovieBookingServiceFixture, GetTheaterName_InValidId) {
-    
+
     // Define a movie ID that does not exist in the service
     int nonExistingTheaterId = 999;
 
     EXPECT_THROW(mServicePtr->getTheaterName(nonExistingTheaterId), std::invalid_argument);
 
 }
-
 
 /*------------------------------------------------------*/
 // Test case for isValidMovie, Good weather
@@ -244,8 +248,8 @@ TEST_F(MovieBookingServiceFixture, IsValidMovie_ValidMovieId) {
     EXPECT_TRUE(mServicePtr->isValidMovie(1));
 }
 
-// Test case for isValidMovie, Bad weather
 /*------------------------------------------------------*/
+// Test case for isValidMovie, Bad weather
 TEST_F(MovieBookingServiceFixture, IsValidMovie_InvalidMovieId) {
     // Define a movie ID that does not exist in the service
     int nonExistingMovieId = -1;;

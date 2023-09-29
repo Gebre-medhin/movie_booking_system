@@ -25,6 +25,11 @@ struct Movie {
      */
     Movie(int id_, const std::string& name_) : id(id_), name(name_) { }
     
+    Movie(Movie&& other) = default;
+
+    Movie& operator=(Movie&& other) = default;
+
+    
     /**
      * @brief Equality operator for comparing movies based on their  unique IDs.
      *
