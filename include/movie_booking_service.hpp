@@ -40,33 +40,33 @@ public:
     /**
       * @brief Add a movie to the list of available movies.
       *
-      * @param movie A shared pointer to the movie to be added.
+      * @param movie A  pointer to the movie to be added.
       * @return True if movie is added successfully , false otherwise
       */
-     bool addMovie(std::shared_ptr<Movie> movie);
+     bool addMovie(std::unique_ptr<Movie> movie);
      
      /**
       * @brief Add a theater to the list of available theaters.
       *
-      * @param theater A shared pointer to the theater to be added.
+      * @param theater A  pointer to the theater to be added.
       * @return True if theater is added successfully , false otherwise
       */
-    bool addTheater(std::shared_ptr<Theater> theater);
+    bool addTheater(std::unique_ptr<Theater> theater);
 
     /**
      * @brief Get a list of all playing movies.
      *
-     * @return A vector of Movie objects representing available movies.
+     * @return A vector of Movie ids representing available movies.
      */
-    std::vector<std::shared_ptr<Movie> > getAllMovies() const;
+    std::vector< int > getAllMovies() const;
     
     /**
      * @brief Get theaters showing a specific movie.
      *
      * @param movieId The ID of the movie.
-     * @return A vector of Theater objects showing the specified movie.
+     * @return A vector of Theater ids showing the specified movie.
      */
-    std::vector<std::shared_ptr<Theater>> getTheatersForMovie(int movieId) const;
+    std::vector<int> getTheatersForMovie(int movieId) const;
     
     /**
      * @brief Get available (free/unbooked) seats for a specific theater and movie.
@@ -124,9 +124,9 @@ private:
 
     mutable std::mutex mBookingMutex;  /**< Mutex for synchronization of booking operations. */
 
-    std::map<int, std::shared_ptr<Movie>> mMovies; /**< Stores movie data*/
+    std::map<int, std::unique_ptr<Movie>> mMovies; /**< Stores movie data*/
 
-    std::map<int, std::shared_ptr<Theater>> mTheaters; /**< Stores theater  data*/
+    std::map<int, std::unique_ptr<Theater>> mTheaters; /**< Stores theater  data*/
     /**
      * @brief A map to track movie allocations to theaters.
      *
@@ -140,10 +140,10 @@ private:
      *
      * This method allocates the specified movie to one or more theaters.
      *
-     * @param movie A shared pointer to the movie to allocate to theaters.
+     * @param movie  Movie id to allocate to theaters.
      * @return True if the allocated, false otherwise.
      */
-    bool allocateMovieToTheaters(std::shared_ptr<Movie> movie);
+    bool allocateMovieToTheaters(int movieId);
     
     /**
      * @brief Check if a theater with a given ID exists.
