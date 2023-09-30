@@ -96,26 +96,14 @@ std::vector<int> MovieBookingService::getAllMovies() const
 
 /*----------------------------------------------------*/
 std::vector<int> MovieBookingService::getTheatersForMovie(int movieId) const
-{
-    std::vector<int> theatersForMovie;
-        
+{       
     // Check if the movie ID is valid
-    if (isValidMovie(movieId))
+    if (!isValidMovie(movieId))
     {
-        // Get the list of theater IDs allocated to the movie
-        const std::vector<int>& theaterIds = mMovieTheaterAllocations.at(movieId);
-
-        // Iterate through theaters and find matching theater IDs
-        for (const auto& allocatedTheaterId : theaterIds)
-        {
-            if (auto itr = mTheaters.find(allocatedTheaterId); itr != mTheaters.end())
-            {
-                theatersForMovie.push_back(itr->first);
-            }
-        }
+        throw std::invalid_argument("Movie with the specified ID not found");
     }
-
-    return theatersForMovie;
+    // Get the list of theater IDs allocated to the movie
+    return mMovieTheaterAllocations.at(movieId);
 }
 
 /*----------------------------------------------------*/
@@ -242,9 +230,7 @@ bool MovieBookingService::isMovieShownInTheater(int theaterId, int movieId) cons
 
     // Check if the specified theater is allocated for the given movie
     const auto& allocatedTheaters = mMovieTheaterAllocations.at(movieId);
-    bool isAllocated = std::find(allocatedTheaters.begin(), allocatedTheaters.end(), theaterId) != allocatedTheaters.end();
-
-    return isAllocated;
+    return std::find(allocatedTheaters.begin(), allocatedTheaters.end(), theaterId) != allocatedTheaters.end();
 }
 
 /*-------------------END---------------------------------*/
