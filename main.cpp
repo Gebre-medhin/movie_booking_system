@@ -25,20 +25,11 @@
 int main(int argc, const char * argv[]) {
 
     // Initialize the movie booking service with movie data
-//    std::vector<std::unique_ptr<Movie>> movies {
-//        {std::make_unique<Movie>(1, "Movie01")},
-//        {std::make_unique<Movie>(2, "Movie02")},
-//        {std::make_unique<Movie>(3, "Movie03")},
-//        {std::make_unique<Movie>(4, "Movie04")},
-//        // Add more movies as needed, but not more than the number of theaters
-//    };
-    
     std::vector<std::unique_ptr<Movie>> movies;
     movies.emplace_back(std::make_unique<Movie>(1, "Movie01"));
     movies.emplace_back(std::make_unique<Movie>(2, "Movie02"));
     movies.emplace_back(std::make_unique<Movie>(3, "Movie03"));
     movies.emplace_back(std::make_unique<Movie>(4, "Movie04"));
-
     //Add more movies as needed
 
 
@@ -63,7 +54,6 @@ int main(int argc, const char * argv[]) {
     theaters.emplace_back(std::make_unique<Theater>(5, "Theater05", seats));
     theaters.emplace_back(std::make_unique<Theater>(6, "Theater06", seats));
     theaters.emplace_back(std::make_unique<Theater>(7, "Theater07", seats));
-
     //Add more movies as needed
 
     MovieBookingService bookingService;
