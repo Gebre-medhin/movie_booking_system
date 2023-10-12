@@ -15,10 +15,8 @@
 
 /*----------------------------------------------------*/
 bool MovieBookingService::addMovie( std::unique_ptr<Movie> movie) {
-    // Add the movie to the list of movies
     bool result = false;
     if (!movie) {
-        // Handle null pointer
         return false;
     }
         
@@ -35,7 +33,6 @@ bool MovieBookingService::addTheater( std::unique_ptr<Theater> theater) {
     
     bool result = false;
     if (!theater) {
-        // Handle null pointer
         return result;
     }
     int theaterId = theater->getId();
@@ -46,7 +43,6 @@ bool MovieBookingService::addTheater( std::unique_ptr<Theater> theater) {
         
         bool isMovieAllocated = false;
         
-        // Check if there are unallocated movies
         for (const auto& [movieId, movie] : mMovies)
         {
             if (!movie->isAllocated)
@@ -97,7 +93,6 @@ std::vector<int> MovieBookingService::getAllMovies() const
 /*----------------------------------------------------*/
 std::vector<int> MovieBookingService::getTheatersForMovie(int movieId) const
 {       
-    // Check if the movie ID is valid
     if (!isValidMovie(movieId))
     {
         throw std::invalid_argument("Movie with the specified ID not found");
@@ -110,13 +105,10 @@ std::vector<int> MovieBookingService::getTheatersForMovie(int movieId) const
 std::vector<int> MovieBookingService::getAvailableSeats(int theaterId) const
 {
     std::vector<int> availableSeats;
-    // Check if the theater and movie IDs are valid
     if (!isValidTheater(theaterId))
     {
         return availableSeats; // Return an empty vector for invalid theater or movie
     }
-    
-   // Find the theater associated with the provided theaterId
     
     if (auto itr = mTheaters.find(theaterId); itr != mTheaters.end())
     {
@@ -129,14 +121,11 @@ std::vector<int> MovieBookingService::getAvailableSeats(int theaterId) const
 /*----------------------------------------------------------------------*/
 bool MovieBookingService::bookSeats(int theaterId, const std::vector<int>& seatIds)
 {
-    // Check if the theater and movie IDs are valid
     if (!isValidTheater(theaterId) || seatIds.empty()) {
-        return false; // Invalid theater or movie
+        return false; 
     }
     
     std::lock_guard<std::mutex> lock(mBookingMutex);
-    
-    // Get the theater associated with the provided theaterId
     
     if (auto itr = mTheaters.find(theaterId); itr != mTheaters.end())
     {
@@ -155,7 +144,7 @@ bool MovieBookingService::isValidMovie(int movieId) const
     
     if (mMovies.find(movieId) != mMovies.end())
     {
-        return true; // Found a movie with the specified ID
+        return true; 
     }
     return false;
 }
@@ -165,7 +154,7 @@ bool MovieBookingService::isValidTheater(int theaterId) const
 {
     if (mTheaters.find(theaterId)!= mTheaters.end())
     {
-        return true; // Found a theater with the specified ID
+        return true;
     }
     return false;
 }
@@ -178,7 +167,6 @@ std::string MovieBookingService::getMovieName(int movieId) const
     {
         return itr->second->name; // Found a movie with the specified ID
     }
-    // If the theater ID is not found, throw an exception
     throw std::invalid_argument("Movie with the specified ID not found");
 }
 
@@ -187,9 +175,8 @@ std::string MovieBookingService::getTheaterName(int theaterId) const
 {
     if (auto itr = mTheaters.find(theaterId); itr != mTheaters.end())
     {
-        return itr->second->getName(); // Found a theater with the specified ID
+        return itr->second->getName(); 
     }
-    // If the theater ID is not found, throw an exception
     throw std::invalid_argument("Theater with the specified ID not found");
 }
 
@@ -200,7 +187,6 @@ bool MovieBookingService::allocateMovieToTheaters( int movieId)
     std::lock_guard<std::mutex> lock(mBookingMutex);
 
     if (!isValidMovie(movieId)) {
-        // Handle invalid movie ID
         return false;
     }
 
@@ -222,13 +208,10 @@ bool MovieBookingService::allocateMovieToTheaters( int movieId)
 ///*----------------------------------------------------*/
 bool MovieBookingService::isMovieShownInTheater(int theaterId, int movieId) const
 {
-    // Check if the theater and movie IDs are valid
     if (!isValidTheater(theaterId) || !isValidMovie(movieId))
     {
-        return false; // Invalid theater or movie
+        return false;
     }
-
-    // Check if the specified theater is allocated for the given movie
     const auto& allocatedTheaters = mMovieTheaterAllocations.at(movieId);
     return std::find(allocatedTheaters.begin(), allocatedTheaters.end(), theaterId) != allocatedTheaters.end();
 }
